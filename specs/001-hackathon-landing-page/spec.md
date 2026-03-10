@@ -168,7 +168,7 @@ A participant or potential applicant wants deeper information about event topics
 ### Functional Requirements
 
 - **FR-001**: Page MUST display a sticky navigation bar with the Tinku logo, section anchor links, and an "Aplicar" CTA button that remains visible during scroll.
-- **FR-002**: Page MUST display a hero section with: event date/location badge, Tinku logo (200px height), "Ritual CreAItivo" tagline with highlighted "AI" letters, supporting description, live countdown to April 17 2025, two CTA buttons, and a stats strip.
+- **FR-002**: Page MUST display a hero section with: event date/location badge, Tinku logo (200px height), "Ritual CreAItivo" tagline with highlighted "AI" letters, supporting description, live countdown to April 17 2026, two CTA buttons, and a stats strip.
 - **FR-003**: Page MUST include an About section explaining what Tinku is, its mission, and its promise to participants (food, coffee, space).
 - **FR-004**: Page MUST display all 5 hackathon tracks (Sustentabilidad, Inteligencia Artificial, Educación, Cloud AI, Human & Agents) as interactive cards with emoji icons, names, and descriptions.
 - **FR-005**: Page MUST present a vertical timeline schedule showing the full 24-hour event agenda with time, event name, and description for each entry.
@@ -184,7 +184,7 @@ A participant or potential applicant wants deeper information about event topics
 - **FR-015**: Page sections MUST animate into view on scroll using fade-up transitions triggered by viewport intersection.
 - **FR-016**: All user-facing content MUST be available in both Spanish and English. The page MUST auto-detect the visitor's browser preferred language and display the matching locale. If the browser language is neither Spanish nor English, the page MUST default to Spanish.
 - **FR-019**: The navigation bar MUST include a visible language toggle allowing visitors to manually switch between Spanish and English, overriding the auto-detected language.
-- **FR-017**: The hero countdown timer MUST operate in two modes, updating every second: (1) **Pre-event mode** — displays days, hours, minutes, and seconds remaining until the event start (April 17, 2025); (2) **During-event mode** — once the event has started, the timer switches to show the remaining hours, minutes, and seconds until the hackathon ends (24 hours after start). After the event ends, the timer displays a completed/finished state.
+- **FR-017**: The hero countdown timer MUST operate in two modes, updating every second: (1) **Pre-event mode** — displays days, hours, minutes, and seconds remaining until the event start (April 17, 2026); (2) **During-event mode** — once the event has started, the timer switches to show the remaining hours, minutes, and seconds until the hackathon ends (24 hours after start). After the event ends, the timer displays a completed/finished state.
 - **FR-018**: All "Aplicar al Hackathon" CTA buttons MUST open a Tally popup (form ID: `kdA05d`) displaying the application form in-page. The Tally embed script (`https://tally.so/widgets/embed.js`) MUST be loaded asynchronously in the `<head>`. CTA elements use `data-tally-open="kdA05d"`, `data-tally-hide-title="1"`, `data-tally-emoji-text="👋"`, and `data-tally-emoji-animation="wave"` attributes.
 - **FR-020**: Page MUST use the Tinku isotipo (`resources_for_agents/Tinku - ISOTIPO-24.png`) as the browser favicon, provided in appropriate sizes for different devices and platforms.
 - **FR-021**: Page MUST include SEO best practices: semantic HTML structure (proper heading hierarchy, landmark elements), descriptive page title and meta description (localized per active language), Open Graph and Twitter Card meta tags for social sharing, and structured data (Event schema) for search engine rich results.
@@ -236,7 +236,7 @@ A participant or potential applicant wants deeper information about event topics
 - The hackathon application form is hosted on Tally (form ID: `kdA05d`) and displayed as an in-page popup via the Tally embed widget. No form hosting or backend is needed on the landing page itself.
 - The full 24-hour schedule/agenda details will be provided separately or are already known to the content team. The spec defines the section structure; specific time slots will be populated during implementation.
 - Brand assets (logos, fonts) are available in the repository under `resources_for_agents/` and `public/fonts/`.
-- The event date is fixed at April 17–18, 2025. The countdown targets this date.
+- The event date is fixed at April 17–18, 2026. The countdown targets this date.
 - No server-side functionality is needed — the page is fully static.
 - Font files will be self-hosted (not loaded from external CDNs) for performance and privacy.
 
