@@ -1,12 +1,14 @@
-# TINKU — Hackathon Norte del Valle del Cauca
+# TINKU — Ritual CreAItivo
+
+## Primer Hackathon de Inteligencia Artificial en Cartago
 
 ## Tu vIAje comienza aquí
 
-**24 horas para construir, aprender y conectar con el mundo tech.**
+**18 horas para construir, aprender y conectar con el mundo tech.**
 
 📅 **17–18 de abril**  
 📍 **Cartago, Colombia — Universidad Cooperativa de Colombia**  
-⏱ **24 horas de hacking non-stop**
+⏱ **18 horas de desarrollo intensivo**
 
 [Aplicar al Hackathon]
 
@@ -14,15 +16,15 @@
 
 # Bienvenid@ a Tinku
 
-**Tinku** es la hackathon más importante del **Norte del Valle del Cauca**.
+**TINKU – Ritual CreAItivo** es el primer hackathon de inteligencia artificial realizado en **Cartago, Valle del Cauca**.
 
-Durante **24 horas**, reuniremos en **Cartago** a desarrolladores e innovadores para resolver grandes desafíos y convertir ideas en proyectos reales.
+Durante **18 horas**, reuniremos a desarrolladores, diseñadores, estudiantes y profesionales de tecnología para crear **prototipos funcionales que resuelvan problemas reales planteados por empresas de la región**.
 
-En nuestra primera edición, la misión es clara:
+La misión de esta primera edición es clara:
 
-**crear valor en el mundo tech.**
+**activar el ecosistema tecnológico del Norte del Valle del Cauca mediante innovación con IA.**
 
-Tú solo preocúpate por **construir y soñar en grande**.  
+Tú solo preocúpate por **construir y experimentar**.  
 Nosotros nos encargamos de la comida y de mantener el café caliente.
 
 ---
@@ -31,34 +33,35 @@ Nosotros nos encargamos de la comida y de mantener el café caliente.
 
 ### ⏱ Duración
 
-- 24 horas  
-- Non-stop hacking  
+- **18 horas de desarrollo**
+- Trabajo presencial + remoto opcional
 - **17–18 de abril**
 
 ---
 
 ### 📍 Lugar
 
-- Cartago, Colombia  
+- **Cartago, Colombia**
 - **Universidad Cooperativa de Colombia**
-
----
-
-### 🌎 Conexión
-
-- **2 países conectados**
 
 ---
 
 ### 👥 Equipos
 
 - **12 equipos participantes**
+- Máximo **3 integrantes por equipo**
+
+---
+
+### 💰 Inscripción
+
+**$105.000 COP por equipo**
 
 ---
 
 # Tracks
 
-Los retos del hackathon se enfocarán en las siguientes áreas:
+Los retos del hackathon se enfocarán en áreas como:
 
 - ♻️ **Sustentabilidad**
 - 🤖 **Inteligencia Artificial**
@@ -70,41 +73,50 @@ Los retos del hackathon se enfocarán en las siguientes áreas:
 
 # Premios
 
-🏆 **Premio principal**
+Los tres mejores equipos recibirán premios en efectivo:
 
-**$1,000 USD**
+🥇 **1er lugar — $1.500.000 COP**  
+🥈 **2do lugar — $900.000 COP**  
+🥉 **3er lugar — $600.000 COP**
 
-### Premios adicionales
+Además, los equipos tendrán acceso a **créditos en herramientas tecnológicas** proporcionadas por nuestros patrocinadores.
 
-Créditos en herramientas tecnológicas:
+---
+
+# Ecosistema tecnológico
+
+Durante el hackathon los equipos podrán construir utilizando herramientas de IA de nivel global:
 
 - **Cursor**
 - **MiniMax**
 - **Runway**
 
+Estas plataformas permiten acelerar el desarrollo de software, creación de contenido y experimentación con inteligencia artificial.
+
 ---
 
 # Sponsors
 
-### Organizadores
+### Co-organizadores
 
 - The Tribu
+- Universidad Cooperativa de Colombia
 
-### Universidad
+### Patrocinadores principales
 
-- Universidad Cooperativa de Colombia (UCC)
+- Techos Rentables
 
-### Tecnología
+### Patrocinadores tecnológicos
 
 - Cursor  
 - MiniMax  
 - Runway  
 
-### Comunidad
+### Aliados del evento
 
 - Persano  
+- Flavors  
 - La 7 Incluyente  
-- Techos Renovables  
 
 ---
 
@@ -130,7 +142,7 @@ Para que tu equipo pase a la fase de evaluación, deben cumplir estos requisitos
 Debe incluir:
 
 - README
-- Licencia
+- Licencia MIT
 - Instrucciones de configuración
 
 ---
@@ -165,7 +177,7 @@ Queremos ideas frescas.
 Los proyectos deben ser:
 
 - **completamente originales**
-- creados **exclusivamente durante la hackathon**
+- creados **exclusivamente durante el hackathon**
 
 La evaluación se centrará en el trabajo realizado durante las fechas oficiales del evento.
 
@@ -199,16 +211,15 @@ La evaluación se centrará en el trabajo realizado durante las fechas oficiales
 ## 4. Pitch
 
 Mensaje claro y efectivo.
-
 ---
 
 # Preguntas frecuentes
 
 ## ¿Qué es una hackathon?
 
-Es el lugar donde tus ideas locas se vuelven proyectos reales.
+Es el lugar donde tus ideas se convierten en proyectos reales.
 
-En Tinku, durante **24 horas**, desarrollarás soluciones con **IA** en un ambiente dinámico.
+En Tinku, durante **18 horas**, desarrollarás soluciones con **IA** en un ambiente dinámico.
 
 Nosotros cubrimos:
 
@@ -230,6 +241,8 @@ Entrada gratuita registrándose previamente.
 
 Equipos inscritos para competir en el hackathon.
 
+Costo: **$105.000 por equipo**
+
 ---
 
 ## ¿Qué conocimientos necesito?
@@ -238,14 +251,15 @@ No necesitas ser experto.
 
 Se recomienda tener bases en:
 
-- informática
+- programación
 - GitHub
+- uso básico de herramientas de IA
 
 Habrá **mentores** para ayudarte durante el evento.
 
 ---
 
-## ¿Cómo se forman los equipos?**
+## ¿Cómo se forman los equipos?
 
 Los equipos pueden tener **máximo 3 personas**.
 
@@ -274,7 +288,9 @@ Puedes traer snacks si lo deseas.
 
 ## ¿Qué vamos a construir?
 
-Un **producto tecnológico** para resolver retos que se revelarán al inicio del evento.
+Un **producto tecnológico** que resuelva retos reales planteados por empresas.
+
+Los desafíos se revelarán al inicio del evento.
 
 ---
 
@@ -282,7 +298,7 @@ Un **producto tecnológico** para resolver retos que se revelarán al inicio del
 
 No.
 
-Todos los proyectos deben construirse **desde cero durante las 24 horas oficiales**.
+Todos los proyectos deben construirse **desde cero durante el hackathon**.
 
 ---
 
@@ -306,6 +322,6 @@ Además de programar, el evento incluirá:
 
 # Tu vIAje comienza aquí
 
-Únete a la primera hackathon del **Norte del Valle del Cauca** y construye el futuro con tecnología.
+Únete a la primera hackathon de inteligencia artificial del **Norte del Valle del Cauca** y construye el futuro con tecnología.
 
 **Aplicar al Hackathon**

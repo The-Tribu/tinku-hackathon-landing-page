@@ -1,10 +1,8 @@
-import type { TranslationKeys } from "./es";
-
-export const en: TranslationKeys = {
+export const en = {
 	// Meta
 	"meta.title": "Tinku — Ritual CreAItivo | Hackathon in Cartago, Colombia",
 	"meta.description":
-		"Tinku is the first hackathon in Cartago, Valle del Cauca. 24 hours to build, learn, and connect with the tech world. April 17-18, 2026.",
+		"Tinku is the first AI hackathon in Cartago, Valle del Cauca. 18 hours to build, learn, and connect with the tech world. April 17-18, 2026.",
 
 	// Nav
 	"nav.about": "About",
@@ -21,7 +19,7 @@ export const en: TranslationKeys = {
 	// Hero (brand terms stay in Spanish)
 	"hero.badge": "April 17-18 · Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
-	"hero.description": "24 hours to build, learn, and connect with the tech world.",
+	"hero.description": "18 hours to build, learn, and connect with the tech world.",
 	"hero.cta.apply": "Apply to the Hackathon",
 	"hero.cta.schedule": "See schedule ↓",
 	"hero.countdown.days": "Days",
@@ -30,20 +28,19 @@ export const en: TranslationKeys = {
 	"hero.countdown.seconds": "Sec",
 	"hero.countdown.event_ends_in": "The hackathon ends in",
 	"hero.countdown.completed": "Event finished!",
-	"hero.stats.duration": "24h",
+	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 teams",
-	"hero.stats.countries": "2 countries",
-	"hero.stats.prize": "$1,000 USD",
+	"hero.stats.registration": "$105.000 COP",
 
 	// About
 	"about.label": "About",
 	"about.title": "Welcome to Tinku",
 	"about.description":
-		"Tinku is the most important hackathon in northern Valle del Cauca. For 24 hours, we'll gather developers and innovators in Cartago to solve big challenges and turn ideas into real projects.",
+		"TINKU – Ritual CreAItivo is the first artificial intelligence hackathon held in Cartago, Valle del Cauca. For 18 hours, we'll bring together developers, designers, students, and tech professionals to create functional prototypes that solve real problems posed by regional companies.",
 	"about.mission":
-		"In our first edition, the mission is clear: create value in the tech world.",
+		"The mission of this first edition is clear: activate the technological ecosystem of northern Valle del Cauca through AI innovation.",
 	"about.promise":
-		"Just focus on building and dreaming big. We'll take care of the food and keep the coffee hot.",
+		"Just focus on building and experimenting. We'll take care of the food and keep the coffee hot.",
 
 	// Tracks
 	"tracks.label": "Tracks",
@@ -73,15 +70,15 @@ export const en: TranslationKeys = {
 	// Prizes
 	"prizes.label": "Prizes",
 	"prizes.title": "Prizes",
-	"prizes.main.name": "Main Prize",
-	"prizes.main.value": "$1,000 USD",
-	"prizes.main.description": "For the winning hackathon team.",
+	"prizes.main.name": "Cash prizes",
+	"prizes.main.value": "$3.000.000 COP",
+	"prizes.main.description": "Distributed among the top three teams: 🥇 $1.500.000 · 🥈 $900.000 · 🥉 $600.000",
 	"prizes.cursor.name": "Cursor",
-	"prizes.cursor.description": "Cursor platform credits for second place.",
+	"prizes.cursor.description": "Cursor platform credits.",
 	"prizes.minimax.name": "MiniMax",
-	"prizes.minimax.description": "MiniMax credits for third place.",
+	"prizes.minimax.description": "MiniMax credits.",
 	"prizes.runway.name": "Runway",
-	"prizes.runway.description": "Runway credits for special mention.",
+	"prizes.runway.description": "Runway credits.",
 
 	// Rules
 	"rules.label": "Rules",
@@ -116,13 +113,13 @@ export const en: TranslationKeys = {
 	"faq.title": "Frequently Asked Questions",
 	"faq.q1.question": "What is a hackathon?",
 	"faq.q1.answer":
-		"It's the place where your crazy ideas become real projects. At Tinku, for 24 hours, you'll develop AI solutions in a dynamic environment. We cover food, coffee, and spaces to relax.",
+		"It's the place where your ideas become real projects. At Tinku, for 18 hours, you'll develop AI solutions in a dynamic environment. We cover food, coffee, and spaces to relax.",
 	"faq.q2.question": "Who can attend and how much does it cost?",
 	"faq.q2.answer":
-		"The event has two roles. Visitors: free entry by registering in advance. Participants: teams registered to compete in the hackathon.",
+		"The event has two roles. Visitors: free entry by registering in advance. Participants: teams registered to compete in the hackathon. Cost: $105.000 per team.",
 	"faq.q3.question": "What skills do I need?",
 	"faq.q3.answer":
-		"You don't need to be an expert. Basic knowledge of computer science and GitHub is recommended. There will be mentors to help you during the event.",
+		"You don't need to be an expert. Basic knowledge of programming, GitHub, and AI tools usage is recommended. There will be mentors to help you during the event.",
 	"faq.q4.question": "How are teams formed?",
 	"faq.q4.answer":
 		"Teams can have a maximum of 3 people. If something unexpected happens, the team can compete with a minimum of 2 members or even 1.",
@@ -131,10 +128,10 @@ export const en: TranslationKeys = {
 		"Your computer, your software tools, and comfortable clothing. We provide food, drinks, and coffee. You can bring snacks if you want.",
 	"faq.q6.question": "What are we going to build?",
 	"faq.q6.answer":
-		"A technology product to solve challenges that will be revealed at the start of the event.",
+		"A technology product that solves real challenges posed by companies. The challenges will be revealed at the start of the event.",
 	"faq.q7.question": "Can I bring pre-existing code?",
 	"faq.q7.answer":
-		"No. All projects must be built from scratch during the official 24 hours.",
+		"No. All projects must be built from scratch during the hackathon.",
 	"faq.q8.question": "Who owns the intellectual property?",
 	"faq.q8.answer":
 		"The intellectual property belongs 100% to your team. The only requirement is that the code be public with an MIT license.",
@@ -142,10 +139,10 @@ export const en: TranslationKeys = {
 	// Sponsors
 	"sponsors.label": "Sponsors",
 	"sponsors.title": "Sponsors",
-	"sponsors.tier.organizer": "Organizers",
-	"sponsors.tier.university": "University",
-	"sponsors.tier.technology": "Technology",
-	"sponsors.tier.community": "Community",
+	"sponsors.tier.organizer": "Co-organizers",
+	"sponsors.tier.main": "Main Sponsors",
+	"sponsors.tier.technology": "Technology Sponsors",
+	"sponsors.tier.allies": "Event Allies",
 
 	// Footer CTA (brand terms stay in Spanish)
 	"footerCta.title": "Tu vIAje comienza aquí",

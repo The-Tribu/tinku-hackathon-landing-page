@@ -1,14 +1,14 @@
 # Tinku — Ritual CreAItivo
 
-Bilingual landing page and blog for **Tinku**, the first hackathon in Cartago, Valle del Cauca. A 24-hour event where developers and innovators build real projects with AI.
+Bilingual landing page and blog for **Tinku**, the first AI hackathon in Cartago, Valle del Cauca. An 18-hour event where developers, designers, and tech professionals build real projects with AI.
 
 **April 17–18, 2026 · Cartago, Colombia · Universidad Cooperativa de Colombia**
 
 ## About
 
-Tinku brings together 12 teams from 2 countries for 24 hours of non-stop hacking. Participants tackle challenges across five tracks: Sustainability, Artificial Intelligence, Education, Cloud AI, and Human & Agents.
+Tinku brings together 12 teams for 18 hours of intensive development. Participants tackle challenges across five tracks: Sustainability, Artificial Intelligence, Education, Cloud AI, and Human & Agents.
 
-Main prize: **$1,000 USD** + tech credits from Cursor, MiniMax, and Runway.
+Main prizes: **$3.000.000 COP** distributed among top 3 teams (🥇 $1.500.000 · 🥈 $900.000 · 🥉 $600.000) + tech credits from Cursor, MiniMax, and Runway.
 
 ## Tech Stack
 

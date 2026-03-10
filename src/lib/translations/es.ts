@@ -2,7 +2,7 @@ export const es = {
 	// Meta
 	"meta.title": "Tinku — Ritual CreAItivo | Hackathon en Cartago, Colombia",
 	"meta.description":
-		"Tinku es la primera hackathon en Cartago, Valle del Cauca. 24 horas para construir, aprender y conectar con el mundo tech. 17-18 de abril, 2026.",
+		"Tinku es el primer hackathon de inteligencia artificial en Cartago, Valle del Cauca. 18 horas para construir, aprender y conectar con el mundo tech. 17-18 de abril, 2026.",
 
 	// Nav
 	"nav.about": "Acerca",
@@ -19,7 +19,7 @@ export const es = {
 	// Hero
 	"hero.badge": "17-18 de abril · Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
-	"hero.description": "24 horas para construir, aprender y conectar con el mundo tech.",
+	"hero.description": "18 horas para construir, aprender y conectar con el mundo tech.",
 	"hero.cta.apply": "Aplicar al Hackathon",
 	"hero.cta.schedule": "Ver agenda ↓",
 	"hero.countdown.days": "Días",
@@ -28,19 +28,18 @@ export const es = {
 	"hero.countdown.seconds": "Seg",
 	"hero.countdown.event_ends_in": "La hackathon termina en",
 	"hero.countdown.completed": "¡Evento finalizado!",
-	"hero.stats.duration": "24h",
+	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 equipos",
-	"hero.stats.countries": "2 países",
-	"hero.stats.prize": "$1,000 USD",
+	"hero.stats.registration": "$105.000 COP",
 
 	// About
 	"about.label": "Acerca",
 	"about.title": "Bienvenid@ a Tinku",
 	"about.description":
-		"Tinku es la hackathon más importante del Norte del Valle del Cauca. Durante 24 horas, reuniremos en Cartago a desarrolladores e innovadores para resolver grandes desafíos y convertir ideas en proyectos reales.",
-	"about.mission": "En nuestra primera edición, la misión es clara: crear valor en el mundo tech.",
+		"TINKU – Ritual CreAItivo es el primer hackathon de inteligencia artificial realizado en Cartago, Valle del Cauca. Durante 18 horas, reuniremos a desarrolladores, diseñadores, estudiantes y profesionales de tecnología para crear prototipos funcionales que resuelvan problemas reales planteados por empresas de la región.",
+	"about.mission": "La misión de esta primera edición es clara: activar el ecosistema tecnológico del Norte del Valle del Cauca mediante innovación con IA.",
 	"about.promise":
-		"Tú solo preocúpate por construir y soñar en grande. Nosotros nos encargamos de la comida y de mantener el café caliente.",
+		"Tú solo preocúpate por construir y experimentar. Nosotros nos encargamos de la comida y de mantener el café caliente.",
 
 	// Tracks
 	"tracks.label": "Tracks",
@@ -70,15 +69,15 @@ export const es = {
 	// Prizes
 	"prizes.label": "Premios",
 	"prizes.title": "Premios",
-	"prizes.main.name": "Premio principal",
-	"prizes.main.value": "$1,000 USD",
-	"prizes.main.description": "Para el equipo ganador de la hackathon.",
+	"prizes.main.name": "Premios en efectivo",
+	"prizes.main.value": "$3.000.000 COP",
+	"prizes.main.description": "Distribuidos entre los tres mejores equipos: 🥇 $1.500.000 · 🥈 $900.000 · 🥉 $600.000",
 	"prizes.cursor.name": "Cursor",
-	"prizes.cursor.description": "Créditos en la plataforma Cursor para el segundo lugar.",
+	"prizes.cursor.description": "Créditos en la plataforma Cursor.",
 	"prizes.minimax.name": "MiniMax",
-	"prizes.minimax.description": "Créditos de MiniMax para el tercer lugar.",
+	"prizes.minimax.description": "Créditos de MiniMax.",
 	"prizes.runway.name": "Runway",
-	"prizes.runway.description": "Créditos de Runway para mención especial.",
+	"prizes.runway.description": "Créditos de Runway.",
 
 	// Rules
 	"rules.label": "Reglas",
@@ -112,13 +111,13 @@ export const es = {
 	"faq.title": "Preguntas frecuentes",
 	"faq.q1.question": "¿Qué es una hackathon?",
 	"faq.q1.answer":
-		"Es el lugar donde tus ideas locas se vuelven proyectos reales. En Tinku, durante 24 horas, desarrollarás soluciones con IA en un ambiente dinámico. Nosotros cubrimos comida, café y espacios para relajarte.",
+		"Es el lugar donde tus ideas se convierten en proyectos reales. En Tinku, durante 18 horas, desarrollarás soluciones con IA en un ambiente dinámico. Nosotros cubrimos comida, café y espacios para relajarte.",
 	"faq.q2.question": "¿Quién puede asistir y cuánto cuesta?",
 	"faq.q2.answer":
-		"El evento tiene dos roles. Visitantes: entrada gratuita registrándose previamente. Participantes: equipos inscritos para competir en el hackathon.",
+		"El evento tiene dos roles. Visitantes: entrada gratuita registrándose previamente. Participantes: equipos inscritos para competir en el hackathon. Costo: $105.000 por equipo.",
 	"faq.q3.question": "¿Qué conocimientos necesito?",
 	"faq.q3.answer":
-		"No necesitas ser experto. Se recomienda tener bases en informática y GitHub. Habrá mentores para ayudarte durante el evento.",
+		"No necesitas ser experto. Se recomienda tener bases en programación, GitHub y uso básico de herramientas de IA. Habrá mentores para ayudarte durante el evento.",
 	"faq.q4.question": "¿Cómo se forman los equipos?",
 	"faq.q4.answer":
 		"Los equipos pueden tener máximo 3 personas. Si ocurre un imprevisto, el equipo puede competir con mínimo 2 integrantes o incluso 1 integrante.",
@@ -127,10 +126,10 @@ export const es = {
 		"Tu computadora, tus herramientas de software y ropa cómoda. Nosotros ponemos comida, bebidas y café. Puedes traer snacks si lo deseas.",
 	"faq.q6.question": "¿Qué vamos a construir?",
 	"faq.q6.answer":
-		"Un producto tecnológico para resolver retos que se revelarán al inicio del evento.",
+		"Un producto tecnológico que resuelva retos reales planteados por empresas. Los desafíos se revelarán al inicio del evento.",
 	"faq.q7.question": "¿Puedo traer código ya desarrollado?",
 	"faq.q7.answer":
-		"No. Todos los proyectos deben construirse desde cero durante las 24 horas oficiales.",
+		"No. Todos los proyectos deben construirse desde cero durante el hackathon.",
 	"faq.q8.question": "¿De quién es la propiedad intelectual?",
 	"faq.q8.answer":
 		"La propiedad intelectual pertenece 100% a tu equipo. Solo se pide que el código sea público con licencia MIT.",
@@ -138,10 +137,10 @@ export const es = {
 	// Sponsors
 	"sponsors.label": "Sponsors",
 	"sponsors.title": "Sponsors",
-	"sponsors.tier.organizer": "Organizadores",
-	"sponsors.tier.university": "Universidad",
-	"sponsors.tier.technology": "Tecnología",
-	"sponsors.tier.community": "Comunidad",
+	"sponsors.tier.organizer": "Co-organizadores",
+	"sponsors.tier.main": "Patrocinadores principales",
+	"sponsors.tier.technology": "Patrocinadores tecnológicos",
+	"sponsors.tier.allies": "Aliados del evento",
 
 	// Footer CTA
 	"footerCta.title": "Tu vIAje comienza aquí",
