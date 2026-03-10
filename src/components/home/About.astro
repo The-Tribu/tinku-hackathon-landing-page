@@ -1,0 +1,48 @@
+---
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="about" class="relative py-20 px-4 overflow-hidden">
+	<!-- Woven crosshatch texture -->
+	<div
+		class="absolute inset-0 opacity-[0.03]"
+		style="background-image: repeating-linear-gradient(45deg, var(--color-surface) 0, var(--color-surface) 1px, transparent 0, transparent 50%), repeating-linear-gradient(-45deg, var(--color-surface) 0, var(--color-surface) 1px, transparent 0, transparent 50%); background-size: 20px 20px;"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+		<!-- Left column: text -->
+		<div>
+			<SectionLabel text={t("about.label")} />
+			<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-6">
+				{t("about.title")}
+			</h2>
+			<p class="text-text-secondary font-satoshi text-lg leading-relaxed mb-6">
+				{t("about.description")}
+			</p>
+			<p class="text-text-secondary font-satoshi text-lg leading-relaxed mb-8">
+				{t("about.mission")}
+			</p>
+
+			<!-- Promise card -->
+			<div class="p-6 rounded-xl bg-surface/40 border-l-4 border-brand">
+				<p class="font-satoshi text-text-secondary leading-relaxed">
+					{t("about.promise")}
+				</p>
+			</div>
+		</div>
+
+		<!-- Right column: animated diamonds -->
+		<div class="hidden lg:flex items-center justify-center" aria-hidden="true">
+			<div class="relative w-64 h-64">
+				<div class="absolute inset-0 rotate-45 border-2 border-brand/20 rounded-lg animate-pulse"></div>
+				<div class="absolute inset-6 rotate-45 border-2 border-brand/30 rounded-lg animate-pulse" style="animation-delay: 0.5s"></div>
+				<div class="absolute inset-12 rotate-45 border-2 border-brand/40 rounded-lg animate-pulse" style="animation-delay: 1s"></div>
+			</div>
+		</div>
+	</div>
+</section>

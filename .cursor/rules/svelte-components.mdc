@@ -1,0 +1,21 @@
+---
+description: Svelte 5 component conventions for interactive islands
+globs: src/**/*.svelte
+alwaysApply: false
+---
+
+# Svelte Components
+
+- Use Svelte 5 runes: `$state`, `$derived`, `$effect`, `$props`
+- Props interface with `interface Props` and `let { ... }: Props = $props()`
+- Tailwind classes with `/` (like `bg-surface/50`) cannot be used in `class:` directives — use template string interpolation instead
+- Add `aria-` attributes and keyboard handlers for accessibility
+- Respect `prefers-reduced-motion` for animations
+
+```svelte
+// ❌ BAD — class: directive breaks on slashes
+class:bg-surface/50={condition}
+
+// ✅ GOOD — use string interpolation
+class="{condition ? 'bg-brand text-white' : 'bg-surface/50 text-text-secondary'}"
+```

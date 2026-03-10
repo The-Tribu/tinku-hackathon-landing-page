@@ -218,13 +218,22 @@
 
   .hero-heading {
     font-family: 'Satoshi', sans-serif;
-    font-weight: 500; font-size: clamp(16px, 2vw, 20px);
-    line-height: 1.5;
+    font-weight: 900; font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.1;
     position: relative;
-    margin-bottom: 24px;
-    letter-spacing: 0;
-    color: var(--text-secondary);
+    margin-bottom: 16px;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
     animation: heroFadeIn 1.2s ease-out 0.3s both;
+  }
+  .hero-sub {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400; font-size: clamp(15px, 1.8vw, 18px);
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    animation: heroFadeIn 1.2s ease-out 0.45s both;
   }
   .hero-heading .ia {
     color: var(--brand);
@@ -838,7 +847,8 @@
 
     <img src="tinku-logo-h16.png" alt="Tinku" class="hero-logo" />
 
-    <h3 class="hero-heading">Tu v<span class="ia">IA</span>je comienza aquí<br>24 horas para construir, aprender y conectar con el mundo tech.</h3>
+    <h3 class="hero-heading">Ritual Cre<span class="ia">AI</span>tivo</h3>
+    <p class="hero-sub">24 horas para construir, aprender y conectar con el mundo tech.</p>
 
     <div class="countdown">
       <div class="countdown-item"><span class="number">39</span><span class="label">Días</span></div>
@@ -1124,7 +1134,7 @@
 
 <!-- FOOTER CTA -->
 <div class="footer-cta">
-  <h2>Tu v<span style="color: var(--brand)">IA</span>je<br>comienza aquí</h2>
+  <h2>Ritual Cre<span style="color: var(--brand)">AI</span>tivo</h2>
   <button class="btn-primary">Aplicar al Hackathon</button>
 </div>
 

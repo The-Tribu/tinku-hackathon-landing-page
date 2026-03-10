@@ -1,0 +1,13 @@
+---
+description: i18n translation file conventions
+globs: src/lib/translations/*.ts
+alwaysApply: false
+---
+
+# Translation Files
+
+- Both `es.ts` and `en.ts` must have identical keys — TypeScript enforces this via `TranslationKeys` type
+- Use dot-notation keys: `section.subsection.element` (e.g., `hero.cta.apply`)
+- Brand terms remain in Spanish in `en.ts`: "Tinku", "Ritual CreAItivo", "Tu vIAje comienza aquí"
+- When adding a new key, add it to BOTH files simultaneously
+- Run `pnpm test` to verify parity (the `translations.test.ts` catches mismatches)

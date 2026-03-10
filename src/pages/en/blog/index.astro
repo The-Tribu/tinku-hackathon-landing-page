@@ -1,0 +1,49 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Footer from "@/components/layout/Footer.astro";
+import BlogGrid from "@/components/blog/BlogGrid.svelte";
+import { getPostsByLocale, getAllTags, getSlugFromPostId } from "@/lib/content";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const posts = await getPostsByLocale(lang);
+const allTags = await getAllTags();
+
+const postData = posts.map((post) => ({
+	slug: getSlugFromPostId(post.id),
+	title: post.data.title,
+	date: post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+	excerpt: post.data.excerpt,
+	tags: post.data.tags,
+	href: `/en/blog/${getSlugFromPostId(post.id)}/`,
+}));
+
+const tagData = allTags
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((tag) => ({
+		id: tag.id,
+		name: tag.data.name_en,
+	}));
+---
+
+<MainLayout title={`${t("blog.title")} | Tinku`} description={t("blog.description")}>
+	<div class="max-w-6xl mx-auto px-4 py-20">
+		<h1 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-8">
+			{t("blog.title")}
+		</h1>
+
+		<BlogGrid
+			client:load
+			posts={postData}
+			tags={tagData}
+			searchPlaceholder={t("blog.search.placeholder")}
+			noResultsMessage={t("blog.noResults")}
+			noPostsMessage={t("blog.noPosts")}
+			backToHomeLabel={t("blog.backToHome")}
+			backToHomeHref="/en/"
+		/>
+	</div>
+	<Footer slot="footer" />
+</MainLayout>

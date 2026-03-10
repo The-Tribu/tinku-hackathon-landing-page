@@ -7,7 +7,22 @@ I would like to use:
 - Biome 2.3.11 — Linter and formatter (replaces ESLint + Prettier)
 - MDX — Enhanced Markdown for blog posts
 
+You must to create:
+- The required and basic claude skills to operate
+- AGENTS.md explaing how create a new blog post, modify a change a another stuff
 
+------
+
+1. Language Standards
+ALL code, comments, and documentation MUST be in English. Always update documentation after important changes.
+
+
+2. CSS colors 
+Please use variables for the palette, fonts, responsive sizes if it's required. Dont use colors directly use variables.
+
+3. The resourcers like images must be created in a folder use the public/. Please move /resources_for_agents to that folder. You can decide what is the best way.
+
+-------
 I would like to manage this structure:
 
 ├── public/           # Static assets (images, fonts, icons)
@@ -44,5 +59,3 @@ public/images/blog/      # Blog images: posts/{slug}/, shared/, _staging/
 scripts/                 # Build utilities (image optimization)
 docs/                    # Project documentation
 
-1. Language Standards
-ALL code, comments, and documentation MUST be in English. Always update documentation after important changes.

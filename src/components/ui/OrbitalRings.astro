@@ -1,0 +1,68 @@
+---
+
+---
+
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+	<div class="orbital-ring orbital-ring-1">
+		<div class="orbital-dot"></div>
+	</div>
+	<div class="orbital-ring orbital-ring-2">
+		<div class="orbital-dot"></div>
+	</div>
+	<div class="orbital-ring orbital-ring-3"></div>
+</div>
+
+<style>
+	.orbital-ring {
+		position: absolute;
+		border-radius: 50%;
+		border: 1px solid rgb(198 33 229 / 0.08);
+	}
+
+	.orbital-ring-1 {
+		width: 400px;
+		height: 400px;
+		animation: orbit 30s linear infinite;
+	}
+
+	.orbital-ring-2 {
+		width: 550px;
+		height: 550px;
+		animation: orbit 50s linear infinite reverse;
+	}
+
+	.orbital-ring-3 {
+		width: 700px;
+		height: 700px;
+		animation: orbit 70s linear infinite;
+	}
+
+	.orbital-dot {
+		position: absolute;
+		top: -3px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--color-brand);
+		box-shadow: 0 0 10px var(--color-brand-glow-strong);
+	}
+
+	@keyframes orbit {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.orbital-ring {
+			animation-play-state: paused;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.orbital-ring-1 { width: 250px; height: 250px; }
+		.orbital-ring-2 { width: 350px; height: 350px; }
+		.orbital-ring-3 { width: 450px; height: 450px; }
+	}
+</style>

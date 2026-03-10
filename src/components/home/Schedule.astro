@@ -1,0 +1,61 @@
+---
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const scheduleItems = [
+	{ time: "08:00", name: lang === "es" ? "Registro y acreditación" : "Registration and check-in", highlight: false },
+	{ time: "09:00", name: lang === "es" ? "Ceremonia de apertura" : "Opening ceremony", highlight: true },
+	{ time: "09:30", name: lang === "es" ? "Presentación de retos" : "Challenge presentation", highlight: true },
+	{ time: "10:00", name: lang === "es" ? "¡Comienza el hacking!" : "Hacking begins!", highlight: true },
+	{ time: "13:00", name: lang === "es" ? "Almuerzo" : "Lunch", highlight: false },
+	{ time: "18:00", name: lang === "es" ? "Cena + actividades" : "Dinner + activities", highlight: false },
+	{ time: "00:00", name: lang === "es" ? "Snack de medianoche" : "Midnight snack", highlight: false },
+	{ time: "07:00", name: lang === "es" ? "Desayuno" : "Breakfast", highlight: false },
+	{ time: "09:00", name: lang === "es" ? "Hora límite de entrega" : "Submission deadline", highlight: true },
+	{ time: "09:30", name: lang === "es" ? "Presentaciones (pitches)" : "Presentations (pitches)", highlight: true },
+	{ time: "11:00", name: lang === "es" ? "Ceremonia de premiación" : "Awards ceremony", highlight: true },
+];
+---
+
+<section id="schedule" class="py-20 px-4">
+	<div class="max-w-3xl mx-auto">
+		<SectionLabel text={t("schedule.label")} />
+		<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-12">
+			{t("schedule.title")}
+		</h2>
+
+		<div class="relative">
+			<!-- Gradient timeline line -->
+			<div
+				class="absolute left-[19px] top-0 bottom-0 w-px"
+				style="background: linear-gradient(to bottom, var(--color-surface), var(--color-brand), var(--color-surface));"
+				aria-hidden="true"
+			></div>
+
+			<div class="space-y-6">
+				{scheduleItems.map((item) => (
+					<div class="relative flex items-start gap-6 pl-12">
+						{/* Diamond marker */}
+						<div class="absolute left-[12px] top-1.5 w-[15px] h-[15px] rotate-45 border-2 border-brand bg-bg shrink-0" aria-hidden="true">
+							{item.highlight && (
+								<div class="absolute inset-[3px] bg-brand/60 rounded-sm"></div>
+							)}
+						</div>
+						<div>
+							<span class="font-mono text-sm text-brand font-bold">{item.time}</span>
+							<p class:list={[
+								"font-inter font-semibold text-text-primary",
+								item.highlight ? "text-lg" : "text-base opacity-80",
+							]}>
+								{item.name}
+							</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>

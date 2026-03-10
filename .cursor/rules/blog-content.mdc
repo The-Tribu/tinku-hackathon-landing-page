@@ -1,0 +1,14 @@
+---
+description: Blog post and content collection conventions
+globs: src/content/**/*.md
+alwaysApply: false
+---
+
+# Blog Content
+
+- File naming: `YYYY-MM-DD_slug.md` in `src/content/blog/{en,es}/`
+- Required frontmatter: `title`, `date` (YYYY-MM-DD), `excerpt` (max 160 chars), `tags` (array)
+- Optional frontmatter: `author`, `image`
+- Tags reference IDs from `src/content/tags/`: `tracks`, `tools`, `logistics`, `community`
+- Each post must have a corresponding post in the other locale directory
+- Tag files have `name_es`, `name_en`, `description`, and `order` fields
