@@ -114,6 +114,7 @@ const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
 			client:load
 			applyLabel={t("nav.apply")}
 			currentLang={lang}
+			currentPath={currentPath}
 		/>
 		<main class="pt-16">
 			<slot />
