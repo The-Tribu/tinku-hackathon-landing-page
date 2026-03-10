@@ -2,7 +2,7 @@
 
 Bilingual landing page and blog for **Tinku**, the first hackathon in Cartago, Valle del Cauca. A 24-hour event where developers and innovators build real projects with AI.
 
-**April 17–18, 2025 · Cartago, Colombia · Universidad Cooperativa de Colombia**
+**April 17–18, 2026 · Cartago, Colombia · Universidad Cooperativa de Colombia**
 
 ## About
 
@@ -110,7 +110,7 @@ After deployment, update the `site` property in `astro.config.mjs` to your produ
 ```markdown
 ---
 title: "Post Title"
-date: 2025-04-15
+date: 2026-04-15
 excerpt: "Short description (max 160 chars)"
 tags: ["tracks", "tools"]
 author: "Author Name"
@@ -128,4 +128,4 @@ Post body content...
 
 ## License
 
-[MIT](LICENSE) — © 2025 The Tribu
+[MIT](LICENSE) — © 2026 The Tribu
