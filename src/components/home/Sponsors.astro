@@ -8,10 +8,31 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const tierLabelKeys: Record<string, TranslationKey> = {
-	organizer: "sponsors.tier.organizer",
-	university: "sponsors.tier.university",
+	main: "sponsors.tier.main",
 	technology: "sponsors.tier.technology",
-	community: "sponsors.tier.community",
+	allies: "sponsors.tier.allies",
+};
+
+// Escalas de tamaño por tier (70%, 55%, 40%)
+const tierStyles = {
+	main: {
+		scale: 0.7,
+		padding: "px-7 py-3.5",
+		fontSize: "text-lg",
+		borderWidth: "border-2",
+	},
+	technology: {
+		scale: 0.55,
+		padding: "px-5 py-2.5",
+		fontSize: "text-base",
+		borderWidth: "border",
+	},
+	allies: {
+		scale: 0.4,
+		padding: "px-4 py-2",
+		fontSize: "text-sm",
+		borderWidth: "border",
+	},
 };
 ---
 
@@ -26,6 +47,7 @@ const tierLabelKeys: Record<string, TranslationKey> = {
 			{sponsorTiers.map((tier) => {
 				const tierSponsors = sponsors.filter((s) => s.tier === tier);
 				if (tierSponsors.length === 0) return null;
+				const styles = tierStyles[tier];
 				return (
 					<div>
 						<p class="text-xs font-satoshi font-bold uppercase tracking-[0.2em] text-text-muted mb-4">
@@ -33,7 +55,12 @@ const tierLabelKeys: Record<string, TranslationKey> = {
 						</p>
 						<div class="flex flex-wrap items-center justify-center gap-3">
 							{tierSponsors.map((sponsor) => (
-								<span class="px-5 py-2.5 rounded-lg bg-surface/50 border border-surface font-inter font-bold text-sm text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200">
+								<span class:list={[
+									styles.padding,
+									styles.fontSize,
+									styles.borderWidth,
+									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200"
+								]}>
 									{sponsor.name}
 								</span>
 							))}

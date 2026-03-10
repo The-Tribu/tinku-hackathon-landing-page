@@ -16,4 +16,4 @@ export const sponsors: Sponsor[] = [
 	{ name: "La 7 Incluyente", tier: "allies" },
 ];
 
-export const sponsorTiers = ["organizer", "main", "technology", "allies"] as const;
+export const sponsorTiers = ["main", "technology", "allies"] as const;

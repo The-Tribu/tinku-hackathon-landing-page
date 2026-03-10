@@ -12,6 +12,7 @@ export const es = {
 	"nav.rules": "Reglas",
 	"nav.evaluation": "Evaluación",
 	"nav.faq": "FAQ",
+	"nav.organizers": "Organizadores",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
 	"nav.apply": "Aplicar",
@@ -69,15 +70,17 @@ export const es = {
 	// Prizes
 	"prizes.label": "Premios",
 	"prizes.title": "Premios",
-	"prizes.main.name": "Premios en efectivo",
-	"prizes.main.value": "$3.000.000 COP",
-	"prizes.main.description": "Distribuidos entre los tres mejores equipos: 🥇 $1.500.000 · 🥈 $900.000 · 🥉 $600.000",
-	"prizes.cursor.name": "Cursor",
-	"prizes.cursor.description": "Créditos en la plataforma Cursor.",
-	"prizes.minimax.name": "MiniMax",
-	"prizes.minimax.description": "Créditos de MiniMax.",
-	"prizes.runway.name": "Runway",
-	"prizes.runway.description": "Créditos de Runway.",
+	"prizes.first.place": "Primer lugar",
+	"prizes.first.value": "$1.500.000 COP",
+	"prizes.first.description": "Para el equipo ganador del hackathon",
+	"prizes.second.place": "Segundo lugar",
+	"prizes.second.value": "$900.000 COP",
+	"prizes.second.description": "Para el segundo equipo mejor calificado",
+	"prizes.third.place": "Tercer lugar",
+	"prizes.third.value": "$600.000 COP",
+	"prizes.third.description": "Para el tercer equipo mejor calificado",
+	"prizes.tech.title": "Créditos tecnológicos",
+	"prizes.tech.description": "Todos los equipos participantes tendrán acceso a créditos de Cursor, MiniMax y Runway.",
 
 	// Rules
 	"rules.label": "Reglas",
@@ -134,10 +137,13 @@ export const es = {
 	"faq.q8.answer":
 		"La propiedad intelectual pertenece 100% a tu equipo. Solo se pide que el código sea público con licencia MIT.",
 
+	// Organizers
+	"organizers.label": "Organizadores",
+	"organizers.title": "Co-organizan",
+
 	// Sponsors
 	"sponsors.label": "Sponsors",
 	"sponsors.title": "Sponsors",
-	"sponsors.tier.organizer": "Co-organizadores",
 	"sponsors.tier.main": "Patrocinadores principales",
 	"sponsors.tier.technology": "Patrocinadores tecnológicos",
 	"sponsors.tier.allies": "Aliados del evento",

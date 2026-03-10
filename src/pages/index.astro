@@ -8,6 +8,7 @@ import Prizes from "@/components/home/Prizes.astro";
 import Rules from "@/components/home/Rules.astro";
 import Evaluation from "@/components/home/Evaluation.astro";
 import FAQ from "@/components/home/FAQ.svelte";
+import Organizers from "@/components/home/Organizers.astro";
 import Sponsors from "@/components/home/Sponsors.astro";
 import FooterCTA from "@/components/home/FooterCTA.astro";
 import Footer from "@/components/layout/Footer.astro";
@@ -43,6 +44,8 @@ const faqData = faqItems.map((item) => ({
 	<FAQ client:visible label={t("faq.label")} title={t("faq.title")} items={faqData} />
 	<SectionDivider />
 	<Sponsors />
+	<SectionDivider />
+	<Organizers />
 	<SectionDivider />
 	<FooterCTA />
 	<Footer slot="footer" />

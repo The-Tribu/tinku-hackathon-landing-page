@@ -1,0 +1,29 @@
+---
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+import { sponsors } from "@/lib/data/sponsors";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const organizers = sponsors.filter((s) => s.tier === "organizer");
+---
+
+<section id="organizers" class="py-20 px-4">
+	<div class="max-w-6xl mx-auto text-center">
+		<SectionLabel text={t("organizers.label")} />
+		<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-12">
+			{t("organizers.title")}
+		</h2>
+
+		<div class="flex flex-wrap items-center justify-center gap-6">
+			{organizers.map((organizer) => (
+				<div class="group px-8 py-6 rounded-2xl bg-surface/60 border-2 border-surface hover:border-brand/30 transition-all duration-300 hover:shadow-lg hover:scale-105">
+					<p class="font-inter font-bold text-xl text-text-primary group-hover:text-brand transition-colors duration-200">
+						{organizer.name}
+					</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

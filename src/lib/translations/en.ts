@@ -12,6 +12,7 @@ export const en = {
 	"nav.rules": "Rules",
 	"nav.evaluation": "Evaluation",
 	"nav.faq": "FAQ",
+	"nav.organizers": "Organizers",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
 	"nav.apply": "Apply",
@@ -70,15 +71,17 @@ export const en = {
 	// Prizes
 	"prizes.label": "Prizes",
 	"prizes.title": "Prizes",
-	"prizes.main.name": "Cash prizes",
-	"prizes.main.value": "$3.000.000 COP",
-	"prizes.main.description": "Distributed among the top three teams: 🥇 $1.500.000 · 🥈 $900.000 · 🥉 $600.000",
-	"prizes.cursor.name": "Cursor",
-	"prizes.cursor.description": "Cursor platform credits.",
-	"prizes.minimax.name": "MiniMax",
-	"prizes.minimax.description": "MiniMax credits.",
-	"prizes.runway.name": "Runway",
-	"prizes.runway.description": "Runway credits.",
+	"prizes.first.place": "First place",
+	"prizes.first.value": "$1.500.000 COP",
+	"prizes.first.description": "For the winning hackathon team",
+	"prizes.second.place": "Second place",
+	"prizes.second.value": "$900.000 COP",
+	"prizes.second.description": "For the second best ranked team",
+	"prizes.third.place": "Third place",
+	"prizes.third.value": "$600.000 COP",
+	"prizes.third.description": "For the third best ranked team",
+	"prizes.tech.title": "Technology credits",
+	"prizes.tech.description": "All participating teams will have access to Cursor, MiniMax, and Runway credits.",
 
 	// Rules
 	"rules.label": "Rules",
@@ -136,10 +139,13 @@ export const en = {
 	"faq.q8.answer":
 		"The intellectual property belongs 100% to your team. The only requirement is that the code be public with an MIT license.",
 
+	// Organizers
+	"organizers.label": "Organizers",
+	"organizers.title": "Co-organized by",
+
 	// Sponsors
 	"sponsors.label": "Sponsors",
 	"sponsors.title": "Sponsors",
-	"sponsors.tier.organizer": "Co-organizers",
 	"sponsors.tier.main": "Main Sponsors",
 	"sponsors.tier.technology": "Technology Sponsors",
 	"sponsors.tier.allies": "Event Allies",
