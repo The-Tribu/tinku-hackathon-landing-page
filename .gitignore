@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependencies (future)
+node_modules/
+
+# Build output (future)
+dist/
+
+# Environment
+.env
+.env.*
+
+# Agent/tool working files
+.claude/
+.specify/
+.cursor/
+resources_for_agents/
+agent-transcripts/
+
+# Planning docs (not needed in production)
+specify_plan.md
+tech_plan.md
+info_event.md
