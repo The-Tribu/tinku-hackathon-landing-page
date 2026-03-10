@@ -158,3 +158,29 @@ h6 {
 		transform: none;
 	}
 }
+
+/* Hide scrollbar but keep functionality */
+@layer utilities {
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	/* Horizontal bounce animation */
+	@keyframes bounce-horizontal {
+		0%, 100% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(4px);
+		}
+	}
+
+	.animate-bounce-horizontal {
+		animation: bounce-horizontal 2s ease-in-out infinite;
+	}
+}

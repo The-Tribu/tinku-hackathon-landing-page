@@ -48,6 +48,7 @@ export const en = {
 	"tracks.title": "Challenge Areas",
 	"tracks.description":
 		"The hackathon challenges will focus on the following thematic areas.",
+	"tracks.scroll": "Swipe to see more",
 	"tracks.sustainability.name": "Sustainability",
 	"tracks.sustainability.description":
 		"Technology solutions for a sustainable and environmentally responsible future.",
