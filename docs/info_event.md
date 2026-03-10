@@ -95,28 +95,44 @@ Estas plataformas permiten acelerar el desarrollo de software, creación de cont
 
 ---
 
-# Sponsors
+# Organizadores
 
-### Co-organizadores
+**Co-organizan**
+
+Nivel de exposición: **100%**
 
 - The Tribu
 - Universidad Cooperativa de Colombia
 
+---
+
+# Sponsors
+
+Los sponsors tienen diferentes niveles de exposición visual según su categoría de patrocinio.
+
 ### Patrocinadores principales
+
+Nivel de exposición: **70%**
 
 - Techos Rentables
 
 ### Patrocinadores tecnológicos
 
-- Cursor  
-- MiniMax  
-- Runway  
+Nivel de exposición: **55%**
+
+- Cursor
+- MiniMax
+- Runway
 
 ### Aliados del evento
 
-- Persano  
-- Flavors  
-- La 7 Incluyente  
+Nivel de exposición: **40%**
+
+- Persano
+- Flavors
+- La 7 Incluyente
+
+**Nota sobre la exposición:** Los porcentajes de exposición se reflejan en el tamaño de los logos, fuente y padding en el sitio web. Los organizadores tienen la mayor visibilidad (100%), seguidos por los patrocinadores principales (70%), tecnológicos (55%) y aliados (40%).
 
 ---
 
