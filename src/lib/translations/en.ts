@@ -4,7 +4,7 @@ export const en: TranslationKeys = {
 	// Meta
 	"meta.title": "Tinku — Ritual CreAItivo | Hackathon in Cartago, Colombia",
 	"meta.description":
-		"Tinku is the first hackathon in Cartago, Valle del Cauca. 24 hours to build, learn, and connect with the tech world. April 17-18, 2025.",
+		"Tinku is the first hackathon in Cartago, Valle del Cauca. 24 hours to build, learn, and connect with the tech world. April 17-18, 2026.",
 
 	// Nav
 	"nav.about": "About",
@@ -154,7 +154,7 @@ export const en: TranslationKeys = {
 	// Footer
 	"footer.madeWith": "Made with love in Cartago, Colombia",
 	"footer.date": "April 17–18 · Universidad Cooperativa de Colombia",
-	"footer.copyright": "© 2025 Tinku — Ritual CreAItivo. All rights reserved.",
+	"footer.copyright": "© 2026 Tinku — Ritual CreAItivo. All rights reserved.",
 
 	// Blog
 	"blog.title": "Blog",

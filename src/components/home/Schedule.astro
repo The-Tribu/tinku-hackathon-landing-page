@@ -6,17 +6,17 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const scheduleItems = [
-	{ time: "08:00", name: lang === "es" ? "Registro y acreditación" : "Registration and check-in", highlight: false },
-	{ time: "09:00", name: lang === "es" ? "Ceremonia de apertura" : "Opening ceremony", highlight: true },
-	{ time: "09:30", name: lang === "es" ? "Presentación de retos" : "Challenge presentation", highlight: true },
-	{ time: "10:00", name: lang === "es" ? "¡Comienza el hacking!" : "Hacking begins!", highlight: true },
-	{ time: "13:00", name: lang === "es" ? "Almuerzo" : "Lunch", highlight: false },
-	{ time: "18:00", name: lang === "es" ? "Cena + actividades" : "Dinner + activities", highlight: false },
+	{ time: "17:00", name: lang === "es" ? "Registro y acreditación" : "Registration and check-in", highlight: false },
+	{ time: "18:00", name: lang === "es" ? "Ceremonia de apertura" : "Opening ceremony", highlight: true },
+	{ time: "18:30", name: lang === "es" ? "Presentación de retos" : "Challenge presentation", highlight: true },
+	{ time: "19:00", name: lang === "es" ? "¡Comienza el hacking!" : "Hacking begins!", highlight: true },
+	{ time: "21:00", name: lang === "es" ? "Cena" : "Dinner", highlight: false },
 	{ time: "00:00", name: lang === "es" ? "Snack de medianoche" : "Midnight snack", highlight: false },
 	{ time: "07:00", name: lang === "es" ? "Desayuno" : "Breakfast", highlight: false },
-	{ time: "09:00", name: lang === "es" ? "Hora límite de entrega" : "Submission deadline", highlight: true },
-	{ time: "09:30", name: lang === "es" ? "Presentaciones (pitches)" : "Presentations (pitches)", highlight: true },
-	{ time: "11:00", name: lang === "es" ? "Ceremonia de premiación" : "Awards ceremony", highlight: true },
+	{ time: "12:00", name: lang === "es" ? "Almuerzo" : "Lunch", highlight: false },
+	{ time: "18:00", name: lang === "es" ? "Hora límite de entrega" : "Submission deadline", highlight: true },
+	{ time: "18:30", name: lang === "es" ? "Presentaciones (pitches)" : "Presentations (pitches)", highlight: true },
+	{ time: "20:00", name: lang === "es" ? "Ceremonia de premiación" : "Awards ceremony", highlight: true },
 ];
 ---
 

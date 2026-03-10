@@ -9,17 +9,17 @@ import {
 
 describe("getCountdownState", () => {
 	it("returns PRE_EVENT before event start", () => {
-		const before = new Date("2025-04-16T12:00:00-05:00");
+		const before = new Date("2026-04-16T12:00:00-05:00");
 		expect(getCountdownState(before)).toBe("PRE_EVENT");
 	});
 
 	it("returns DURING_EVENT after start but before end", () => {
-		const during = new Date("2025-04-17T15:00:00-05:00");
+		const during = new Date("2026-04-17T22:00:00-05:00");
 		expect(getCountdownState(during)).toBe("DURING_EVENT");
 	});
 
 	it("returns COMPLETED after event end", () => {
-		const after = new Date("2025-04-18T10:00:00-05:00");
+		const after = new Date("2026-04-18T19:00:00-05:00");
 		expect(getCountdownState(after)).toBe("COMPLETED");
 	});
 
@@ -54,7 +54,7 @@ describe("getCountdownValues", () => {
 	});
 
 	it("returns zeros in COMPLETED state", () => {
-		const after = new Date("2025-04-19T00:00:00-05:00");
+		const after = new Date("2026-04-19T00:00:00-05:00");
 		const result = getCountdownValues(after);
 		expect(result.state).toBe("COMPLETED");
 		expect(result.days).toBe(0);
