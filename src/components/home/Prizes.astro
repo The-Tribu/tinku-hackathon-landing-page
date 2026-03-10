@@ -49,11 +49,13 @@ const podiumPrizes = [
 					<div
 						class:list={[
 							"relative flex flex-col items-center text-center transition-transform hover:scale-105",
+							{ "order-1": prize.position === 1 },
+							{ "order-2": prize.position === 2 },
+							{ "order-3": prize.position === 3 },
 							{ "md:order-1": prize.order === 1 },
 							{ "md:order-2": prize.order === 2 },
 							{ "md:order-3": prize.order === 3 },
 						]}
-						style={`order: ${prize.order};`}
 					>
 						{/* Trophy/Medal Icon */}
 						<div

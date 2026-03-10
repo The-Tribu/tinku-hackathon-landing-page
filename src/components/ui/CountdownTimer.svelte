@@ -38,20 +38,20 @@
 		{#if countdown.state === "DURING_EVENT"}
 			<p class="text-sm font-satoshi text-text-secondary mb-3">{labels.eventEndsIn}</p>
 		{/if}
-		<div class="flex items-center justify-center gap-3 sm:gap-4">
+		<div class="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
 			{#each units as unit, i}
 				{#if i > 0}
-					<span class="text-2xl font-inter font-bold text-brand/60" aria-hidden="true">:</span>
+					<span class="text-lg sm:text-2xl font-inter font-bold text-brand/60" aria-hidden="true">:</span>
 				{/if}
 				<div class="flex flex-col items-center gap-1">
 					<div
-						class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-lg bg-surface/80 backdrop-blur-sm border border-brand/10 hover:border-brand/30 hover:shadow-[0_0_20px_var(--color-brand-glow)] transition-all duration-200"
+						class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-lg bg-surface/80 backdrop-blur-sm border border-brand/10 hover:border-brand/30 hover:shadow-[0_0_20px_var(--color-brand-glow)] transition-all duration-200"
 					>
-						<span class="text-2xl sm:text-3xl font-mono font-bold text-brand tabular-nums">
+						<span class="text-lg sm:text-2xl md:text-3xl font-mono font-bold text-brand tabular-nums">
 							{formatCountdownUnit(unit.value)}
 						</span>
 					</div>
-					<span class="text-xs font-satoshi text-text-muted uppercase tracking-wider">
+					<span class="text-[10px] sm:text-xs font-satoshi text-text-muted uppercase tracking-wider">
 						{unit.label}
 					</span>
 				</div>

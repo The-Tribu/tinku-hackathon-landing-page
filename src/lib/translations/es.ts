@@ -15,13 +15,13 @@ export const es = {
 	"nav.organizers": "Organizadores",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
-	"nav.apply": "Aplicar",
+	"nav.apply": "👉 Registrar mi equipo",
 
 	// Hero
 	"hero.badge": "17-18 de abril · Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 horas para construir, aprender y conectar con el mundo tech.",
-	"hero.cta.apply": "Aplicar al Hackathon",
+	"hero.cta.apply": "👉 Registrar mi equipo",
 	"hero.cta.schedule": "Ver agenda ↓",
 	"hero.countdown.days": "Días",
 	"hero.countdown.hours": "Horas",
@@ -31,7 +31,7 @@ export const es = {
 	"hero.countdown.completed": "¡Evento finalizado!",
 	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 equipos",
-	"hero.stats.registration": "$105.000 COP",
+	"hero.stats.prize": "🥇 $1.500.000 COP",
 
 	// About
 	"about.label": "Acerca",
@@ -150,7 +150,7 @@ export const es = {
 
 	// Footer CTA
 	"footerCta.title": "Tu vIAje comienza aquí",
-	"footerCta.cta": "Aplicar al Hackathon",
+	"footerCta.cta": "👉 Registrar mi equipo",
 
 	// Footer
 	"footer.madeWith": "Hecho con amor en Cartago, Colombia",

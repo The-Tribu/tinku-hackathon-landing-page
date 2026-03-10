@@ -15,13 +15,13 @@ export const en = {
 	"nav.organizers": "Organizers",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
-	"nav.apply": "Apply",
+	"nav.apply": "👉 Register my team",
 
 	// Hero (brand terms stay in Spanish)
 	"hero.badge": "April 17-18 · Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 hours to build, learn, and connect with the tech world.",
-	"hero.cta.apply": "Apply to the Hackathon",
+	"hero.cta.apply": "👉 Register my team",
 	"hero.cta.schedule": "See schedule ↓",
 	"hero.countdown.days": "Days",
 	"hero.countdown.hours": "Hours",
@@ -31,7 +31,7 @@ export const en = {
 	"hero.countdown.completed": "Event finished!",
 	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 teams",
-	"hero.stats.registration": "$105.000 COP",
+	"hero.stats.prize": "🥇 $1.500.000 COP",
 
 	// About
 	"about.label": "About",
@@ -152,7 +152,7 @@ export const en = {
 
 	// Footer CTA (brand terms stay in Spanish)
 	"footerCta.title": "Tu vIAje comienza aquí",
-	"footerCta.cta": "Apply to the Hackathon",
+	"footerCta.cta": "👉 Register my team",
 
 	// Footer
 	"footer.madeWith": "Made with love in Cartago, Colombia",
