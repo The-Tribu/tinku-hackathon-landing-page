@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+	--color-bg: #020617;
+	--color-brand: #c621e5;
+	--color-surface: #1e1b4b;
+	--color-brand-glow: rgb(198 33 229 / 0.25);
+	--color-brand-glow-strong: rgb(198 33 229 / 0.45);
+	--color-text-primary: #f5f5f5;
+	--color-text-secondary: #a1a1c4;
+	--color-text-muted: #6366a0;
+
+	--font-inter: "Inter", system-ui, sans-serif;
+	--font-satoshi: "Satoshi", system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Inter font faces */
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-ExtraBold.ttf") format("truetype");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/inter/Inter-Black.ttf") format("truetype");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Satoshi font faces */
+@font-face {
+	font-family: "Satoshi";
+	src: url("/fonts/satoshi/Satoshi-Regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Satoshi";
+	src: url("/fonts/satoshi/Satoshi-Medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Satoshi";
+	src: url("/fonts/satoshi/Satoshi-Bold.otf") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Satoshi";
+	src: url("/fonts/satoshi/Satoshi-Black.otf") format("opentype");
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Base styles */
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--color-bg);
+	color: var(--color-text-primary);
+	font-family: var(--font-satoshi);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-inter);
+}
+
+::selection {
+	background-color: var(--color-brand-glow-strong);
+	color: var(--color-text-primary);
+}
+
+/* Scroll-triggered section animations */
+.animate-section {
+	opacity: 0;
+	transform: translateY(30px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-section.animate-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Scroll animations respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.animate-section {
+		opacity: 1;
+		transform: none;
+	}
+}

@@ -1,0 +1,145 @@
+---
+import "@/styles/global.css";
+import Header from "@/components/layout/Header.svelte";
+import { getLangFromUrl, useTranslations, getLocalePath, languageDetectionScript } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const lang = getLangFromUrl(Astro.url) as Locale;
+const t = useTranslations(lang);
+const { title = t("meta.title"), description = t("meta.description") } = Astro.props;
+
+const navLinks = [
+	{ href: "#about", label: t("nav.about") },
+	{ href: "#tracks", label: t("nav.tracks") },
+	{ href: "#schedule", label: t("nav.schedule") },
+	{ href: "#prizes", label: t("nav.prizes") },
+	{ href: "#rules", label: t("nav.rules") },
+	{ href: "#evaluation", label: t("nav.evaluation") },
+	{ href: "#faq", label: t("nav.faq") },
+	{ href: "#sponsors", label: t("nav.sponsors") },
+];
+
+const blogHref = lang === "en" ? "/en/blog/" : "/blog/";
+const currentPath = Astro.url.pathname;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const esUrl = new URL(getLocalePath(Astro.url.pathname, "es"), Astro.site);
+const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
+---
+
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="canonical" href={canonicalUrl.href} />
+		<link rel="alternate" hreflang="es" href={esUrl.href} />
+		<link rel="alternate" hreflang="en" href={enUrl.href} />
+		<link rel="alternate" hreflang="x-default" href={esUrl.href} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Preload fonts -->
+		<link rel="preload" href="/fonts/inter/Inter-Bold.ttf" as="font" type="font/ttf" crossorigin />
+		<link rel="preload" href="/fonts/satoshi/Satoshi-Medium.otf" as="font" type="font/opentype" crossorigin />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl.href} />
+		<meta property="og:image" content={new URL("/images/brand/tinku-logo-h16.png", Astro.site).href} />
+		<meta property="og:locale" content={lang === "es" ? "es_CO" : "en_US"} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+
+		<!-- JSON-LD Structured Data (Event) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Event",
+			"name": "Tinku — Ritual CreAItivo",
+			"description": lang === "es"
+				? "La primera hackathon en Cartago, Valle del Cauca. 24 horas para construir, aprender y conectar con el mundo tech."
+				: "The first hackathon in Cartago, Valle del Cauca. 24 hours to build, learn, and connect with the tech world.",
+			"startDate": "2025-04-17T09:00:00-05:00",
+			"endDate": "2025-04-18T09:00:00-05:00",
+			"eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+			"eventStatus": "https://schema.org/EventScheduled",
+			"location": {
+				"@type": "Place",
+				"name": "Universidad Cooperativa de Colombia",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "Cartago",
+					"addressRegion": "Valle del Cauca",
+					"addressCountry": "CO"
+				}
+			},
+			"organizer": {
+				"@type": "Organization",
+				"name": "The Tribu",
+				"url": "https://thetribu.dev"
+			},
+			"image": new URL("/images/brand/tinku-logo-h16.png", Astro.site).href,
+			"url": canonicalUrl.href,
+			"inLanguage": lang,
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD",
+				"availability": "https://schema.org/InStock",
+				"url": "https://tally.so/r/kdA05d"
+			}
+		})} />
+
+		<!-- Tally embed script for popup forms -->
+		<script async src="https://tally.so/widgets/embed.js"></script>
+
+		<!-- Language detection (inline, runs before render) -->
+		<script is:inline set:html={languageDetectionScript} />
+	</head>
+	<body class="min-h-screen bg-bg text-text-primary">
+		<Header
+			client:load
+			navLinks={navLinks}
+			blogHref={blogHref}
+			blogLabel={t("nav.blog")}
+			applyLabel={t("nav.apply")}
+			currentLang={lang}
+			currentPath={currentPath}
+		/>
+		<main class="pt-16">
+			<slot />
+		</main>
+		<slot name="footer" />
+		<script>
+			if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("animate-in");
+								observer.unobserve(entry.target);
+							}
+						}
+					},
+					{ threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+				);
+				document.querySelectorAll("section[id]").forEach((el) => {
+					el.classList.add("animate-section");
+					observer.observe(el);
+				});
+			}
+		</script>
+	</body>
+</html>

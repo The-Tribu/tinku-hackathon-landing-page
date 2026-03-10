@@ -1,0 +1,46 @@
+---
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+import { sponsors, sponsorTiers } from "@/lib/data/sponsors";
+import type { TranslationKey } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const tierLabelKeys: Record<string, TranslationKey> = {
+	organizer: "sponsors.tier.organizer",
+	university: "sponsors.tier.university",
+	technology: "sponsors.tier.technology",
+	community: "sponsors.tier.community",
+};
+---
+
+<section id="sponsors" class="py-20 px-4">
+	<div class="max-w-6xl mx-auto text-center">
+		<SectionLabel text={t("sponsors.label")} />
+		<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-12">
+			{t("sponsors.title")}
+		</h2>
+
+		<div class="space-y-10">
+			{sponsorTiers.map((tier) => {
+				const tierSponsors = sponsors.filter((s) => s.tier === tier);
+				if (tierSponsors.length === 0) return null;
+				return (
+					<div>
+						<p class="text-xs font-satoshi font-bold uppercase tracking-[0.2em] text-text-muted mb-4">
+							{t(tierLabelKeys[tier]!)}
+						</p>
+						<div class="flex flex-wrap items-center justify-center gap-3">
+							{tierSponsors.map((sponsor) => (
+								<span class="px-5 py-2.5 rounded-lg bg-surface/50 border border-surface font-inter font-bold text-sm text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200">
+									{sponsor.name}
+								</span>
+							))}
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	</div>
+</section>

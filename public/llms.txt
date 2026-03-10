@@ -1,0 +1,37 @@
+# Tinku — Ritual CreAItivo
+
+> Tinku is the first hackathon in Cartago, Valle del Cauca, Colombia. A 24-hour event on April 17–18, 2025 where developers and innovators build real projects with AI. Organized by The Tribu at Universidad Cooperativa de Colombia.
+
+## Event Overview
+
+- [About Tinku](https://tinku.thetribu.dev/#about): What the hackathon is and its mission
+- [Schedule](https://tinku.thetribu.dev/#schedule): Full 24-hour event timeline
+
+## Tracks
+
+- [Challenge Areas](https://tinku.thetribu.dev/#tracks): Sustainability, AI, Education, Cloud AI, Human & Agents
+
+## Prizes
+
+- [Prize Structure](https://tinku.thetribu.dev/#prizes): $1,000 USD main prize plus tech credits from Cursor, MiniMax, and Runway
+
+## Rules & Evaluation
+
+- [Delivery Rules](https://tinku.thetribu.dev/#rules): Pitch, GitHub repo, and deployment requirements
+- [Evaluation Criteria](https://tinku.thetribu.dev/#evaluation): Originality, Technical Excellence, Viability, Pitch
+
+## FAQ
+
+- [Frequently Asked Questions](https://tinku.thetribu.dev/#faq): Attendance, cost, team formation, what to bring, IP ownership
+
+## Apply
+
+- [Apply to the Hackathon](https://tally.so/r/kdA05d): Registration form
+
+## Blog
+
+- [Event Blog](https://tinku.thetribu.dev/blog): Detailed articles about tracks, tools, and event topics
+
+## Optional
+
+- [Sponsors](https://tinku.thetribu.dev/#sponsors): Organizations supporting the event

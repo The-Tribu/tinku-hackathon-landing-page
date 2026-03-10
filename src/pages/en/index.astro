@@ -1,0 +1,49 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Hero from "@/components/home/Hero.astro";
+import About from "@/components/home/About.astro";
+import Tracks from "@/components/home/Tracks.astro";
+import Schedule from "@/components/home/Schedule.astro";
+import Prizes from "@/components/home/Prizes.astro";
+import Rules from "@/components/home/Rules.astro";
+import Evaluation from "@/components/home/Evaluation.astro";
+import FAQ from "@/components/home/FAQ.svelte";
+import Sponsors from "@/components/home/Sponsors.astro";
+import FooterCTA from "@/components/home/FooterCTA.astro";
+import Footer from "@/components/layout/Footer.astro";
+import SectionDivider from "@/components/ui/SectionDivider.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+import { faqItems } from "@/lib/data/faq";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const faqData = faqItems.map((item) => ({
+	id: item.id,
+	question: t(item.questionKey),
+	answer: t(item.answerKey),
+}));
+---
+
+<MainLayout>
+	<Hero />
+	<SectionDivider />
+	<About />
+	<SectionDivider />
+	<Tracks />
+	<SectionDivider />
+	<Schedule />
+	<SectionDivider />
+	<Prizes />
+	<SectionDivider />
+	<Rules />
+	<SectionDivider />
+	<Evaluation />
+	<SectionDivider />
+	<FAQ client:visible label={t("faq.label")} title={t("faq.title")} items={faqData} />
+	<SectionDivider />
+	<Sponsors />
+	<SectionDivider />
+	<FooterCTA />
+	<Footer slot="footer" />
+</MainLayout>

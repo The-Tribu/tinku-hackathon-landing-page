@@ -1,0 +1,137 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Diamond from "@/components/ui/Diamond.astro";
+import CountdownTimer from "@/components/ui/CountdownTimer.svelte";
+import ParticleCanvas from "@/components/ui/ParticleCanvas.svelte";
+import OrbitalRings from "@/components/ui/OrbitalRings.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const countdownLabels = {
+	days: t("hero.countdown.days"),
+	hours: t("hero.countdown.hours"),
+	minutes: t("hero.countdown.minutes"),
+	seconds: t("hero.countdown.seconds"),
+	eventEndsIn: t("hero.countdown.event_ends_in"),
+	completed: t("hero.countdown.completed"),
+};
+
+const stats = [
+	t("hero.stats.duration"),
+	t("hero.stats.teams"),
+	t("hero.stats.countries"),
+	t("hero.stats.prize"),
+];
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+	<!-- Background layers -->
+	<div class="absolute inset-0 bg-bg" aria-hidden="true">
+		<!-- Particle canvas -->
+		<ParticleCanvas client:load />
+		<!-- Grid overlay -->
+		<div
+			class="absolute inset-0 opacity-[0.03]"
+			style="background-image: linear-gradient(var(--color-brand) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand) 1px, transparent 1px); background-size: 60px 60px;"
+		></div>
+		<!-- Radial fade mask -->
+		<div
+			class="absolute inset-0"
+			style="background: radial-gradient(ellipse at center, transparent 30%, var(--color-bg) 70%);"
+		></div>
+		<!-- Orbital rings -->
+		<OrbitalRings />
+	</div>
+
+	<!-- Content -->
+	<div class="relative z-10 w-full max-w-4xl mx-auto px-4 py-20 text-center space-y-8">
+		<!-- Badge -->
+		<div
+			class="hero-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 backdrop-blur-sm border border-brand/10 text-sm font-satoshi text-text-secondary"
+			style="animation-delay: 0.1s"
+		>
+			<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+			{t("hero.badge")}
+		</div>
+
+		<!-- Logo -->
+		<div class="hero-animate" style="animation-delay: 0.2s">
+			<img
+				src="/images/brand/tinku-logo-h16.png"
+				alt="Tinku Logo"
+				class="h-[140px] sm:h-[200px] mx-auto drop-shadow-[0_0_30px_var(--color-brand-glow)]"
+				width="400"
+				height="200"
+			/>
+		</div>
+
+		<!-- Tagline -->
+	<h1
+		class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-satoshi font-black text-text-primary"
+		style="animation-delay: 0.3s"
+	>
+		{t("hero.tagline").split("AI")[0]}<span class="text-brand drop-shadow-[0_0_12px_var(--color-brand-glow)]">AI</span>{t("hero.tagline").split("AI").slice(1).join("AI")}
+	</h1>
+
+		<!-- Description -->
+		<p
+			class="hero-animate text-lg sm:text-xl font-satoshi font-medium text-text-secondary max-w-2xl mx-auto"
+			style="animation-delay: 0.4s"
+		>
+			{t("hero.description")}
+		</p>
+
+		<!-- Countdown -->
+		<div class="hero-animate" style="animation-delay: 0.5s">
+			<CountdownTimer client:load labels={countdownLabels} />
+		</div>
+
+		<!-- CTA buttons -->
+		<div class="hero-animate flex flex-col sm:flex-row items-center justify-center gap-4" style="animation-delay: 0.7s">
+			<Button variant="solid" size="lg" tallyOpen>
+				{t("hero.cta.apply")}
+			</Button>
+			<Button variant="ghost" size="lg" href="#schedule">
+				{t("hero.cta.schedule")}
+			</Button>
+		</div>
+
+		<!-- Stats strip -->
+		<div
+			class="hero-animate flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-text-muted font-mono text-sm"
+			style="animation-delay: 0.9s"
+		>
+			{stats.map((stat, i) => (
+				<>
+					{i > 0 && <Diamond size="sm" class="opacity-30" />}
+					<span>{stat}</span>
+				</>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero-animate {
+		opacity: 0;
+		transform: translateY(20px);
+		animation: heroFadeIn 0.6s ease-out forwards;
+	}
+
+	@keyframes heroFadeIn {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-animate {
+			opacity: 1;
+			transform: none;
+			animation: none;
+		}
+	}
+</style>

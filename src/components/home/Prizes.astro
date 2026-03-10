@@ -1,0 +1,41 @@
+---
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+import { prizes } from "@/lib/data/prizes";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const mainPrize = prizes.find((p) => p.tier === "main")!;
+const secondaryPrizes = prizes.filter((p) => p.tier === "secondary");
+---
+
+<section id="prizes" class="py-20 px-4">
+	<div class="max-w-6xl mx-auto text-center">
+		<SectionLabel text={t("prizes.label")} />
+		<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-12">
+			{t("prizes.title")}
+		</h2>
+
+		<!-- Main prize -->
+		<div class="max-w-md mx-auto mb-10 p-8 rounded-3xl bg-surface/60 border-2 border-brand/40 shadow-[0_0_40px_var(--color-brand-glow)]">
+			<p class="text-sm font-satoshi font-bold uppercase tracking-wider text-text-muted mb-3">
+				🏆 {t(mainPrize.nameKey)}
+			</p>
+			<p class="text-5xl sm:text-6xl font-inter font-black bg-gradient-to-r from-brand via-purple-400 to-violet-400 bg-clip-text text-transparent mb-3">
+				{mainPrize.valueKey ? t(mainPrize.valueKey) : ""}
+			</p>
+			<p class="text-text-secondary font-satoshi">{t(mainPrize.descriptionKey)}</p>
+		</div>
+
+		<!-- Secondary prizes -->
+		<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+			{secondaryPrizes.map((prize) => (
+				<div class="p-6 rounded-2xl bg-surface/40 border border-surface hover:border-brand/20 transition-colors duration-200">
+					<p class="font-inter font-bold text-text-primary mb-1">{t(prize.nameKey)}</p>
+					<p class="text-sm font-satoshi text-text-secondary">{t(prize.descriptionKey)}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

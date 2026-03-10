@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# AI Crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://tinku.thetribu.dev/sitemap-index.xml
+# LLM-optimized content
+# llms.txt: https://tinku.thetribu.dev/llms.txt
+# llms-full.txt: https://tinku.thetribu.dev/llms-full.txt

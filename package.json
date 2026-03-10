@@ -1,0 +1,48 @@
+{
+  "name": "tinku-hackathon-landing-page",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Landing page for Tinku — Ritual CreAItivo hackathon",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "biome check .",
+    "check:fix": "biome check --fix .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "typecheck": "astro check"
+  },
+  "keywords": [
+    "hackathon",
+    "tinku",
+    "astro",
+    "svelte",
+    "landing-page"
+  ],
+  "author": "The Tribu",
+  "license": "MIT",
+  "packageManager": "pnpm@10.18.3",
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/svelte": "^8.0.0",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.0.1",
+    "svelte": "^5.53.9",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.6",
+    "@playwright/test": "^1.58.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/svelte": "^5.3.1",
+    "@types/node": "^25.4.0",
+    "jsdom": "^28.1.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

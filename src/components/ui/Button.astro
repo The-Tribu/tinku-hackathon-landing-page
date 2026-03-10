@@ -1,0 +1,56 @@
+---
+interface Props {
+	variant?: "solid" | "ghost";
+	size?: "sm" | "md" | "lg";
+	href?: string;
+	class?: string;
+	tallyOpen?: boolean;
+	[key: string]: unknown;
+}
+
+const {
+	variant = "solid",
+	size = "md",
+	href,
+	class: className = "",
+	tallyOpen = false,
+	...rest
+} = Astro.props;
+
+const tallyAttrs = tallyOpen
+	? {
+			"data-tally-open": "kdA05d",
+			"data-tally-hide-title": "1",
+			"data-tally-emoji-text": "👋",
+			"data-tally-emoji-animation": "wave",
+		}
+	: {};
+
+const sizeClasses = {
+	sm: "px-4 py-2 text-sm",
+	md: "px-6 py-3 text-base",
+	lg: "px-8 py-4 text-lg",
+};
+
+const variantClasses = {
+	solid:
+		"bg-brand text-white hover:shadow-[0_0_30px_var(--color-brand-glow-strong)] hover:-translate-y-0.5",
+	ghost:
+		"border border-brand/40 text-brand hover:bg-brand/10 hover:border-brand hover:-translate-y-0.5",
+};
+
+const baseClasses =
+	"inline-flex items-center justify-center font-inter font-bold rounded-lg transition-all duration-200 cursor-pointer";
+const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+	href={href}
+	class={classes}
+	{...tallyAttrs}
+	{...rest}
+>
+	<slot />
+</Tag>

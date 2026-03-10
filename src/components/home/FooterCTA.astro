@@ -1,0 +1,32 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="relative py-24 px-4 overflow-hidden">
+	<!-- Woven crosshatch texture -->
+	<div
+		class="absolute inset-0 opacity-[0.03]"
+		style="background-image: repeating-linear-gradient(45deg, var(--color-surface) 0, var(--color-surface) 1px, transparent 0, transparent 50%), repeating-linear-gradient(-45deg, var(--color-surface) 0, var(--color-surface) 1px, transparent 0, transparent 50%); background-size: 20px 20px;"
+		aria-hidden="true"
+	></div>
+
+	<!-- Radial glow -->
+	<div
+		class="absolute inset-0"
+		style="background: radial-gradient(ellipse at center, var(--color-brand-glow) 0%, transparent 60%);"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative text-center space-y-6">
+		<h2 class="text-3xl sm:text-5xl font-inter font-black text-text-primary">
+			{t("footerCta.title").split("IA")[0]}<span class="text-brand">IA</span>{t("footerCta.title").split("IA").slice(1).join("IA")}
+		</h2>
+		<Button variant="solid" size="lg" tallyOpen>
+			{t("footerCta.cta")}
+		</Button>
+	</div>
+</section>
