@@ -1,6 +1,6 @@
 # Tinku — Ritual CreAItivo
 
-> Tinku is the first hackathon in Cartago, Valle del Cauca, Colombia. A 24-hour event on April 17–18, 2025 where developers and innovators build real projects with AI. Organized by The Tribu at Universidad Cooperativa de Colombia.
+> Tinku is the first hackathon in Cartago, Valle del Cauca, Colombia. A 24-hour event on April 17–18, 2026 where developers and innovators build real projects with AI. Organized by The Tribu at Universidad Cooperativa de Colombia.
 
 ## Event Overview
 

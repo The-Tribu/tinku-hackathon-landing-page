@@ -1,6 +1,6 @@
 ---
 title: "What is Tinku? Everything about the first hackathon in Cartago"
-date: 2025-04-01
+date: 2026-04-01
 excerpt: "Learn about Tinku, the first hackathon in northern Valle del Cauca. 24 hours of innovation, technology and community in Cartago, Colombia."
 tags: ["community", "logistics"]
 author: "The Tribu"
@@ -10,7 +10,7 @@ author: "The Tribu"
 
 **Tinku** is the most important hackathon in northern Valle del Cauca. For 24 hours, we'll gather developers and innovators in Cartago to solve big challenges and turn ideas into real projects.
 
-The event will take place on **April 17-18, 2025** at **Universidad Cooperativa de Colombia**.
+The event will take place on **April 17-18, 2026** at **Universidad Cooperativa de Colombia**.
 
 ## What does Tinku mean?
 

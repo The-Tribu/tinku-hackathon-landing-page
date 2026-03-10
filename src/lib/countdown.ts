@@ -1,5 +1,5 @@
-export const EVENT_START = new Date("2025-04-17T09:00:00-05:00");
-export const EVENT_END = new Date("2025-04-18T09:00:00-05:00");
+export const EVENT_START = new Date("2026-04-17T18:00:00-05:00");
+export const EVENT_END = new Date("2026-04-18T18:00:00-05:00");
 
 export type CountdownState = "PRE_EVENT" | "DURING_EVENT" | "COMPLETED";
 

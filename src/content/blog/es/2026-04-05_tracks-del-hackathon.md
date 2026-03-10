@@ -1,6 +1,6 @@
 ---
 title: "Los 5 tracks de Tinku: elige tu desafío"
-date: 2025-04-05
+date: 2026-04-05
 excerpt: "Descubre las 5 áreas temáticas del hackathon Tinku: Sustentabilidad, IA, Educación, Cloud AI y Human & Agents."
 tags: ["tracks"]
 author: "The Tribu"

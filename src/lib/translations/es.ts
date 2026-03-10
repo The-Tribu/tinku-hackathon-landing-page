@@ -2,7 +2,7 @@ export const es = {
 	// Meta
 	"meta.title": "Tinku — Ritual CreAItivo | Hackathon en Cartago, Colombia",
 	"meta.description":
-		"Tinku es la primera hackathon en Cartago, Valle del Cauca. 24 horas para construir, aprender y conectar con el mundo tech. 17-18 de abril, 2025.",
+		"Tinku es la primera hackathon en Cartago, Valle del Cauca. 24 horas para construir, aprender y conectar con el mundo tech. 17-18 de abril, 2026.",
 
 	// Nav
 	"nav.about": "Acerca",
@@ -150,7 +150,7 @@ export const es = {
 	// Footer
 	"footer.madeWith": "Hecho con amor en Cartago, Colombia",
 	"footer.date": "17–18 de abril · Universidad Cooperativa de Colombia",
-	"footer.copyright": "© 2025 Tinku — Ritual CreAItivo. Todos los derechos reservados.",
+	"footer.copyright": "© 2026 Tinku — Ritual CreAItivo. Todos los derechos reservados.",
 
 	// Blog
 	"blog.title": "Blog",
