@@ -18,14 +18,5 @@ dist/
 .env
 .env.*
 
-# Agent/tool working files
-.claude/
-.specify/
+# Cursor internal
 .cursor/
-resources_for_agents/
-agent-transcripts/
-
-# Planning docs (not needed in production)
-specify_plan.md
-tech_plan.md
-info_event.md
