@@ -1,0 +1,25 @@
+---
+description: Astro component conventions for the Tinku landing page
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Astro Components
+
+- Use `getLangFromUrl(Astro.url)` and `useTranslations(lang)` for i18n
+- Reference translation keys from data files, never hardcode user-facing strings
+- Use design token classes (`bg-bg`, `text-brand`, `bg-surface`) — no raw hex values
+- Headings use `font-inter`, body text uses `font-satoshi`
+- Add `id` attributes to sections for nav anchor links
+- Only use Svelte (`.svelte`) for components that need client-side interactivity
+
+```astro
+---
+import { getLangFromUrl, useTranslations } from "@/lib/i18n";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section id="example">
+  <h2 class="font-inter font-black text-text-primary">{t("section.title")}</h2>
+</section>
+```
