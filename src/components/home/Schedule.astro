@@ -33,13 +33,13 @@ const scheduleDays = [
 ---
 
 <section id="schedule" class="py-20 px-4">
-	<div class="max-w-3xl mx-auto">
+	<div class="max-w-5xl mx-auto">
 		<SectionLabel text={t("schedule.label")} />
 		<h2 class="text-3xl sm:text-4xl font-inter font-black text-text-primary mb-12">
 			{t("schedule.title")}
 		</h2>
 
-		<div class="space-y-12">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
 			{scheduleDays.map((daySchedule, dayIndex) => (
 				<div class="relative">
 					{/* Day header */}
