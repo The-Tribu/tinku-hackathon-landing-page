@@ -18,7 +18,8 @@ export const es = {
 	"nav.apply": "👉 Registrar mi equipo",
 
 	// Hero
-	"hero.badge": "17-18 de abril · Cartago, Colombia · Universidad Cooperativa de Colombia",
+	"hero.badge.date": "17-18 de abril",
+	"hero.badge.location": "Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 horas para construir, aprender y conectar con el mundo tech.",
 	"hero.cta.apply": "👉 Registrar mi equipo",
