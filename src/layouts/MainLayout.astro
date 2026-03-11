@@ -104,6 +104,15 @@ const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
 			}
 		})} />
 
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJ44BG42JJ"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-CJ44BG42JJ');
+		</script>
+
 		<!-- Tally embed script for popup forms -->
 		<script async src="https://tally.so/widgets/embed.js"></script>
 
