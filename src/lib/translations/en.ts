@@ -18,7 +18,8 @@ export const en = {
 	"nav.apply": "👉 Register my team",
 
 	// Hero (brand terms stay in Spanish)
-	"hero.badge": "April 17-18 · Cartago, Colombia · Universidad Cooperativa de Colombia",
+	"hero.badge.date": "April 17-18",
+	"hero.badge.location": "Cartago, Colombia · Universidad Cooperativa de Colombia",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 hours to build, learn, and connect with the tech world.",
 	"hero.cta.apply": "👉 Register my team",
