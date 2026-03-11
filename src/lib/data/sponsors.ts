@@ -59,6 +59,12 @@ export const sponsors: Sponsor[] = [
 		logo: "/images/sponsors/logo-la7incluyente.png",
 		url: "https://www.instagram.com/la7incluyentegf"
 	},
+	{
+		name: "Vinola",
+		tier: "allies",
+		logo: "/images/sponsors/logo-vinola-horizontal.png",
+		url: "https://www.instagram.com/vinolabar/"
+	},
 ];
 
 export const sponsorTiers = ["main", "technology", "allies"] as const;
