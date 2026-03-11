@@ -17,21 +17,37 @@ const organizers = sponsors.filter((s) => s.tier === "organizer");
 		</h2>
 
 		<div class="flex flex-wrap items-center justify-center gap-6">
-			{organizers.map((organizer) => (
-				<div class="group px-8 py-6 rounded-2xl bg-surface/60 border-2 border-surface hover:border-brand/30 transition-all duration-300 hover:shadow-lg hover:scale-105 inline-flex items-center justify-center min-h-[120px]">
-					{organizer.logo ? (
-						<img
-							src={organizer.logo}
-							alt={organizer.name}
-							class="h-16 w-auto object-contain max-w-[250px]"
-						/>
-					) : (
-						<p class="font-inter font-bold text-xl text-text-primary group-hover:text-brand transition-colors duration-200">
-							{organizer.name}
-						</p>
-					)}
-				</div>
-			))}
+			{organizers.map((organizer) => {
+				const content = organizer.logo ? (
+					<img
+						src={organizer.logo}
+						alt={organizer.name}
+						class="h-16 w-auto object-contain max-w-[250px]"
+					/>
+				) : (
+					<p class="font-inter font-bold text-xl text-text-primary group-hover:text-brand transition-colors duration-200">
+						{organizer.name}
+					</p>
+				);
+
+				const containerClasses = "group px-8 py-6 rounded-2xl bg-surface/60 border-2 border-surface hover:border-brand/30 transition-all duration-300 hover:shadow-lg hover:scale-105 inline-flex items-center justify-center min-h-[120px]";
+
+				return organizer.url ? (
+					<a
+						href={organizer.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class={containerClasses}
+						title={organizer.name}
+					>
+						{content}
+					</a>
+				) : (
+					<div class={containerClasses}>
+						{content}
+					</div>
+				);
+			})}
 		</div>
 	</div>
 </section>

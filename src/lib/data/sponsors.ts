@@ -6,15 +6,59 @@ export interface Sponsor {
 }
 
 export const sponsors: Sponsor[] = [
-	{ name: "The Tribu", tier: "organizer" },
-	{ name: "Universidad Cooperativa de Colombia", tier: "organizer", logo: "/images/sponsors/ucc-logo-horizontal.png" },
-	{ name: "Techos Rentables", tier: "main", logo: "/images/sponsors/logo-techos-rentables.png" },
-	{ name: "Cursor", tier: "technology", logo: "/images/sponsors/cursor-horizontal-dark.svg" },
-	{ name: "MiniMax", tier: "technology", logo: "/images/sponsors/minimax-horizontal.png" },
-	{ name: "Runway", tier: "technology", logo: "/images/sponsors/runway-horizontal-white.svg" },
-	{ name: "Persano", tier: "allies", logo: "/images/sponsors/logo-persano.jpeg" },
-	{ name: "Flavors", tier: "allies", logo: "/images/sponsors/logo-flavors.png" },
-	{ name: "La 7 Incluyente", tier: "allies", logo: "/images/sponsors/logo-la7incluyente.png" },
+	{
+		name: "The Tribu",
+		tier: "organizer",
+		url: "https://thetribu.dev"
+	},
+	{
+		name: "Universidad Cooperativa de Colombia",
+		tier: "organizer",
+		logo: "/images/sponsors/ucc-logo-horizontal.png",
+		url: "https://www.ucc.edu.co"
+	},
+	{
+		name: "Techos Rentables",
+		tier: "main",
+		logo: "/images/sponsors/logo-techos-rentables.png",
+		url: "https://techosrentables.com"
+	},
+	{
+		name: "Cursor",
+		tier: "technology",
+		logo: "/images/sponsors/cursor-horizontal-dark.svg",
+		url: "https://cursor.com"
+	},
+	{
+		name: "MiniMax",
+		tier: "technology",
+		logo: "/images/sponsors/minimax-horizontal.png",
+		url: "https://www.minimax.io/"
+	},
+	{
+		name: "Runway",
+		tier: "technology",
+		logo: "/images/sponsors/runway-horizontal-white.svg",
+		url: "https://runwayml.com"
+	},
+	{
+		name: "Persano",
+		tier: "allies",
+		logo: "/images/sponsors/logo-persano.jpeg",
+		url: "https://www.instagram.com/persano.co"
+	},
+	{
+		name: "Flavors",
+		tier: "allies",
+		logo: "/images/sponsors/logo-flavors.png",
+		url: "https://www.instagram.com/coffe_flavors"
+	},
+	{
+		name: "La 7 Incluyente",
+		tier: "allies",
+		logo: "/images/sponsors/logo-la7incluyente.png",
+		url: "https://www.instagram.com/la7incluyentegf"
+	},
 ];
 
 export const sponsorTiers = ["main", "technology", "allies"] as const;

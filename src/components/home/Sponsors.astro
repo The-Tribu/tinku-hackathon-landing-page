@@ -13,22 +13,26 @@ const tierLabelKeys: Record<string, TranslationKey> = {
 	allies: "sponsors.tier.allies",
 };
 
-// Escalas de tamaño por tier
+// Escalas de tamaño por tier (proporcional a organizadores = 100%)
+// Organizadores: h-16 (64px) = 100%
+// Main: 70% = 44.8px ≈ h-11 (44px)
+// Technology: 55% = 35.2px ≈ h-9 (36px)
+// Allies: 40% = 25.6px ≈ h-7 (28px)
 const tierStyles = {
 	main: {
-		logoHeight: "h-14",
+		logoHeight: "h-11",
 		padding: "px-7 py-3.5",
 		fontSize: "text-lg",
 		borderWidth: "border-2",
 	},
 	technology: {
-		logoHeight: "h-10",
+		logoHeight: "h-9",
 		padding: "px-5 py-2.5",
 		fontSize: "text-base",
 		borderWidth: "border",
 	},
 	allies: {
-		logoHeight: "h-8",
+		logoHeight: "h-7",
 		padding: "px-4 py-2",
 		fontSize: "text-sm",
 		borderWidth: "border",
@@ -54,24 +58,40 @@ const tierStyles = {
 							{t(tierLabelKeys[tier]!)}
 						</p>
 						<div class="flex flex-wrap items-center justify-center gap-3">
-							{tierSponsors.map((sponsor) => (
-								<span class:list={[
+							{tierSponsors.map((sponsor) => {
+								const content = sponsor.logo ? (
+									<img
+										src={sponsor.logo}
+										alt={sponsor.name}
+										class:list={[styles.logoHeight, "w-auto object-contain max-w-[200px]"]}
+									/>
+								) : (
+									sponsor.name
+								);
+
+								const baseClasses = [
 									styles.padding,
 									styles.fontSize,
 									styles.borderWidth,
 									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200 inline-flex items-center justify-center"
-								]}>
-									{sponsor.logo ? (
-										<img
-											src={sponsor.logo}
-											alt={sponsor.name}
-											class:list={[styles.logoHeight, "w-auto object-contain max-w-[200px]"]}
-										/>
-									) : (
-										sponsor.name
-									)}
-								</span>
-							))}
+								];
+
+								return sponsor.url ? (
+									<a
+										href={sponsor.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										class:list={[...baseClasses, "hover:scale-105"]}
+										title={sponsor.name}
+									>
+										{content}
+									</a>
+								) : (
+									<span class:list={baseClasses}>
+										{content}
+									</span>
+								);
+							})}
 						</div>
 					</div>
 				);
