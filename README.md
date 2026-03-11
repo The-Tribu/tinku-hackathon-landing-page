@@ -4,6 +4,8 @@ Bilingual landing page and blog for **Tinku**, the first AI hackathon in Cartago
 
 **April 17–18, 2026 · Cartago, Colombia · Universidad Cooperativa de Colombia**
 
+**Live site:** [https://hackathon.thetribu.dev](https://hackathon.thetribu.dev/)
+
 ## About
 
 Tinku brings together 12 teams for 18 hours of intensive development. Participants tackle challenges across five tracks: Sustainability, Artificial Intelligence, Education, Cloud AI, and Human & Agents.
@@ -99,8 +101,6 @@ The site is configured for **Vercel** static deployment. Push to the connected G
 # Or deploy manually via CLI
 vercel
 ```
-
-After deployment, update the `site` property in `astro.config.mjs` to your production domain.
 
 ## Adding Blog Posts
 

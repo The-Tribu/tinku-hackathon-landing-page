@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "warm-cache": "curl -s -o /dev/null -w 'SEO image: HTTP %{http_code} in %{time_total}s\n' https://tinku.theTribu.dev/images/SEO/SEO.jpg"
   },
   "keywords": [
     "hackathon",

@@ -23,7 +23,7 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-Sitemap: https://tinku.thetribu.dev/sitemap-index.xml
+Sitemap: https://hackathon.thetribu.dev/sitemap-index.xml
 # LLM-optimized content
-# llms.txt: https://tinku.thetribu.dev/llms.txt
-# llms-full.txt: https://tinku.thetribu.dev/llms-full.txt
+# llms.txt: https://hackathon.thetribu.dev/llms.txt
+# llms-full.txt: https://hackathon.thetribu.dev/llms-full.txt

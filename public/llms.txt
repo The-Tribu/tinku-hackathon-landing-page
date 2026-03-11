@@ -4,25 +4,25 @@
 
 ## Event Overview
 
-- [About Tinku](https://tinku.thetribu.dev/#about): What the hackathon is and its mission
-- [Schedule](https://tinku.thetribu.dev/#schedule): Full 24-hour event timeline
+- [About Tinku](https://hackathon.thetribu.dev/#about): What the hackathon is and its mission
+- [Schedule](https://hackathon.thetribu.dev/#schedule): Full 24-hour event timeline
 
 ## Tracks
 
-- [Challenge Areas](https://tinku.thetribu.dev/#tracks): Sustainability, AI, Education, Cloud AI, Human & Agents
+- [Challenge Areas](https://hackathon.thetribu.dev/#tracks): Sustainability, AI, Education, Cloud AI, Human & Agents
 
 ## Prizes
 
-- [Prize Structure](https://tinku.thetribu.dev/#prizes): $1,000 USD main prize plus tech credits from Cursor, MiniMax, and Runway
+- [Prize Structure](https://hackathon.thetribu.dev/#prizes): $1,000 USD main prize plus tech credits from Cursor, MiniMax, and Runway
 
 ## Rules & Evaluation
 
-- [Delivery Rules](https://tinku.thetribu.dev/#rules): Pitch, GitHub repo, and deployment requirements
-- [Evaluation Criteria](https://tinku.thetribu.dev/#evaluation): Originality, Technical Excellence, Viability, Pitch
+- [Delivery Rules](https://hackathon.thetribu.dev/#rules): Pitch, GitHub repo, and deployment requirements
+- [Evaluation Criteria](https://hackathon.thetribu.dev/#evaluation): Originality, Technical Excellence, Viability, Pitch
 
 ## FAQ
 
-- [Frequently Asked Questions](https://tinku.thetribu.dev/#faq): Attendance, cost, team formation, what to bring, IP ownership
+- [Frequently Asked Questions](https://hackathon.thetribu.dev/#faq): Attendance, cost, team formation, what to bring, IP ownership
 
 ## Apply
 
@@ -30,8 +30,8 @@
 
 ## Blog
 
-- [Event Blog](https://tinku.thetribu.dev/blog): Detailed articles about tracks, tools, and event topics
+- [Event Blog](https://hackathon.thetribu.dev/blog): Detailed articles about tracks, tools, and event topics
 
 ## Optional
 
-- [Sponsors](https://tinku.thetribu.dev/#sponsors): Organizations supporting the event
+- [Sponsors](https://hackathon.thetribu.dev/#sponsors): Organizations supporting the event

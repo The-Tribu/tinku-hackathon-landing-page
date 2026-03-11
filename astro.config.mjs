@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-	site: "https://tinku.theTribu.dev",
+	site: "https://hackathon.thetribu.dev",
 	integrations: [svelte(), sitemap(), mdx()],
 	vite: {
 		plugins: [tailwindcss()],

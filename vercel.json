@@ -3,5 +3,25 @@
 	"buildCommand": "pnpm build",
 	"outputDirectory": "dist",
 	"installCommand": "pnpm install",
-	"trailingSlash": true
+	"trailingSlash": true,
+	"headers": [
+		{
+			"source": "/images/SEO/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, s-maxage=31536000, immutable"
+				}
+			]
+		},
+		{
+			"source": "/images/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=86400, s-maxage=604800"
+				}
+			]
+		}
+	]
 }
