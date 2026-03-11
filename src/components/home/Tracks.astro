@@ -1,10 +1,17 @@
 ---
 import SectionLabel from "@/components/ui/SectionLabel.astro";
+import TrackCarousel from "@/components/home/TrackCarousel.svelte";
 import { getLangFromUrl, useTranslations } from "@/lib/i18n";
 import { tracks } from "@/lib/data/tracks";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const trackItems = tracks.map((track) => ({
+	emoji: track.emoji,
+	name: t(track.nameKey),
+	description: t(track.descriptionKey),
+}));
 ---
 
 <section id="tracks" class="py-20 px-4">
@@ -19,34 +26,6 @@ const t = useTranslations(lang);
 			</p>
 		</div>
 
-		<!-- Horizontal scroll container -->
-		<div class="relative -mx-4 sm:mx-0">
-			<div class="overflow-x-auto scrollbar-hide px-4 sm:px-0">
-				<div class="flex gap-4 pb-4 min-w-max sm:min-w-0">
-					{tracks.map((track) => (
-						<div class="group flex-shrink-0 w-[280px] sm:w-[300px] p-6 rounded-2xl bg-surface/60 border border-transparent hover:border-brand/40 hover:shadow-[0_0_30px_var(--color-brand-glow)] hover:-translate-y-1 transition-all duration-200">
-							<span class="text-3xl mb-3 block">{track.emoji}</span>
-							<h3 class="text-lg font-inter font-bold text-text-primary mb-2">
-								{t(track.nameKey)}
-							</h3>
-							<p class="text-sm font-satoshi text-text-secondary">
-								{t(track.descriptionKey)}
-							</p>
-						</div>
-					))}
-				</div>
-			</div>
-
-			<!-- Scroll indicator -->
-			<div class="flex items-center justify-center gap-2 mt-6 text-text-muted">
-				<svg class="w-5 h-5 animate-bounce-horizontal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-				</svg>
-				<span class="text-sm font-satoshi">{t("tracks.scroll")}</span>
-				<svg class="w-5 h-5 animate-bounce-horizontal" style="animation-delay: 0.1s" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-				</svg>
-			</div>
-		</div>
+		<TrackCarousel tracks={trackItems} client:visible />
 	</div>
 </section>

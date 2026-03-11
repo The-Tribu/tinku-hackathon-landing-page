@@ -31,6 +31,8 @@
     "@astrojs/svelte": "^8.0.0",
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^6.0.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-svelte": "^8.6.0",
     "svelte": "^5.53.9",
     "tailwindcss": "^4.2.1"
   },

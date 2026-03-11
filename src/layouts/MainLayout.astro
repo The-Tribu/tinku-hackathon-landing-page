@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import Header from "@/components/layout/Header.svelte";
+import SectionNav from "@/components/layout/SectionNav.svelte";
 import { getLangFromUrl, useTranslations, getLocalePath, languageDetectionScript } from "@/lib/i18n";
 import type { Locale } from "@/lib/i18n";
 
@@ -125,6 +126,7 @@ const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
 			currentLang={lang}
 			currentPath={currentPath}
 		/>
+		<SectionNav client:load items={navLinks} />
 		<main class="pt-16">
 			<slot />
 		</main>
