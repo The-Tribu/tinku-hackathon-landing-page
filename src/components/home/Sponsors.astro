@@ -13,28 +13,40 @@ const tierLabelKeys: Record<string, TranslationKey> = {
 	allies: "sponsors.tier.allies",
 };
 
-// Escalas de tamaño por tier (proporcional a organizadores = 100%)
-// Organizadores: h-16 (64px) = 100%
-// Main: 70% = 44.8px ≈ h-11 (44px)
-// Technology: 55% = 35.2px ≈ h-9 (36px)
-// Allies: 40% = 25.6px ≈ h-7 (28px)
+// Escalas de tamaño por tier proporcionales a organizadores
+// Organizadores y Main: 100%
+// Technology: 70%
+// Allies: 40%
+//
+// Desktop - Base: 100% = h-44 (176px) × max-w-[400px]
+// Main: 100% → h-44 × max-w-[400px]
+// Technology: 70% → h-32 (128px) × max-w-[280px]
+// Allies: 40% → h-18 (72px) × max-w-[160px]
+//
+// Mobile - Base: 100% = h-32 (128px) × max-w-[280px]
+// Main: 100% → h-32 × max-w-[280px]
+// Technology: 70% → h-24 (96px) × max-w-[200px]
+// Allies: 40% → h-12 (48px) × max-w-[120px]
 const tierStyles = {
 	main: {
-		logoHeight: "h-11",
-		padding: "px-7 py-3.5",
-		fontSize: "text-lg",
-		borderWidth: "border-2",
+		logoHeight: "h-32 sm:h-44",
+		maxWidth: "max-w-[280px] sm:max-w-[400px]",
+		padding: "px-6 py-3 sm:px-8 sm:py-4",
+		fontSize: "text-base sm:text-lg",
+		borderWidth: "border sm:border-2",
 	},
 	technology: {
-		logoHeight: "h-9",
-		padding: "px-5 py-2.5",
-		fontSize: "text-base",
+		logoHeight: "h-24 sm:h-32",
+		maxWidth: "max-w-[140px] sm:max-w-[180px]",
+		padding: "px-4 py-2 sm:px-5 sm:py-2.5",
+		fontSize: "text-sm sm:text-base",
 		borderWidth: "border",
 	},
 	allies: {
-		logoHeight: "h-7",
-		padding: "px-4 py-2",
-		fontSize: "text-sm",
+		logoHeight: "h-12 sm:h-18",
+		maxWidth: "max-w-[120px] sm:max-w-[160px]",
+		padding: "px-3 py-1.5 sm:px-4 sm:py-2",
+		fontSize: "text-xs sm:text-sm",
 		borderWidth: "border",
 	},
 };
@@ -63,7 +75,7 @@ const tierStyles = {
 									<img
 										src={sponsor.logo}
 										alt={sponsor.name}
-										class:list={[styles.logoHeight, "w-auto object-contain max-w-[200px]"]}
+										class:list={[styles.logoHeight, styles.maxWidth, "w-auto object-contain flex-shrink-0"]}
 									/>
 								) : (
 									sponsor.name
@@ -73,7 +85,8 @@ const tierStyles = {
 									styles.padding,
 									styles.fontSize,
 									styles.borderWidth,
-									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200 inline-flex items-center justify-center"
+									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200 inline-flex items-center justify-center",
+									sponsor.logo ? "min-h-fit" : ""
 								];
 
 								return sponsor.url ? (
@@ -81,7 +94,7 @@ const tierStyles = {
 										href={sponsor.url}
 										target="_blank"
 										rel="noopener noreferrer"
-										class:list={[...baseClasses, "hover:scale-105"]}
+										class:list={[...baseClasses, "hover:scale-105 no-underline"]}
 										title={sponsor.name}
 									>
 										{content}

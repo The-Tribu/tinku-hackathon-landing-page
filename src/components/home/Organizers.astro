@@ -22,7 +22,7 @@ const organizers = sponsors.filter((s) => s.tier === "organizer");
 					<img
 						src={organizer.logo}
 						alt={organizer.name}
-						class="h-16 w-auto object-contain max-w-[250px]"
+						class="h-24 sm:h-44 w-auto object-contain max-w-[200px] sm:max-w-[400px]"
 					/>
 				) : (
 					<p class="font-inter font-bold text-xl text-text-primary group-hover:text-brand transition-colors duration-200">
@@ -30,7 +30,7 @@ const organizers = sponsors.filter((s) => s.tier === "organizer");
 					</p>
 				);
 
-				const containerClasses = "group px-8 py-6 rounded-2xl bg-surface/60 border-2 border-surface hover:border-brand/30 transition-all duration-300 hover:shadow-lg hover:scale-105 inline-flex items-center justify-center min-h-[120px]";
+				const containerClasses = "group px-4 py-3 sm:px-8 sm:py-6 rounded-2xl bg-surface/60 border-2 border-surface hover:border-brand/30 transition-all duration-300 hover:shadow-lg hover:scale-105 inline-flex items-center justify-center min-h-[100px] sm:min-h-[120px]";
 
 				return organizer.url ? (
 					<a
