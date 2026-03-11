@@ -9,6 +9,7 @@ export const sponsors: Sponsor[] = [
 	{
 		name: "The Tribu",
 		tier: "organizer",
+		logo: "/images/brand/the-tribu-logo-horizontal.svg",
 		url: "https://thetribu.dev"
 	},
 	{
@@ -44,7 +45,7 @@ export const sponsors: Sponsor[] = [
 	{
 		name: "Persano",
 		tier: "allies",
-		logo: "/images/sponsors/logo-persano.jpeg",
+		logo: "/images/sponsors/persano-logo-horizontal.PNG",
 		url: "https://www.instagram.com/persano.co"
 	},
 	{
