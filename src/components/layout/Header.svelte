@@ -16,10 +16,19 @@
 	<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 		<!-- Logo -->
 		<a href={currentLang === "en" ? "/en/" : "/"} class="shrink-0">
+			<!-- Isotipo para mobile -->
 			<img
-				src="/images/brand/tinku-logo-h16.png"
+				src="/images/brand/tinku-isotipo-color.svg"
 				alt="Tinku"
-				class="h-[34px]"
+				class="h-[34px] w-[34px] sm:hidden"
+				width="34"
+				height="34"
+			/>
+			<!-- Logo horizontal para desktop -->
+			<img
+				src="/images/brand/tinku-logo-horizontal-color.svg"
+				alt="Tinku"
+				class="h-[34px] hidden sm:block"
 				width="68"
 				height="34"
 			/>
