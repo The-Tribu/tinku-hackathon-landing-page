@@ -13,22 +13,22 @@ const tierLabelKeys: Record<string, TranslationKey> = {
 	allies: "sponsors.tier.allies",
 };
 
-// Escalas de tamaño por tier (70%, 55%, 40%)
+// Escalas de tamaño por tier
 const tierStyles = {
 	main: {
-		scale: 0.7,
+		logoHeight: "h-14",
 		padding: "px-7 py-3.5",
 		fontSize: "text-lg",
 		borderWidth: "border-2",
 	},
 	technology: {
-		scale: 0.55,
+		logoHeight: "h-10",
 		padding: "px-5 py-2.5",
 		fontSize: "text-base",
 		borderWidth: "border",
 	},
 	allies: {
-		scale: 0.4,
+		logoHeight: "h-8",
 		padding: "px-4 py-2",
 		fontSize: "text-sm",
 		borderWidth: "border",
@@ -59,9 +59,17 @@ const tierStyles = {
 									styles.padding,
 									styles.fontSize,
 									styles.borderWidth,
-									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200"
+									"rounded-lg bg-surface/50 border-surface font-inter font-bold text-text-secondary hover:text-text-primary hover:border-brand/20 transition-all duration-200 inline-flex items-center justify-center"
 								]}>
-									{sponsor.name}
+									{sponsor.logo ? (
+										<img
+											src={sponsor.logo}
+											alt={sponsor.name}
+											class:list={[styles.logoHeight, "w-auto object-contain max-w-[200px]"]}
+										/>
+									) : (
+										sponsor.name
+									)}
 								</span>
 							))}
 						</div>
