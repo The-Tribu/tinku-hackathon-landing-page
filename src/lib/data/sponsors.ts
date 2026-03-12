@@ -21,7 +21,7 @@ export const sponsors: Sponsor[] = [
 	{
 		name: "Techos Rentables",
 		tier: "main",
-		logo: "/images/sponsors/logo-techos-rentables.png",
+		logo: "/images/sponsors/logo-techos-rentables-horizontal-letra-blanca.png",
 		url: "https://techosrentables.com"
 	},
 	{
