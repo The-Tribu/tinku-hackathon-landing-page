@@ -11,6 +11,7 @@ const trackItems = tracks.map((track) => ({
 	emoji: track.emoji,
 	name: t(track.nameKey),
 	description: t(track.descriptionKey),
+	featured: track.featured ?? false,
 }));
 ---
 

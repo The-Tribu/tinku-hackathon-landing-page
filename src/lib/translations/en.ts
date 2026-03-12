@@ -32,7 +32,7 @@ export const en = {
 	"hero.countdown.completed": "Event finished!",
 	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 teams",
-	"hero.stats.prize": "🥇 $1.500.000 COP",
+	"hero.stats.prize": "💰 $3.000.000 COP",
 
 	// About
 	"about.label": "About",
@@ -45,26 +45,30 @@ export const en = {
 		"Just focus on building and experimenting. We'll take care of the food and keep the coffee hot.",
 
 	// Tracks
-	"tracks.label": "Tracks",
-	"tracks.title": "Challenge Areas",
+	"tracks.label": "The Challenge",
+	"tracks.title": "One Problem. Infinite Approaches.",
 	"tracks.description":
-		"The hackathon challenges will focus on the following thematic areas.",
+		"The hackathon revolves around a single real-world challenge from our main sponsor — to be revealed soon. These are the thematic areas it touches. Which angle will your team take?",
 	"tracks.scroll": "Swipe to see more",
+	"tracks.mystery.name": "The Challenge",
+	"tracks.mystery.description":
+		"The main problem will be revealed by our sponsor soon. Stay tuned.",
 	"tracks.sustainability.name": "Sustainability",
 	"tracks.sustainability.description":
-		"Technology solutions for a sustainable and environmentally responsible future.",
+		"What if your solution had to be sustainable by design? Think circular, think green.",
 	"tracks.ai.name": "Artificial Intelligence",
 	"tracks.ai.description":
-		"Innovative applications that leverage the power of AI to solve real problems.",
+		"How can AI amplify your approach? From models to agents, the tools are in your hands.",
 	"tracks.education.name": "Education",
 	"tracks.education.description":
-		"Tools and platforms that transform the educational experience.",
+		"Could your solution transform how people learn? Education is ripe for disruption.",
 	"tracks.cloud_ai.name": "Cloud AI",
 	"tracks.cloud_ai.description":
-		"Solutions that integrate cloud-based artificial intelligence services.",
+		"Scale matters. Cloud AI services let you go from prototype to impact fast.",
 	"tracks.human_agents.name": "Human & Agents",
 	"tracks.human_agents.description":
-		"Interfaces and experiences that connect humans with intelligent agents.",
+		"The future is collaborative. How will humans and AI agents work together in your solution?",
+	"tracks.coming_soon": "More clues coming soon...",
 
 	// Schedule
 	"schedule.label": "Schedule",

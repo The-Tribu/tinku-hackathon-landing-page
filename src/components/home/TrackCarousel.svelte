@@ -7,6 +7,7 @@
 		emoji: string;
 		name: string;
 		description: string;
+		featured?: boolean;
 	}
 
 	interface Props {
@@ -77,13 +78,15 @@
 			{#each tracks as track, i}
 				<div class="embla__slide min-w-0 pl-4">
 					<div
-						class="h-full p-6 rounded-2xl bg-surface/60 border border-transparent hover:border-brand/40 hover:shadow-[0_0_30px_var(--color-brand-glow)] transition-all duration-200"
+						class="h-full p-6 rounded-2xl transition-all duration-200 {track.featured
+							? 'featured-card border border-brand/60 bg-brand/10 shadow-[0_0_40px_var(--color-brand-glow)]'
+							: 'bg-surface/60 border border-transparent hover:border-brand/40 hover:shadow-[0_0_30px_var(--color-brand-glow)]'}"
 					>
 						<span class="text-3xl mb-3 block">{track.emoji}</span>
-						<h3 class="text-lg font-inter font-bold text-text-primary mb-2">
+						<h3 class="text-lg font-inter font-bold mb-2 {track.featured ? 'text-brand' : 'text-text-primary'}">
 							{track.name}
 						</h3>
-						<p class="text-sm font-satoshi text-text-secondary">
+						<p class="text-sm font-satoshi {track.featured ? 'text-text-primary' : 'text-text-secondary'}">
 							{track.description}
 						</p>
 					</div>
@@ -142,6 +145,25 @@
 	@media (min-width: 1024px) {
 		.embla__slide {
 			flex: 0 0 34%;
+		}
+	}
+
+	.featured-card {
+		animation: pulse-glow 3s ease-in-out infinite;
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: 0 0 30px var(--color-brand-glow);
+		}
+		50% {
+			box-shadow: 0 0 50px var(--color-brand-glow-strong);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.featured-card {
+			animation: none;
 		}
 	}
 </style>

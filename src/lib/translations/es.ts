@@ -32,7 +32,7 @@ export const es = {
 	"hero.countdown.completed": "¡Evento finalizado!",
 	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 equipos",
-	"hero.stats.prize": "🥇 $1.500.000 COP",
+	"hero.stats.prize": "💰 $3.000.000 COP",
 
 	// About
 	"about.label": "Acerca",
@@ -44,26 +44,30 @@ export const es = {
 		"Tú solo preocúpate por construir y experimentar. Nosotros nos encargamos de la comida y de mantener el café caliente.",
 
 	// Tracks
-	"tracks.label": "Tracks",
-	"tracks.title": "Áreas de desafío",
+	"tracks.label": "El Desafío",
+	"tracks.title": "Un problema. Infinitos enfoques.",
 	"tracks.description":
-		"Los retos del hackathon se enfocarán en las siguientes áreas temáticas.",
+		"El hackathon gira en torno a un único desafío real de nuestro sponsor principal — por revelarse pronto. Estas son las áreas temáticas que toca. ¿Qué ángulo tomará tu equipo?",
 	"tracks.scroll": "Desliza para ver más",
+	"tracks.mystery.name": "El Desafío",
+	"tracks.mystery.description":
+		"El problema principal será revelado por nuestro sponsor pronto. Mantente atento.",
 	"tracks.sustainability.name": "Sustentabilidad",
 	"tracks.sustainability.description":
-		"Soluciones tecnológicas para un futuro sostenible y responsable con el medio ambiente.",
+		"¿Y si tu solución tuviera que ser sostenible por diseño? Piensa circular, piensa verde.",
 	"tracks.ai.name": "Inteligencia Artificial",
 	"tracks.ai.description":
-		"Aplicaciones innovadoras que aprovechen el poder de la IA para resolver problemas reales.",
+		"¿Cómo puede la IA amplificar tu enfoque? De modelos a agentes, las herramientas están en tus manos.",
 	"tracks.education.name": "Educación",
 	"tracks.education.description":
-		"Herramientas y plataformas que transformen la experiencia educativa.",
+		"¿Tu solución podría transformar cómo aprenden las personas? La educación está lista para una revolución.",
 	"tracks.cloud_ai.name": "Cloud AI",
 	"tracks.cloud_ai.description":
-		"Soluciones que integren servicios de inteligencia artificial en la nube.",
+		"La escala importa. Los servicios de Cloud AI te llevan del prototipo al impacto rápidamente.",
 	"tracks.human_agents.name": "Human & Agents",
 	"tracks.human_agents.description":
-		"Interfaces y experiencias que conecten humanos con agentes inteligentes.",
+		"El futuro es colaborativo. ¿Cómo trabajarán juntos humanos y agentes de IA en tu solución?",
+	"tracks.coming_soon": "Más pistas próximamente...",
 
 	// Schedule
 	"schedule.label": "Agenda",
