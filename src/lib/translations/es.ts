@@ -47,11 +47,11 @@ export const es = {
 	"tracks.label": "El Desafío",
 	"tracks.title": "Un problema. Infinitos enfoques.",
 	"tracks.description":
-		"El hackathon gira en torno a un único desafío real de nuestro sponsor principal — por revelarse pronto. Estas son las áreas temáticas que toca. ¿Qué ángulo tomará tu equipo?",
+		"El hackathon gira en torno a un único desafío real de nuestro sponsor principal — se revelará el día del evento. A medida que se acerque la fecha, compartiremos pistas sobre el problema. ¿Qué ángulo tomará tu equipo?",
 	"tracks.scroll": "Desliza para ver más",
 	"tracks.mystery.name": "El Desafío",
 	"tracks.mystery.description":
-		"El problema principal será revelado por nuestro sponsor pronto. Mantente atento.",
+		"El problema se revelará el día del evento. Compartiremos pistas a medida que se acerque la fecha.",
 	"tracks.sustainability.name": "Sustentabilidad",
 	"tracks.sustainability.description":
 		"¿Y si tu solución tuviera que ser sostenible por diseño? Piensa circular, piensa verde.",
@@ -68,6 +68,7 @@ export const es = {
 	"tracks.human_agents.description":
 		"El futuro es colaborativo. ¿Cómo trabajarán juntos humanos y agentes de IA en tu solución?",
 	"tracks.coming_soon": "Más pistas próximamente...",
+	"tracks.mystery.contact": "¿Querés más info?",
 
 	// Schedule
 	"schedule.label": "Agenda",

@@ -12,9 +12,10 @@
 
 	interface Props {
 		tracks: TrackItem[];
+		contactText?: string;
 	}
 
-	let { tracks }: Props = $props();
+	let { tracks, contactText }: Props = $props();
 
 	let emblaApi: EmblaCarouselType | undefined = $state(undefined);
 	let selectedIndex: number = $state(0);
@@ -89,6 +90,17 @@
 						<p class="text-sm font-satoshi {track.featured ? 'text-text-primary' : 'text-text-secondary'}">
 							{track.description}
 						</p>
+						{#if track.featured && contactText}
+							<p class="mt-3 text-xs font-satoshi text-text-muted">
+								{contactText}
+								<a
+									href="https://wa.me/573052666114"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-text-secondary hover:text-text-primary transition-colors duration-200 underline underline-offset-2"
+								>WhatsApp</a>
+							</p>
+						{/if}
 					</div>
 				</div>
 			{/each}

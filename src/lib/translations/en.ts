@@ -48,11 +48,11 @@ export const en = {
 	"tracks.label": "The Challenge",
 	"tracks.title": "One Problem. Infinite Approaches.",
 	"tracks.description":
-		"The hackathon revolves around a single real-world challenge from our main sponsor — to be revealed soon. These are the thematic areas it touches. Which angle will your team take?",
+		"The hackathon revolves around a single real-world challenge from our main sponsor — to be revealed on the event day. As the date approaches, we'll share clues about the problem. Which angle will your team take?",
 	"tracks.scroll": "Swipe to see more",
 	"tracks.mystery.name": "The Challenge",
 	"tracks.mystery.description":
-		"The main problem will be revealed by our sponsor soon. Stay tuned.",
+		"The problem will be revealed on the event day. We'll share clues as we get closer.",
 	"tracks.sustainability.name": "Sustainability",
 	"tracks.sustainability.description":
 		"What if your solution had to be sustainable by design? Think circular, think green.",
@@ -69,6 +69,7 @@ export const en = {
 	"tracks.human_agents.description":
 		"The future is collaborative. How will humans and AI agents work together in your solution?",
 	"tracks.coming_soon": "More clues coming soon...",
+	"tracks.mystery.contact": "Want more info?",
 
 	// Schedule
 	"schedule.label": "Schedule",
