@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button.astro";
 import Diamond from "@/components/ui/Diamond.astro";
 import CountdownTimer from "@/components/ui/CountdownTimer.svelte";
 import ParticleCanvas from "@/components/ui/ParticleCanvas.svelte";
+import RitualFireGame from "@/components/ui/RitualFireGame.svelte";
 import OrbitalRings from "@/components/ui/OrbitalRings.astro";
 import { getLangFromUrl, useTranslations } from "@/lib/i18n";
 
@@ -72,7 +73,13 @@ const stats = [
 		class="hero-animate text-3xl sm:text-5xl lg:text-6xl font-satoshi font-black text-text-primary"
 		style="animation-delay: 0.3s"
 	>
-		{t("hero.tagline").split("AI")[0]}<span class="text-brand drop-shadow-[0_0_12px_var(--color-brand-glow)]">AI</span>{t("hero.tagline").split("AI").slice(1).join("AI")}
+		{t("hero.tagline").split("AI")[0]}<span
+		class="text-brand drop-shadow-[0_0_12px_var(--color-brand-glow)] hover:drop-shadow-[0_0_20px_var(--color-brand-glow-strong)] transition-[filter] duration-300 cursor-pointer select-none"
+		role="button"
+		tabindex="0"
+		aria-label={t("ritual.trigger.aria")}
+		data-ritual-trigger
+	>AI</span>{t("hero.tagline").split("AI").slice(1).join("AI")}
 	</h1>
 
 		<!-- Description -->
@@ -111,7 +118,42 @@ const stats = [
 			))}
 		</div>
 	</div>
+
+	<!-- Ritual Fire Game (easter egg modal) -->
+	<RitualFireGame
+		client:load
+		promptText={t("ritual.prompt")}
+		completedTitle={t("ritual.completed.title")}
+		completedSubtitle={t("ritual.completed.subtitle")}
+		ctaText={t("ritual.cta")}
+		replayLabel={t("ritual.replay")}
+		skipLabel={t("ritual.skip")}
+		closeLabel={t("ritual.close")}
+		progressLabel={t("ritual.progress")}
+		offeringNames={[
+			t("ritual.offering.1"),
+			t("ritual.offering.2"),
+			t("ritual.offering.3"),
+			t("ritual.offering.4"),
+			t("ritual.offering.5"),
+			t("ritual.offering.6"),
+			t("ritual.offering.7"),
+		]}
+	/>
 </section>
+
+<script>
+	const trigger = document.querySelector("[data-ritual-trigger]");
+	trigger?.addEventListener("click", () => {
+		document.dispatchEvent(new CustomEvent("open-ritual-game"));
+	});
+	trigger?.addEventListener("keydown", (e) => {
+		if (e instanceof KeyboardEvent && (e.key === "Enter" || e.key === " ")) {
+			e.preventDefault();
+			document.dispatchEvent(new CustomEvent("open-ritual-game"));
+		}
+	});
+</script>
 
 <style>
 	.hero-animate {

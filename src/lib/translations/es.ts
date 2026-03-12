@@ -159,6 +159,24 @@ export const es = {
 	"footer.date": "17–18 de abril · Universidad Cooperativa de Colombia",
 	"footer.copyright": "© 2026 Tinku — Ritual CreAItivo. Todos los derechos reservados.",
 
+	// Ritual Fire Game (easter egg)
+	"ritual.trigger.aria": "AI – Abrir juego secreto",
+	"ritual.prompt": "Recoge las ofrendas para iniciar el ritual",
+	"ritual.progress": "{count} de {total}",
+	"ritual.completed.title": "Ritual Activado",
+	"ritual.completed.subtitle": "Bienvenido a TINKU",
+	"ritual.cta": "👉 Registra tu equipo",
+	"ritual.replay": "Repetir",
+	"ritual.skip": "Saltar juego",
+	"ritual.close": "Cerrar",
+	"ritual.offering.1": "Sabiduría",
+	"ritual.offering.2": "Creatividad",
+	"ritual.offering.3": "Pasión",
+	"ritual.offering.4": "Fortaleza",
+	"ritual.offering.5": "Visión",
+	"ritual.offering.6": "Comunidad",
+	"ritual.offering.7": "Identidad",
+
 	// Blog
 	"blog.title": "Blog",
 	"blog.description": "Artículos y novedades sobre el hackathon Tinku.",
