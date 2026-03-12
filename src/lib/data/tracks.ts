@@ -5,9 +5,17 @@ export interface Track {
 	emoji: string;
 	nameKey: TranslationKey;
 	descriptionKey: TranslationKey;
+	featured?: boolean;
 }
 
 export const tracks: Track[] = [
+	{
+		id: "mystery",
+		emoji: "🔒",
+		nameKey: "tracks.mystery.name",
+		descriptionKey: "tracks.mystery.description",
+		featured: true,
+	},
 	{
 		id: "sustainability",
 		emoji: "♻️",

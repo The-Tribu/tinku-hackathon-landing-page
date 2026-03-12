@@ -32,7 +32,7 @@ export const es = {
 	"hero.countdown.completed": "¡Evento finalizado!",
 	"hero.stats.duration": "18h",
 	"hero.stats.teams": "12 equipos",
-	"hero.stats.prize": "🥇 $1.500.000 COP",
+	"hero.stats.prize": "💰 $3.000.000 COP",
 
 	// About
 	"about.label": "Acerca",
@@ -44,26 +44,31 @@ export const es = {
 		"Tú solo preocúpate por construir y experimentar. Nosotros nos encargamos de la comida y de mantener el café caliente.",
 
 	// Tracks
-	"tracks.label": "Tracks",
-	"tracks.title": "Áreas de desafío",
+	"tracks.label": "El Desafío",
+	"tracks.title": "Un problema. Infinitos enfoques.",
 	"tracks.description":
-		"Los retos del hackathon se enfocarán en las siguientes áreas temáticas.",
+		"El hackathon gira en torno a un único desafío real de nuestro sponsor principal — se revelará el día del evento. A medida que se acerque la fecha, compartiremos pistas sobre el problema. ¿Qué ángulo tomará tu equipo?",
 	"tracks.scroll": "Desliza para ver más",
+	"tracks.mystery.name": "El Desafío",
+	"tracks.mystery.description":
+		"El problema se revelará el día del evento. Compartiremos pistas a medida que se acerque la fecha.",
 	"tracks.sustainability.name": "Sustentabilidad",
 	"tracks.sustainability.description":
-		"Soluciones tecnológicas para un futuro sostenible y responsable con el medio ambiente.",
+		"¿Y si tu solución tuviera que ser sostenible por diseño? Piensa circular, piensa verde.",
 	"tracks.ai.name": "Inteligencia Artificial",
 	"tracks.ai.description":
-		"Aplicaciones innovadoras que aprovechen el poder de la IA para resolver problemas reales.",
+		"¿Cómo puede la IA amplificar tu enfoque? De modelos a agentes, las herramientas están en tus manos.",
 	"tracks.education.name": "Educación",
 	"tracks.education.description":
-		"Herramientas y plataformas que transformen la experiencia educativa.",
+		"¿Tu solución podría transformar cómo aprenden las personas? La educación está lista para una revolución.",
 	"tracks.cloud_ai.name": "Cloud AI",
 	"tracks.cloud_ai.description":
-		"Soluciones que integren servicios de inteligencia artificial en la nube.",
+		"La escala importa. Los servicios de Cloud AI te llevan del prototipo al impacto rápidamente.",
 	"tracks.human_agents.name": "Human & Agents",
 	"tracks.human_agents.description":
-		"Interfaces y experiencias que conecten humanos con agentes inteligentes.",
+		"El futuro es colaborativo. ¿Cómo trabajarán juntos humanos y agentes de IA en tu solución?",
+	"tracks.coming_soon": "Más pistas próximamente...",
+	"tracks.mystery.contact": "¿Querés más info?",
 
 	// Schedule
 	"schedule.label": "Agenda",
@@ -158,6 +163,24 @@ export const es = {
 	"footer.madeWith": "Hecho con amor en Cartago, Colombia",
 	"footer.date": "17–18 de abril · Universidad Cooperativa de Colombia",
 	"footer.copyright": "© 2026 Tinku — Ritual CreAItivo. Todos los derechos reservados.",
+
+	// Ritual Fire Game (easter egg)
+	"ritual.trigger.aria": "AI – Abrir juego secreto",
+	"ritual.prompt": "Recoge las ofrendas para iniciar el ritual",
+	"ritual.progress": "{count} de {total}",
+	"ritual.completed.title": "Ritual Activado",
+	"ritual.completed.subtitle": "Bienvenido a TINKU",
+	"ritual.cta": "👉 Registra tu equipo",
+	"ritual.replay": "Repetir",
+	"ritual.skip": "Saltar juego",
+	"ritual.close": "Cerrar",
+	"ritual.offering.1": "Sabiduría",
+	"ritual.offering.2": "Creatividad",
+	"ritual.offering.3": "Pasión",
+	"ritual.offering.4": "Fortaleza",
+	"ritual.offering.5": "Visión",
+	"ritual.offering.6": "Comunidad",
+	"ritual.offering.7": "Identidad",
 
 	// Blog
 	"blog.title": "Blog",
