@@ -51,7 +51,7 @@ export const sponsors: Sponsor[] = [
 	{
 		name: "Flavors",
 		tier: "allies",
-		logo: "/images/sponsors/logo-flavors.png",
+		logo: "/images/sponsors/logo-flavors-negative.png",
 		url: "https://www.instagram.com/coffe_flavors"
 	},
 	{
