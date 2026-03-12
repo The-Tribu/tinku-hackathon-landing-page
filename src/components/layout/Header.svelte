@@ -43,7 +43,6 @@
 
 			<button
 				data-tally-open="kdA05d"
-				data-tally-hide-title="1"
 				data-tally-emoji-text="👋"
 				data-tally-emoji-animation="wave"
 				class="px-4 py-2 bg-brand text-white text-sm font-inter font-bold rounded-lg hover:shadow-[0_0_20px_var(--color-brand-glow-strong)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
