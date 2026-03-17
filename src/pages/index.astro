@@ -13,6 +13,7 @@ import Sponsors from "@/components/home/Sponsors.astro";
 import FooterCTA from "@/components/home/FooterCTA.astro";
 import Footer from "@/components/layout/Footer.astro";
 import SectionDivider from "@/components/ui/SectionDivider.astro";
+import RitualFireGameMount from "@/components/ui/RitualFireGameMount.astro";
 import { getLangFromUrl, useTranslations } from "@/lib/i18n";
 import { faqItems } from "@/lib/data/faq";
 
@@ -27,6 +28,7 @@ const faqData = faqItems.map((item) => ({
 ---
 
 <MainLayout>
+	<RitualFireGameMount />
 	<Hero />
 	<SectionDivider />
 	<About />

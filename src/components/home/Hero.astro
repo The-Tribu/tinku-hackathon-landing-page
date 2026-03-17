@@ -3,7 +3,6 @@ import Button from "@/components/ui/Button.astro";
 import Diamond from "@/components/ui/Diamond.astro";
 import CountdownTimer from "@/components/ui/CountdownTimer.svelte";
 import ParticleCanvas from "@/components/ui/ParticleCanvas.svelte";
-import RitualFireGame from "@/components/ui/RitualFireGame.svelte";
 import OrbitalRings from "@/components/ui/OrbitalRings.astro";
 import { getLangFromUrl, useTranslations } from "@/lib/i18n";
 
@@ -119,40 +118,6 @@ const stats = [
 		</div>
 	</div>
 
-	<!-- Ritual Fire Game (easter egg modal) -->
-	<RitualFireGame
-		client:load
-		promptText={t("ritual.prompt")}
-		completedTitle={t("ritual.completed.title")}
-		completedSubtitle={t("ritual.completed.subtitle")}
-		ctaText={t("ritual.cta")}
-		replayLabel={t("ritual.replay")}
-		skipLabel={t("ritual.skip")}
-		closeLabel={t("ritual.close")}
-		progressLabel={t("ritual.progress")}
-		offeringNames={[
-			t("ritual.offering.1"),
-			t("ritual.offering.2"),
-			t("ritual.offering.3"),
-			t("ritual.offering.4"),
-			t("ritual.offering.5"),
-			t("ritual.offering.6"),
-			t("ritual.offering.7"),
-		]}
-		rewardTitle={t("ritual.reward.title")}
-		rewardIntro={t("ritual.reward.intro")}
-		rewardStep1={t("ritual.reward.step1")}
-		rewardStep2={t("ritual.reward.step2")}
-		rewardFooter={t("ritual.reward.footer")}
-		rewardConditionsLabel={t("ritual.reward.conditions")}
-		rewardCta={t("ritual.reward.cta")}
-		shareHeadline={t("ritual.share.headline")}
-		shareSubline={t("ritual.share.subline")}
-		shareSponsor={t("ritual.share.sponsor")}
-		shareSponsorDetail={t("ritual.share.sponsorDetail")}
-		shareTagline={t("ritual.share.tagline")}
-		shareGenerating={t("ritual.share.generating")}
-	/>
 </section>
 
 <script>
