@@ -182,6 +182,7 @@ export const en = {
 		"Message @TheTribu.dev to let us know. We'll get in touch with you.",
 	"ritual.reward.footer":
 		"The first person to complete these two steps wins the registration.",
+	"ritual.reward.conditions": "View game terms and conditions",
 	"ritual.reward.cta": "📸 Share on Instagram",
 	"ritual.share.headline": "I found the Tinku Easter Egg!",
 	"ritual.share.subline": "Sponsored by",

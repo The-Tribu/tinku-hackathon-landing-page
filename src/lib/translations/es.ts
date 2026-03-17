@@ -180,6 +180,7 @@ export const es = {
 		"Escribe a @TheTribu.dev notificándolo. Nos pondremos en contacto contigo.",
 	"ritual.reward.footer":
 		"La primera persona que cumpla estos dos pasos, se lleva la inscripción.",
+	"ritual.reward.conditions": "Ver términos y condiciones del juego",
 	"ritual.reward.cta": "📸 Compartir en Instagram",
 	"ritual.share.headline": "¡Encontré el Easter Egg de Tinku!",
 	"ritual.share.subline": "Patrocinado por",

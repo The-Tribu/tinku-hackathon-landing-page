@@ -14,6 +14,7 @@
 		rewardStep1: string;
 		rewardStep2: string;
 		rewardFooter: string;
+		rewardConditionsLabel: string;
 		rewardCta: string;
 		shareHeadline: string;
 		shareSubline: string;
@@ -38,6 +39,7 @@
 		rewardStep1,
 		rewardStep2,
 		rewardFooter,
+		rewardConditionsLabel,
 		rewardCta,
 		shareHeadline,
 		shareSubline,
@@ -1257,7 +1259,18 @@
 
 							<p class="ritual-reward-footer ritual-stagger" style="--stagger:4">{rewardFooter}</p>
 
-							<div class="ritual-reward-handles ritual-stagger" style="--stagger:5">
+							<p class="ritual-reward-conditions ritual-stagger" style="--stagger:5">
+								<a
+									href="https://drive.google.com/file/d/1lvCUqvfFhOei-r3-yR79B-BsWNW1Hk4n/view"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="ritual-conditions-link"
+								>
+									{rewardConditionsLabel}
+								</a>
+							</p>
+
+							<div class="ritual-reward-handles ritual-stagger" style="--stagger:6">
 								<a
 									href="https://www.instagram.com/dra.karen.norena/"
 									target="_blank"
@@ -1276,7 +1289,7 @@
 
 						<button
 							class="ritual-cta ritual-stagger"
-							style="--stagger:6"
+							style="--stagger:7"
 							onclick={generateAndShareImage}
 							disabled={isGenerating}
 							data-gtag-label="share_ritual_game"
@@ -1284,7 +1297,7 @@
 							{isGenerating ? shareGenerating : rewardCta}
 						</button>
 
-						<button onclick={replay} class="ritual-replay ritual-stagger" style="--stagger:7">
+						<button onclick={replay} class="ritual-replay ritual-stagger" style="--stagger:8">
 							↻ {replayLabel}
 						</button>
 					</div>
@@ -1571,6 +1584,25 @@
 	}
 
 	@media (min-width: 640px) { .ritual-reward-footer { font-size: 0.9375rem; } }
+
+	.ritual-reward-conditions {
+		margin: -0.25rem 0 0;
+	}
+
+	.ritual-conditions-link {
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		color: var(--color-text-secondary);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: color 0.2s, text-shadow 0.2s;
+	}
+
+	.ritual-conditions-link:hover,
+	.ritual-conditions-link:focus-visible {
+		color: var(--color-brand);
+		text-shadow: 0 0 10px var(--color-brand-glow);
+	}
 
 	.ritual-reward-handles {
 		display: flex;
