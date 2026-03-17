@@ -49,6 +49,66 @@
 		shareGenerating,
 	}: Props = $props();
 
+	type RewardTextSegment =
+		| { type: "text"; value: string }
+		| { type: "link"; value: string; href: string };
+
+	const rewardHandles = [
+		{
+			label: "@dra.karen.norena",
+			href: "https://www.instagram.com/dra.karen.norena/",
+		},
+		{
+			label: "@TheTribu.dev",
+			href: "https://www.instagram.com/TheTribu.dev/",
+		},
+	] as const;
+
+	function getRewardTextSegments(text: string): RewardTextSegment[] {
+		const segments: RewardTextSegment[] = [];
+		let cursor = 0;
+
+		while (cursor < text.length) {
+			let nextMatch:
+				| {
+						index: number;
+						label: (typeof rewardHandles)[number]["label"];
+						href: (typeof rewardHandles)[number]["href"];
+				  }
+				| null = null;
+
+			for (const handle of rewardHandles) {
+				const index = text.indexOf(handle.label, cursor);
+
+				if (index !== -1 && (!nextMatch || index < nextMatch.index)) {
+					nextMatch = { index, label: handle.label, href: handle.href };
+				}
+			}
+
+			if (!nextMatch) {
+				segments.push({ type: "text", value: text.slice(cursor) });
+				break;
+			}
+
+			if (nextMatch.index > cursor) {
+				segments.push({
+					type: "text",
+					value: text.slice(cursor, nextMatch.index),
+				});
+			}
+
+			segments.push({
+				type: "link",
+				value: nextMatch.label,
+				href: nextMatch.href,
+			});
+
+			cursor = nextMatch.index + nextMatch.label.length;
+		}
+
+		return segments;
+	}
+
 	const TOTAL = 7;
 	const HIT_R_DESKTOP = 34;
 	const HIT_R_MOBILE = 50;
@@ -1253,8 +1313,38 @@
 							<p class="ritual-reward-intro ritual-stagger" style="--stagger:2">{rewardIntro}</p>
 
 							<ol class="ritual-reward-steps ritual-stagger" style="--stagger:3">
-								<li>{rewardStep1}</li>
-								<li>{rewardStep2}</li>
+								<li>
+									{#each getRewardTextSegments(rewardStep1) as segment}
+										{#if segment.type === "link"}
+											<a
+												href={segment.href}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="ritual-inline-link"
+											>
+												{segment.value}
+											</a>
+										{:else}
+											{segment.value}
+										{/if}
+									{/each}
+								</li>
+								<li>
+									{#each getRewardTextSegments(rewardStep2) as segment}
+										{#if segment.type === "link"}
+											<a
+												href={segment.href}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="ritual-inline-link"
+											>
+												{segment.value}
+											</a>
+										{:else}
+											{segment.value}
+										{/if}
+									{/each}
+								</li>
 							</ol>
 
 							<p class="ritual-reward-footer ritual-stagger" style="--stagger:4">{rewardFooter}</p>
@@ -1270,21 +1360,6 @@
 								</a>
 							</p>
 
-							<div class="ritual-reward-handles ritual-stagger" style="--stagger:6">
-								<a
-									href="https://www.instagram.com/dra.karen.norena/"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="ritual-handle"
-								>@dra.karen.norena</a>
-								<span class="ritual-handle-sep">&</span>
-								<a
-									href="https://www.instagram.com/TheTribu.dev/"
-									target="_blank"
-									rel="noopener noreferrer"
-									class="ritual-handle"
-								>@TheTribu.dev</a>
-							</div>
 						</div>
 
 						<button
@@ -1574,6 +1649,19 @@
 		font-weight: 700;
 	}
 
+	.ritual-inline-link {
+		color: var(--color-brand);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: color 0.2s, text-shadow 0.2s;
+	}
+
+	.ritual-inline-link:hover,
+	.ritual-inline-link:focus-visible {
+		color: var(--color-text-primary);
+		text-shadow: 0 0 10px var(--color-brand-glow);
+	}
+
 	.ritual-reward-footer {
 		font-family: var(--font-satoshi);
 		font-weight: 700;
@@ -1602,36 +1690,6 @@
 	.ritual-conditions-link:focus-visible {
 		color: var(--color-brand);
 		text-shadow: 0 0 10px var(--color-brand-glow);
-	}
-
-	.ritual-reward-handles {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-top: 0.25rem;
-	}
-
-	.ritual-handle {
-		font-family: var(--font-mono);
-		font-size: 0.8125rem;
-		color: var(--color-brand);
-		text-decoration: none;
-		padding: 0.25rem 0.5rem;
-		border-radius: 6px;
-		border: 1px solid var(--color-brand-glow);
-		transition: background-color 0.2s, box-shadow 0.2s;
-	}
-
-	.ritual-handle:hover,
-	.ritual-handle:focus-visible {
-		background-color: var(--color-brand-glow);
-		box-shadow: 0 0 12px var(--color-brand-glow-strong);
-	}
-
-	.ritual-handle-sep {
-		font-family: var(--font-satoshi);
-		font-size: 0.75rem;
-		color: var(--color-text-muted);
 	}
 
 	.ritual-cta {
