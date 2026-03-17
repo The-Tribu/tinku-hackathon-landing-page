@@ -735,7 +735,7 @@
 		drawMountains(ctx, width, height);
 
 		const cx = width / 2;
-		const cy = height * 0.45;
+		const cy = gameState === "completed" ? height * 0.85 : height * 0.45;
 
 		if (gameState === "playing") {
 			drawFirePit(ctx, cx, cy);
@@ -897,7 +897,16 @@
 		return lines;
 	}
 
-	function drawShareCard(c: HTMLCanvasElement) {
+	function loadImage(src: string): Promise<HTMLImageElement> {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.onload = () => resolve(img);
+			img.onerror = reject;
+			img.src = src;
+		});
+	}
+
+	function drawShareCard(c: HTMLCanvasElement, logoImg: HTMLImageElement | null) {
 		const W = 1080;
 		const H = 1920;
 		c.width = W;
@@ -1074,12 +1083,21 @@
 		ctx.stroke();
 
 		y += 50;
-		ctx.font = `900 64px ${headFont}`;
-		ctx.fillStyle = "#f5f5f5";
-		ctx.shadowColor = "rgba(198,33,229,0.4)";
-		ctx.shadowBlur = 20;
-		ctx.fillText("TINKU", cx, y);
-		ctx.shadowBlur = 0;
+		if (logoImg) {
+			const logoH = 150;
+			const logoW = logoH * (logoImg.naturalWidth / logoImg.naturalHeight);
+			ctx.shadowColor = "rgba(198,33,229,0.4)";
+			ctx.shadowBlur = 20;
+			ctx.drawImage(logoImg, cx - logoW / 2, y - logoH * 0.7, logoW, logoH);
+			ctx.shadowBlur = 0;
+		} else {
+			ctx.font = `900 64px ${headFont}`;
+			ctx.fillStyle = "#f5f5f5";
+			ctx.shadowColor = "rgba(198,33,229,0.4)";
+			ctx.shadowBlur = 20;
+			ctx.fillText("TINKU", cx, y);
+			ctx.shadowBlur = 0;
+		}
 
 		y += 48;
 		ctx.font = `500 30px ${bodyFont}`;
@@ -1092,8 +1110,13 @@
 		isGenerating = true;
 
 		try {
+			let logoImg: HTMLImageElement | null = null;
+			try {
+				logoImg = await loadImage("/images/brand/tinku-logo-h16.png");
+			} catch { /* falls back to text */ }
+
 			const shareCanvas = document.createElement("canvas");
-			drawShareCard(shareCanvas);
+			drawShareCard(shareCanvas, logoImg);
 
 			const blob = await new Promise<Blob | null>((resolve) =>
 				shareCanvas.toBlob(resolve, "image/png"),
@@ -1122,7 +1145,7 @@
 		initBgStars(canvas.width, canvas.height);
 
 		const cx = canvas.width / 2;
-		const cy = canvas.height * 0.45;
+		const cy = gameState === "completed" ? canvas.height * 0.85 : canvas.height * 0.45;
 
 		if (gameState === "playing") {
 			initOfferings(canvas.width, canvas.height);
@@ -1204,18 +1227,26 @@
 			</button>
 		{:else}
 			<div class="ritual-completed">
-				<div class="ritual-canvas-wrap ritual-canvas-wrap-fire">
-					<canvas
-						bind:this={canvas}
-						class="ritual-canvas"
-						aria-hidden="true"
-					></canvas>
-				</div>
+				{#if gameState === "transitioning"}
+					<div class="ritual-canvas-wrap ritual-canvas-wrap-fire">
+						<canvas
+							bind:this={canvas}
+							class="ritual-canvas"
+							aria-hidden="true"
+						></canvas>
+					</div>
+				{/if}
 
 				{#if gameState === "completed"}
 					<div class="ritual-result" role="status">
 						<div class="ritual-reward">
-							<p class="ritual-reward-emoji ritual-stagger" style="--stagger:0">🎁</p>
+							<div class="ritual-fire-inline ritual-stagger" style="--stagger:0">
+								<canvas
+									bind:this={canvas}
+									class="ritual-canvas"
+									aria-hidden="true"
+								></canvas>
+							</div>
 							<h2 class="ritual-reward-title ritual-stagger" style="--stagger:1">{rewardTitle}</h2>
 							<p class="ritual-reward-intro ritual-stagger" style="--stagger:2">{rewardIntro}</p>
 
@@ -1471,6 +1502,20 @@
 	}
 
 	.ritual-reward-emoji { font-size: 2.5rem; margin: 0; line-height: 1; }
+
+	.ritual-fire-inline {
+		width: 140px;
+		height: 140px;
+		position: relative;
+		border-radius: 9999px;
+		overflow: hidden;
+	}
+
+	.ritual-fire-inline canvas {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
 
 	.ritual-reward-title {
 		font-family: var(--font-inter);
