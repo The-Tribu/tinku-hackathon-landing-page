@@ -25,7 +25,7 @@ const t = useTranslations(lang);
 		<h2 class="text-3xl sm:text-5xl font-inter font-black text-text-primary">
 			{t("footerCta.title").split("IA")[0]}<span class="text-brand">IA</span>{t("footerCta.title").split("IA").slice(1).join("IA")}
 		</h2>
-		<Button variant="solid" size="lg" tallyOpen>
+		<Button variant="solid" size="lg" tallyOpen data-gtag-label="apply_footer_cta">
 			{t("footerCta.cta")}
 		</Button>
 	</div>

@@ -36,15 +36,13 @@
 
 		<!-- Right side: Language toggle y botón de inscribirse -->
 		<div class="flex items-center gap-3">
-			<!-- Language toggle - solo visible en desktop -->
-			<div class="hidden sm:block">
-				<LanguageToggle {currentLang} {currentPath} />
-			</div>
+			<LanguageToggle {currentLang} {currentPath} />
 
 			<button
 				data-tally-open="kdA05d"
 				data-tally-emoji-text="👋"
 				data-tally-emoji-animation="wave"
+				data-gtag-label="apply_header"
 				class="px-4 py-2 bg-brand text-white text-sm font-inter font-bold rounded-lg hover:shadow-[0_0_20px_var(--color-brand-glow-strong)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
 			>
 				{applyLabel}

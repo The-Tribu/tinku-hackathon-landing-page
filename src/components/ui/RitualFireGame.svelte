@@ -9,6 +9,18 @@
 		closeLabel: string;
 		progressLabel: string;
 		offeringNames: string[];
+		rewardTitle: string;
+		rewardIntro: string;
+		rewardStep1: string;
+		rewardStep2: string;
+		rewardFooter: string;
+		rewardCta: string;
+		shareHeadline: string;
+		shareSubline: string;
+		shareSponsor: string;
+		shareSponsorDetail: string;
+		shareTagline: string;
+		shareGenerating: string;
 	}
 
 	let {
@@ -21,6 +33,18 @@
 		closeLabel,
 		progressLabel,
 		offeringNames,
+		rewardTitle,
+		rewardIntro,
+		rewardStep1,
+		rewardStep2,
+		rewardFooter,
+		rewardCta,
+		shareHeadline,
+		shareSubline,
+		shareSponsor,
+		shareSponsorDetail,
+		shareTagline,
+		shareGenerating,
 	}: Props = $props();
 
 	const TOTAL = 7;
@@ -29,13 +53,18 @@
 	const FIRE_COUNT = 45;
 
 	let isOpen = $state(false);
-	let gameState: "playing" | "completed" = $state("playing");
+	let gameState: "playing" | "transitioning" | "completed" = $state("playing");
 	let collected = $state(0);
+	let isGenerating = $state(false);
 	let canvas: HTMLCanvasElement | undefined = $state();
 	let modalEl: HTMLDivElement | undefined = $state();
 	let closeBtn: HTMLButtonElement | undefined = $state();
 	let animId = 0;
 	let time = 0;
+	let cursorX = -100;
+	let cursorY = -100;
+	let cursorVisible = false;
+	let cursorTrail: { x: number; y: number; age: number }[] = [];
 	let offerings: Offering[] = [];
 	let fireParticles: FireParticle[] = [];
 	let bursts: Burst[] = [];
@@ -43,6 +72,9 @@
 	let bgStars: BgStar[] = [];
 	let firePitGlow = 0;
 	let isMobile = false;
+	let transitionFrame = 0;
+	let vortexParticles: VortexParticle[] = [];
+	let shockwaves: Shockwave[] = [];
 
 	const prefersReducedMotion =
 		typeof window !== "undefined" &&
@@ -99,6 +131,26 @@
 		opacity: number;
 		twinkleSpeed: number;
 		phase: number;
+	}
+
+	interface VortexParticle {
+		x: number;
+		y: number;
+		angle: number;
+		radius: number;
+		speed: number;
+		color: [number, number, number];
+		size: number;
+		opacity: number;
+	}
+
+	interface Shockwave {
+		x: number;
+		y: number;
+		radius: number;
+		maxRadius: number;
+		opacity: number;
+		lineWidth: number;
 	}
 
 	const OFFERING_COLORS: [number, number, number][] = [
@@ -167,6 +219,49 @@
 			ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
 			ctx.fillStyle = `rgba(255, 255, 255, ${a})`;
 			ctx.fill();
+		}
+	}
+
+	function drawMountains(ctx: CanvasRenderingContext2D, w: number, h: number) {
+		const layers: { baseY: number; amplitude: number; segments: number; color: string; edgeGlow: string }[] = [
+			{ baseY: h * 0.68, amplitude: h * 0.18, segments: 5, color: "rgba(8, 6, 20, 0.7)", edgeGlow: "rgba(198, 33, 229, 0.03)" },
+			{ baseY: h * 0.75, amplitude: h * 0.14, segments: 7, color: "rgba(6, 4, 16, 0.8)", edgeGlow: "rgba(198, 33, 229, 0.05)" },
+			{ baseY: h * 0.82, amplitude: h * 0.10, segments: 9, color: "rgba(4, 2, 12, 0.9)", edgeGlow: "rgba(198, 33, 229, 0.04)" },
+		];
+
+		for (const layer of layers) {
+			ctx.beginPath();
+			ctx.moveTo(0, h);
+
+			const segW = w / layer.segments;
+			const sway = Math.sin(time * 0.001) * 2;
+
+			ctx.lineTo(0, layer.baseY + Math.sin(0.3) * layer.amplitude * 0.4);
+
+			for (let i = 0; i <= layer.segments; i++) {
+				const x = i * segW;
+				const peakOffset = Math.sin(i * 2.3 + 0.7) * layer.amplitude;
+				const valley = Math.cos(i * 1.7 + 1.2) * layer.amplitude * 0.3;
+				const y = layer.baseY - Math.abs(peakOffset) + valley + sway;
+
+				if (i === 0) {
+					ctx.lineTo(x, y);
+				} else {
+					const prevX = (i - 1) * segW;
+					const cpX = (prevX + x) / 2;
+					ctx.quadraticCurveTo(cpX, y - Math.abs(peakOffset) * 0.15, x, y);
+				}
+			}
+
+			ctx.lineTo(w, h);
+			ctx.closePath();
+
+			ctx.fillStyle = layer.color;
+			ctx.fill();
+
+			ctx.strokeStyle = layer.edgeGlow;
+			ctx.lineWidth = 1.5;
+			ctx.stroke();
 		}
 	}
 
@@ -342,9 +437,9 @@
 	function drawOffering(ctx: CanvasRenderingContext2D, o: Offering) {
 		const pulse = 0.9 + 0.1 * Math.sin(time * 0.03 + o.pulsePhase);
 		const color = OFFERING_COLORS[o.type]!;
-		const size = 8 * pulse;
+		const size = 24 * pulse;
 
-		drawGlow(ctx, o.x, o.y, 22 * pulse, color, 0.3);
+		drawGlow(ctx, o.x, o.y, 56 * pulse, color, 0.3);
 
 		DRAW_FNS[o.type]!(ctx, o.x, o.y, size);
 	}
@@ -452,6 +547,181 @@
 		}
 	}
 
+	function drawCursor(ctx: CanvasRenderingContext2D) {
+		if (!cursorVisible || isMobile) return;
+
+		cursorTrail.push({ x: cursorX, y: cursorY, age: 0 });
+		if (cursorTrail.length > 8) cursorTrail.shift();
+
+		for (const p of cursorTrail) {
+			const alpha = Math.max(0, 1 - p.age / 8) * 0.25;
+			const r = 6 - p.age * 0.5;
+			if (r > 0) {
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+				ctx.fillStyle = `rgba(198, 33, 229, ${alpha})`;
+				ctx.fill();
+			}
+			p.age++;
+		}
+
+		const pulse = 0.85 + 0.15 * Math.sin(time * 0.06);
+		const outerR = 18 * pulse;
+		const innerR = 4;
+
+		const glow = ctx.createRadialGradient(cursorX, cursorY, 0, cursorX, cursorY, outerR * 1.8);
+		glow.addColorStop(0, "rgba(198, 33, 229, 0.12)");
+		glow.addColorStop(1, "rgba(198, 33, 229, 0)");
+		ctx.beginPath();
+		ctx.arc(cursorX, cursorY, outerR * 1.8, 0, Math.PI * 2);
+		ctx.fillStyle = glow;
+		ctx.fill();
+
+		ctx.beginPath();
+		ctx.arc(cursorX, cursorY, outerR, 0, Math.PI * 2);
+		ctx.strokeStyle = `rgba(198, 33, 229, ${0.5 * pulse})`;
+		ctx.lineWidth = 1.5;
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.arc(cursorX, cursorY, innerR, 0, Math.PI * 2);
+		ctx.fillStyle = `rgba(255, 240, 208, ${0.7 * pulse})`;
+		ctx.fill();
+	}
+
+	function initVortexParticles(cx: number, cy: number, w: number, h: number) {
+		vortexParticles = [];
+		const maxDist = Math.max(w, h) * 0.45;
+		for (let i = 0; i < TOTAL; i++) {
+			const color = OFFERING_COLORS[i]!;
+			for (let j = 0; j < 10; j++) {
+				const angle = Math.random() * Math.PI * 2;
+				const dist = 60 + Math.random() * maxDist;
+				vortexParticles.push({
+					x: cx + Math.cos(angle) * dist,
+					y: cy + Math.sin(angle) * dist,
+					angle,
+					radius: dist,
+					speed: 0.04 + Math.random() * 0.03,
+					color,
+					size: 2 + Math.random() * 4,
+					opacity: 0.7 + Math.random() * 0.3,
+				});
+			}
+		}
+	}
+
+	function drawVortex(ctx: CanvasRenderingContext2D, cx: number, cy: number) {
+		for (const p of vortexParticles) {
+			p.angle += p.speed * 1.8;
+			p.radius *= 0.965;
+			p.x = cx + Math.cos(p.angle) * p.radius;
+			p.y = cy + Math.sin(p.angle) * p.radius;
+
+			const fadeOut = Math.min(1, p.radius / 20);
+			const a = p.opacity * fadeOut;
+			if (a <= 0.01) continue;
+
+			ctx.beginPath();
+			ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${p.color[0]}, ${p.color[1]}, ${p.color[2]}, ${a * 0.12})`;
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${p.color[0]}, ${p.color[1]}, ${p.color[2]}, ${a})`;
+			ctx.fill();
+		}
+	}
+
+	function drawShockwaveRings(ctx: CanvasRenderingContext2D) {
+		for (let i = shockwaves.length - 1; i >= 0; i--) {
+			const s = shockwaves[i]!;
+			s.radius += 5;
+			s.opacity *= 0.955;
+			if (s.opacity < 0.01) { shockwaves.splice(i, 1); continue; }
+
+			const fade = Math.max(0.2, 1 - s.radius / s.maxRadius);
+			ctx.beginPath();
+			ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+			ctx.strokeStyle = `rgba(198, 33, 229, ${s.opacity * fade})`;
+			ctx.lineWidth = s.lineWidth * fade;
+			ctx.stroke();
+		}
+	}
+
+	function drawTransitionFlash(ctx: CanvasRenderingContext2D, w: number, h: number, intensity: number) {
+		if (intensity <= 0) return;
+		ctx.fillStyle = `rgba(255, 235, 210, ${intensity})`;
+		ctx.fillRect(0, 0, w, h);
+	}
+
+	function drawTransition(ctx: CanvasRenderingContext2D, w: number, h: number, cx: number, cy: number) {
+		transitionFrame++;
+		const f = transitionFrame;
+
+		const glowIntensity = Math.min(1, f / 45);
+		const glowR = 60 + glowIntensity * 220;
+		const glowGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+		glowGrad.addColorStop(0, `rgba(255, 200, 150, ${glowIntensity * 0.35})`);
+		glowGrad.addColorStop(0.3, `rgba(198, 33, 229, ${glowIntensity * 0.18})`);
+		glowGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+		ctx.beginPath();
+		ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+		ctx.fillStyle = glowGrad;
+		ctx.fill();
+
+		if (f <= 65) {
+			drawVortex(ctx, cx, cy);
+		}
+
+		if (f > 35) {
+			const spawnRate = Math.min(4, Math.floor((f - 35) / 8) + 1);
+			for (let i = 0; i < spawnRate; i++) {
+				if (fireParticles.length < FIRE_COUNT * 2) {
+					fireParticles.push(createFireParticle(cx, cy));
+				}
+			}
+			drawFire(ctx, cx, cy);
+		}
+
+		if (f === 45 || f === 62 || f === 82) {
+			shockwaves.push({
+				x: cx, y: cy,
+				radius: 5,
+				maxRadius: Math.max(w, h) * 0.5,
+				opacity: 0.7,
+				lineWidth: 4,
+			});
+		}
+		drawShockwaveRings(ctx);
+
+		if (f > 80 && f < 128) {
+			const progress = (f - 80) / 48;
+			const peak = progress < 0.22
+				? progress / 0.22
+				: Math.max(0, 1 - (progress - 0.22) / 0.78);
+			drawTransitionFlash(ctx, w, h, peak * 0.55);
+		}
+
+		if (f >= 148) {
+			gameState = "completed";
+		}
+	}
+
+	function handlePointerMove(e: PointerEvent) {
+		if (!canvas) return;
+		const rect = canvas.getBoundingClientRect();
+		cursorX = (e.clientX - rect.left) * (canvas.width / rect.width);
+		cursorY = (e.clientY - rect.top) * (canvas.height / rect.height);
+		cursorVisible = true;
+	}
+
+	function handlePointerLeave() {
+		cursorVisible = false;
+		cursorTrail = [];
+	}
+
 	function animate() {
 		if (!canvas || !isOpen) return;
 		const ctx = canvas.getContext("2d");
@@ -462,6 +732,7 @@
 		time++;
 
 		drawBgStars(ctx);
+		drawMountains(ctx, width, height);
 
 		const cx = width / 2;
 		const cy = height * 0.45;
@@ -482,6 +753,9 @@
 
 			drawBursts(ctx);
 			drawNameFloats(ctx);
+			drawCursor(ctx);
+		} else if (gameState === "transitioning") {
+			drawTransition(ctx, width, height, cx, cy);
 		} else {
 			drawFire(ctx, cx, cy);
 			drawBursts(ctx);
@@ -523,21 +797,25 @@
 	}
 
 	function activateFire() {
-		gameState = "completed";
-		if (!canvas) return;
-		const cx = canvas.width / 2;
-		const cy = canvas.height * 0.45;
+		gameState = "transitioning";
+		transitionFrame = 0;
+		vortexParticles = [];
+		shockwaves = [];
 		fireParticles = [];
-		for (let i = 0; i < FIRE_COUNT; i++) {
-			const p = createFireParticle(cx, cy);
-			p.life = Math.floor(Math.random() * p.maxLife);
-			fireParticles.push(p);
-		}
+	}
+
+	function setChromeVisibility(visible: boolean) {
+		const display = visible ? "" : "none";
+		const header = document.querySelector("header");
+		const sectionNav = document.querySelector('nav[role="navigation"]');
+		if (header) (header as HTMLElement).style.display = display;
+		if (sectionNav) (sectionNav as HTMLElement).style.display = display;
 	}
 
 	function open() {
 		isOpen = true;
 		document.body.style.overflow = "hidden";
+		setChromeVisibility(false);
 
 		if (prefersReducedMotion) {
 			gameState = "completed";
@@ -549,15 +827,23 @@
 		collected = 0;
 		firePitGlow = 0;
 		time = 0;
+		transitionFrame = 0;
+		vortexParticles = [];
+		shockwaves = [];
 		bursts = [];
 		nameFloats = [];
 		fireParticles = [];
+		cursorTrail = [];
+		cursorVisible = false;
 	}
 
 	function close() {
 		isOpen = false;
 		document.body.style.overflow = "";
+		setChromeVisibility(true);
 		cancelAnimationFrame(animId);
+		cursorTrail = [];
+		cursorVisible = false;
 	}
 
 	function replay() {
@@ -566,6 +852,9 @@
 		collected = 0;
 		firePitGlow = 0;
 		time = 0;
+		transitionFrame = 0;
+		vortexParticles = [];
+		shockwaves = [];
 		bursts = [];
 		nameFloats = [];
 		fireParticles = [];
@@ -591,6 +880,237 @@
 		return progressLabel.replace("{count}", String(count)).replace("{total}", String(total));
 	}
 
+	function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string[] {
+		const words = text.split(" ");
+		const lines: string[] = [];
+		let current = "";
+		for (const word of words) {
+			const test = current ? `${current} ${word}` : word;
+			if (ctx.measureText(test).width > maxWidth && current) {
+				lines.push(current);
+				current = word;
+			} else {
+				current = test;
+			}
+		}
+		if (current) lines.push(current);
+		return lines;
+	}
+
+	function drawShareCard(c: HTMLCanvasElement) {
+		const W = 1080;
+		const H = 1920;
+		c.width = W;
+		c.height = H;
+		const ctx = c.getContext("2d")!;
+
+		const bg = ctx.createLinearGradient(0, 0, 0, H);
+		bg.addColorStop(0, "#06081a");
+		bg.addColorStop(0.4, "#020617");
+		bg.addColorStop(1, "#0a0220");
+		ctx.fillStyle = bg;
+		ctx.fillRect(0, 0, W, H);
+
+		for (let i = 0; i < 80; i++) {
+			const sx = Math.random() * W;
+			const sy = Math.random() * H;
+			const sr = Math.random() * 1.5 + 0.3;
+			const sa = Math.random() * 0.5 + 0.1;
+			ctx.beginPath();
+			ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(255,255,255,${sa})`;
+			ctx.fill();
+		}
+
+		const cx = W / 2;
+		const giftY = 560;
+		const fireY = giftY - 20;
+
+		const outerGlow = ctx.createRadialGradient(cx, fireY, 0, cx, fireY, 300);
+		outerGlow.addColorStop(0, "rgba(198,33,229,0.22)");
+		outerGlow.addColorStop(0.35, "rgba(255,140,40,0.08)");
+		outerGlow.addColorStop(1, "rgba(0,0,0,0)");
+		ctx.fillStyle = outerGlow;
+		ctx.fillRect(0, fireY - 300, W, 600);
+
+		const coreGlow = ctx.createRadialGradient(cx, fireY, 0, cx, fireY, 120);
+		coreGlow.addColorStop(0, "rgba(255,240,208,0.3)");
+		coreGlow.addColorStop(0.25, "rgba(255,175,70,0.18)");
+		coreGlow.addColorStop(0.6, "rgba(198,33,229,0.1)");
+		coreGlow.addColorStop(1, "rgba(0,0,0,0)");
+		ctx.beginPath();
+		ctx.arc(cx, fireY, 120, 0, Math.PI * 2);
+		ctx.fillStyle = coreGlow;
+		ctx.fill();
+
+		const sparkCount = 40;
+		for (let i = 0; i < sparkCount; i++) {
+			const angle = Math.random() * Math.PI * 2;
+			const dist = 15 + Math.random() * 130;
+			const px = cx + Math.cos(angle) * dist * 0.5;
+			const py = fireY - Math.random() * 200 - 10;
+			const pr = 1.5 + Math.random() * 3;
+			const life = Math.random();
+			const r = life < 0.3 ? 255 : life < 0.6 ? 255 : 198;
+			const g = life < 0.3 ? 240 : life < 0.6 ? 140 : 33;
+			const b = life < 0.3 ? 208 : life < 0.6 ? 40 : 229;
+			const pa = 0.3 + Math.random() * 0.6;
+			ctx.beginPath();
+			ctx.arc(px, py, pr * 2.5, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${r},${g},${b},${pa * 0.15})`;
+			ctx.fill();
+			ctx.beginPath();
+			ctx.arc(px, py, pr, 0, Math.PI * 2);
+			ctx.fillStyle = `rgba(${r},${g},${b},${pa})`;
+			ctx.fill();
+		}
+
+		ctx.font = "80px serif";
+		ctx.textAlign = "center";
+		ctx.fillText("🎁", cx, giftY);
+
+		const headFont = "'Inter', 'SF Pro Display', 'Segoe UI', system-ui, sans-serif";
+		const bodyFont = "'Satoshi', 'SF Pro Text', 'Segoe UI', system-ui, sans-serif";
+		const monoFont = "'JetBrains Mono', 'SF Mono', 'Cascadia Code', monospace";
+
+		ctx.textAlign = "center";
+
+		// --- Headline (forced two lines via narrow max width) ---
+		ctx.font = `900 56px ${headFont}`;
+		ctx.fillStyle = "#f5f5f5";
+		ctx.shadowColor = "rgba(198,33,229,0.5)";
+		ctx.shadowBlur = 30;
+		const headLines = wrapText(ctx, shareHeadline, 580);
+		let y = 650;
+		for (const line of headLines) {
+			ctx.fillText(line, cx, y);
+			y += 68;
+		}
+		ctx.shadowBlur = 0;
+
+		// --- Date/time right under the headline ---
+		y += 12;
+		const now = new Date();
+		const timestamp = now.toLocaleString(undefined, {
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+		});
+		ctx.font = `400 28px ${monoFont}`;
+		ctx.fillStyle = "rgba(161,161,196,0.6)";
+		ctx.fillText(timestamp, cx, y);
+
+		// --- Divider ---
+		y += 50;
+		ctx.beginPath();
+		const lineW = 200;
+		const lineGrad = ctx.createLinearGradient(cx - lineW / 2, y, cx + lineW / 2, y);
+		lineGrad.addColorStop(0, "rgba(198,33,229,0)");
+		lineGrad.addColorStop(0.5, "rgba(198,33,229,0.6)");
+		lineGrad.addColorStop(1, "rgba(198,33,229,0)");
+		ctx.strokeStyle = lineGrad;
+		ctx.lineWidth = 2;
+		ctx.moveTo(cx - lineW / 2, y);
+		ctx.lineTo(cx + lineW / 2, y);
+		ctx.stroke();
+
+		// --- Sponsor block ---
+		y += 60;
+		ctx.font = `500 36px ${bodyFont}`;
+		ctx.fillStyle = "#a1a1c4";
+		ctx.fillText(shareSubline, cx, y);
+
+		y += 64;
+		ctx.font = `900 52px ${headFont}`;
+		ctx.fillStyle = "#c621e5";
+		ctx.shadowColor = "rgba(198,33,229,0.5)";
+		ctx.shadowBlur = 20;
+		ctx.fillText(shareSponsor, cx, y);
+		ctx.shadowBlur = 0;
+
+		y += 52;
+		ctx.font = `500 34px ${bodyFont}`;
+		ctx.fillStyle = "#a1a1c4";
+		ctx.fillText(shareSponsorDetail, cx, y);
+
+		// --- Empty square for user to add tags ---
+		y += 80;
+		const boxW = 700;
+		const boxH = 280;
+		const boxX = cx - boxW / 2;
+		const boxY = y;
+
+		ctx.strokeStyle = "rgba(198,33,229,0.3)";
+		ctx.lineWidth = 2;
+		ctx.setLineDash([10, 8]);
+		ctx.beginPath();
+		ctx.roundRect(boxX, boxY, boxW, boxH, 16);
+		ctx.stroke();
+		ctx.setLineDash([]);
+
+		ctx.fillStyle = "rgba(198,33,229,0.04)";
+		ctx.beginPath();
+		ctx.roundRect(boxX, boxY, boxW, boxH, 16);
+		ctx.fill();
+
+		ctx.font = `500 30px ${bodyFont}`;
+		ctx.fillStyle = "rgba(161,161,196,0.45)";
+		ctx.fillText("@", cx, boxY + boxH / 2 + 10);
+
+		// --- Bottom branding ---
+		y = H - 180;
+		ctx.beginPath();
+		const divW2 = 160;
+		const divGrad = ctx.createLinearGradient(cx - divW2 / 2, y, cx + divW2 / 2, y);
+		divGrad.addColorStop(0, "rgba(198,33,229,0)");
+		divGrad.addColorStop(0.5, "rgba(198,33,229,0.35)");
+		divGrad.addColorStop(1, "rgba(198,33,229,0)");
+		ctx.strokeStyle = divGrad;
+		ctx.lineWidth = 1;
+		ctx.moveTo(cx - divW2 / 2, y);
+		ctx.lineTo(cx + divW2 / 2, y);
+		ctx.stroke();
+
+		y += 50;
+		ctx.font = `900 64px ${headFont}`;
+		ctx.fillStyle = "#f5f5f5";
+		ctx.shadowColor = "rgba(198,33,229,0.4)";
+		ctx.shadowBlur = 20;
+		ctx.fillText("TINKU", cx, y);
+		ctx.shadowBlur = 0;
+
+		y += 48;
+		ctx.font = `500 30px ${bodyFont}`;
+		ctx.fillStyle = "#a1a1c4";
+		ctx.fillText(shareTagline, cx, y);
+	}
+
+	async function generateAndShareImage() {
+		if (isGenerating) return;
+		isGenerating = true;
+
+		try {
+			const shareCanvas = document.createElement("canvas");
+			drawShareCard(shareCanvas);
+
+			const blob = await new Promise<Blob | null>((resolve) =>
+				shareCanvas.toBlob(resolve, "image/png"),
+			);
+			if (!blob) return;
+
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "tinku-easter-egg.png";
+			a.click();
+			setTimeout(() => URL.revokeObjectURL(url), 1000);
+		} finally {
+			isGenerating = false;
+		}
+	}
+
 	$effect(() => {
 		if (!isOpen || !canvas) return;
 
@@ -601,10 +1121,21 @@
 
 		initBgStars(canvas.width, canvas.height);
 
+		const cx = canvas.width / 2;
+		const cy = canvas.height * 0.45;
+
 		if (gameState === "playing") {
 			initOfferings(canvas.width, canvas.height);
+		} else if (gameState === "transitioning") {
+			initVortexParticles(cx, cy, canvas.width, canvas.height);
 		} else if (gameState === "completed" && !prefersReducedMotion) {
-			activateFire();
+			if (fireParticles.length === 0) {
+				for (let i = 0; i < FIRE_COUNT; i++) {
+					const p = createFireParticle(cx, cy);
+					p.life = Math.floor(Math.random() * p.maxLife);
+					fireParticles.push(p);
+				}
+			}
 		}
 
 		if (!prefersReducedMotion) animate();
@@ -643,63 +1174,92 @@
 				</svg>
 			</button>
 
-			{#if gameState === "playing"}
-				<p class="ritual-prompt">{promptText}</p>
+		{#if gameState === "playing"}
+			<div class="ritual-canvas-wrap ritual-canvas-wrap-fullscreen">
+				<canvas
+					bind:this={canvas}
+					class="ritual-canvas ritual-canvas-playing"
+					aria-hidden="true"
+					onpointerdown={handlePointerDown}
+					onpointermove={handlePointerMove}
+					onpointerleave={handlePointerLeave}
+				></canvas>
+			</div>
 
-				<div class="ritual-canvas-wrap">
+			<p class="ritual-prompt ritual-prompt-overlay">{promptText}</p>
+
+			<div class="ritual-progress ritual-progress-overlay" aria-live="polite">
+				<div class="ritual-dots">
+					{#each Array(TOTAL) as _, i}
+						<span
+							class="ritual-dot {i < collected ? 'ritual-dot-filled' : 'ritual-dot-empty'}"
+						></span>
+					{/each}
+				</div>
+				<span class="ritual-count">{formatProgress(collected, TOTAL)}</span>
+			</div>
+
+			<button onclick={() => { collected = TOTAL; activateFire(); }} class="ritual-skip ritual-skip-overlay">
+				{skipLabel}
+			</button>
+		{:else}
+			<div class="ritual-completed">
+				<div class="ritual-canvas-wrap ritual-canvas-wrap-fire">
 					<canvas
 						bind:this={canvas}
 						class="ritual-canvas"
 						aria-hidden="true"
-						onpointerdown={handlePointerDown}
 					></canvas>
 				</div>
 
-				<div class="ritual-progress" aria-live="polite">
-					<div class="ritual-dots">
-						{#each Array(TOTAL) as _, i}
-							<span
-								class="ritual-dot {i < collected ? 'ritual-dot-filled' : 'ritual-dot-empty'}"
-							></span>
-						{/each}
-					</div>
-					<span class="ritual-count">{formatProgress(collected, TOTAL)}</span>
-				</div>
-
-				<button onclick={() => { collected = TOTAL; activateFire(); }} class="ritual-skip">
-					{skipLabel}
-				</button>
-			{:else}
-				<div class="ritual-completed">
-					<div class="ritual-canvas-wrap ritual-canvas-wrap-fire">
-						<canvas
-							bind:this={canvas}
-							class="ritual-canvas"
-							aria-hidden="true"
-						></canvas>
-					</div>
-
+				{#if gameState === "completed"}
 					<div class="ritual-result" role="status">
-						<p class="ritual-fire-emoji">🔥</p>
-						<h2 class="ritual-title">{completedTitle}</h2>
-						<p class="ritual-subtitle">{completedSubtitle}</p>
+						<div class="ritual-reward">
+							<p class="ritual-reward-emoji ritual-stagger" style="--stagger:0">🎁</p>
+							<h2 class="ritual-reward-title ritual-stagger" style="--stagger:1">{rewardTitle}</h2>
+							<p class="ritual-reward-intro ritual-stagger" style="--stagger:2">{rewardIntro}</p>
+
+							<ol class="ritual-reward-steps ritual-stagger" style="--stagger:3">
+								<li>{rewardStep1}</li>
+								<li>{rewardStep2}</li>
+							</ol>
+
+							<p class="ritual-reward-footer ritual-stagger" style="--stagger:4">{rewardFooter}</p>
+
+							<div class="ritual-reward-handles ritual-stagger" style="--stagger:5">
+								<a
+									href="https://www.instagram.com/dra.karen.norena/"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="ritual-handle"
+								>@dra.karen.norena</a>
+								<span class="ritual-handle-sep">&</span>
+								<a
+									href="https://www.instagram.com/TheTribu.dev/"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="ritual-handle"
+								>@TheTribu.dev</a>
+							</div>
+						</div>
 
 						<button
-							class="ritual-cta"
-							data-tally-open="kdA05d"
-							data-tally-hide-title="1"
-							data-tally-emoji-text="👋"
-							data-tally-emoji-animation="wave"
+							class="ritual-cta ritual-stagger"
+							style="--stagger:6"
+							onclick={generateAndShareImage}
+							disabled={isGenerating}
+							data-gtag-label="share_ritual_game"
 						>
-							{ctaText}
+							{isGenerating ? shareGenerating : rewardCta}
 						</button>
 
-						<button onclick={replay} class="ritual-replay">
+						<button onclick={replay} class="ritual-replay ritual-stagger" style="--stagger:7">
 							↻ {replayLabel}
 						</button>
 					</div>
-				</div>
-			{/if}
+				{/if}
+			</div>
+		{/if}
 		</div>
 	</div>
 {/if}
@@ -783,6 +1343,13 @@
 		position: relative;
 	}
 
+	.ritual-canvas-wrap-fullscreen {
+		position: absolute;
+		inset: 0;
+		max-width: none;
+		aspect-ratio: auto;
+	}
+
 	.ritual-canvas-wrap-fire {
 		position: absolute;
 		inset: 0;
@@ -795,8 +1362,11 @@
 		width: 100%;
 		height: 100%;
 		display: block;
-		cursor: crosshair;
 		touch-action: none;
+	}
+
+	.ritual-canvas-playing {
+		cursor: none;
 	}
 
 	.ritual-progress {
@@ -844,6 +1414,33 @@
 	.ritual-skip:hover,
 	.ritual-skip:focus-visible { color: var(--color-text-secondary); }
 
+	.ritual-prompt-overlay {
+		position: absolute;
+		top: 4.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 5;
+		pointer-events: none;
+		text-shadow: 0 2px 8px var(--color-bg);
+	}
+
+	.ritual-progress-overlay {
+		position: absolute;
+		bottom: calc(5rem + 50px);
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 5;
+		pointer-events: none;
+	}
+
+	.ritual-skip-overlay {
+		position: absolute;
+		bottom: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 5;
+	}
+
 	.ritual-completed {
 		position: relative;
 		width: 100%;
@@ -859,36 +1456,109 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.75rem;
+		gap: 1.25rem;
 		text-align: center;
-		animation: ritual-fade-in 0.6s ease-out;
+		max-width: 520px;
+		padding: 0 1rem;
 	}
 
-	.ritual-fire-emoji { font-size: 3rem; margin: 0; line-height: 1; }
+	.ritual-reward {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.125rem;
+		text-align: center;
+	}
 
-	.ritual-title {
+	.ritual-reward-emoji { font-size: 2.5rem; margin: 0; line-height: 1; }
+
+	.ritual-reward-title {
 		font-family: var(--font-inter);
 		font-weight: 900;
-		font-size: 1.875rem;
+		font-size: 1.5rem;
 		color: var(--color-text-primary);
-		margin: 0;
+		margin: 0 0 32px;
 		text-shadow: 0 0 30px var(--color-brand-glow);
 	}
 
-	@media (min-width: 640px) { .ritual-title { font-size: 3rem; } }
+	@media (min-width: 640px) { .ritual-reward-title { font-size: 2rem; } }
 
-	.ritual-subtitle {
+	.ritual-reward-intro {
 		font-family: var(--font-satoshi);
 		font-weight: 500;
-		font-size: 1.125rem;
+		font-size: 0.9375rem;
 		color: var(--color-text-secondary);
 		margin: 0;
+		line-height: 1.6;
 	}
 
-	@media (min-width: 640px) { .ritual-subtitle { font-size: 1.25rem; } }
+	@media (min-width: 640px) { .ritual-reward-intro { font-size: 1.0625rem; } }
+
+	.ritual-reward-steps {
+		text-align: left;
+		list-style: decimal;
+		padding-left: 1.25rem;
+		margin: 0.25rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-family: var(--font-satoshi);
+		font-weight: 500;
+		font-size: 0.9375rem;
+		color: var(--color-text-secondary);
+		line-height: 1.5;
+	}
+
+	@media (min-width: 640px) { .ritual-reward-steps { font-size: 1rem; } }
+
+	.ritual-reward-steps li::marker {
+		color: var(--color-brand);
+		font-weight: 700;
+	}
+
+	.ritual-reward-footer {
+		font-family: var(--font-satoshi);
+		font-weight: 700;
+		font-size: 0.875rem;
+		color: var(--color-brand);
+		margin: 0.5rem 0 0;
+		text-shadow: 0 0 12px var(--color-brand-glow);
+	}
+
+	@media (min-width: 640px) { .ritual-reward-footer { font-size: 0.9375rem; } }
+
+	.ritual-reward-handles {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.25rem;
+	}
+
+	.ritual-handle {
+		font-family: var(--font-mono);
+		font-size: 0.8125rem;
+		color: var(--color-brand);
+		text-decoration: none;
+		padding: 0.25rem 0.5rem;
+		border-radius: 6px;
+		border: 1px solid var(--color-brand-glow);
+		transition: background-color 0.2s, box-shadow 0.2s;
+	}
+
+	.ritual-handle:hover,
+	.ritual-handle:focus-visible {
+		background-color: var(--color-brand-glow);
+		box-shadow: 0 0 12px var(--color-brand-glow-strong);
+	}
+
+	.ritual-handle-sep {
+		font-family: var(--font-satoshi);
+		font-size: 0.75rem;
+		color: var(--color-text-muted);
+	}
 
 	.ritual-cta {
-		margin-top: 0.5rem;
+		margin-top: 1rem;
 		padding: 0.75rem 2rem;
 		border-radius: 9999px;
 		background-color: var(--color-brand);
@@ -913,6 +1583,12 @@
 		outline-offset: 2px;
 	}
 
+	.ritual-cta:disabled {
+		opacity: 0.6;
+		cursor: wait;
+		transform: none;
+	}
+
 	.ritual-replay {
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
@@ -927,8 +1603,29 @@
 	.ritual-replay:hover,
 	.ritual-replay:focus-visible { color: var(--color-text-secondary); }
 
+	@keyframes ritual-stagger-in {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.ritual-stagger {
+		opacity: 0;
+		animation: ritual-stagger-in 0.5s ease-out forwards;
+		animation-delay: calc(var(--stagger, 0) * 0.09s + 0.1s);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.ritual-overlay { animation: none; }
-		.ritual-result { animation: none; }
+		.ritual-stagger {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
 	}
 </style>

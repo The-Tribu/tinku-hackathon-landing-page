@@ -171,6 +171,22 @@ export const es = {
 	"ritual.completed.title": "Ritual Activado",
 	"ritual.completed.subtitle": "Bienvenido a TINKU",
 	"ritual.cta": "👉 Registra tu equipo",
+	"ritual.reward.title": "Ufff parece que eres el primero en descubrirlo!",
+	"ritual.reward.intro":
+		"Ya que eres tan curioso, tenemos un regalo para ti y tu equipo. Tienes una inscripción totalmente grátis patrocinada por Karen Noreña — Ortodoncia y Estética Dental. Para hacerlo posible:",
+	"ritual.reward.step1":
+		"Postea una historia en Instagram que lo encontraste, y etiqueta en ella a @dra.karen.norena y @TheTribu.dev.",
+	"ritual.reward.step2":
+		"Escribe a @TheTribu.dev notificándolo. Nos pondremos en contacto contigo.",
+	"ritual.reward.footer":
+		"La primera persona que cumpla estos dos pasos, se lleva la inscripción.",
+	"ritual.reward.cta": "📸 Compartir en Instagram",
+	"ritual.share.headline": "¡Encontré el Easter Egg de Tinku!",
+	"ritual.share.subline": "Patrocinado por",
+	"ritual.share.sponsor": "Karen Noreña",
+	"ritual.share.sponsorDetail": "Ortodoncia y Estética Dental",
+	"ritual.share.tagline": "Ritual CreAItivo · 17–18 Abril 2026",
+	"ritual.share.generating": "Generando imagen...",
 	"ritual.replay": "Repetir",
 	"ritual.skip": "Saltar juego",
 	"ritual.close": "Cerrar",
