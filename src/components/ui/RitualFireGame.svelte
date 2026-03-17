@@ -15,6 +15,15 @@
 		rewardStep2: string;
 		rewardFooter: string;
 		rewardConditionsLabel: string;
+		rewardClaimedBadge: string;
+		rewardClaimedBadgeEmoji: string;
+		rewardClaimedStatusPending: string;
+		rewardClaimedLegendPending: string;
+		rewardClaimedLegend: string;
+		rewardClaimedTba: string;
+		claimStatus?: "pending" | "claimed";
+		claimedByTeam?: string;
+		claimedByPeople?: string;
 		rewardCta: string;
 		shareHeadline: string;
 		shareSubline: string;
@@ -40,6 +49,15 @@
 		rewardStep2,
 		rewardFooter,
 		rewardConditionsLabel,
+		rewardClaimedBadge,
+		rewardClaimedBadgeEmoji,
+		rewardClaimedStatusPending,
+		rewardClaimedLegendPending,
+		rewardClaimedLegend,
+		rewardClaimedTba,
+		claimStatus = "claimed",
+		claimedByTeam = "",
+		claimedByPeople = "",
 		rewardCta,
 		shareHeadline,
 		shareSubline,
@@ -52,6 +70,12 @@
 	type RewardTextSegment =
 		| { type: "text"; value: string }
 		| { type: "link"; value: string; href: string };
+
+	function getClaimedLegendText(): string {
+		const team = claimedByTeam.trim() || rewardClaimedTba;
+		const people = claimedByPeople.trim() || rewardClaimedTba;
+		return rewardClaimedLegend.replace("{team}", team).replace("{people}", people);
+	}
 
 	const rewardHandles = [
 		{
@@ -1309,7 +1333,27 @@
 									aria-hidden="true"
 								></canvas>
 							</div>
-							<h2 class="ritual-reward-title ritual-stagger" style="--stagger:1">{rewardTitle}</h2>
+							<div class="ritual-reward-title-row ritual-stagger" style="--stagger:1">
+								<h2 class="ritual-reward-title">{rewardTitle}</h2>
+								<span class="ritual-claimed-badge-wrapper">
+									<button
+										type="button"
+										class="ritual-claimed-badge"
+										aria-describedby="ritual-claimed-tooltip"
+										aria-label="{rewardClaimedBadgeEmoji} {claimStatus === 'pending' ? rewardClaimedStatusPending : rewardClaimedBadge}. {claimStatus === 'pending' ? rewardClaimedLegendPending : getClaimedLegendText()}"
+									>
+										<span class="ritual-claimed-badge-emoji" aria-hidden="true">{rewardClaimedBadgeEmoji}</span>
+										{claimStatus === "pending" ? rewardClaimedStatusPending : rewardClaimedBadge}
+									</button>
+									<span
+										id="ritual-claimed-tooltip"
+										class="ritual-claimed-tooltip"
+										role="tooltip"
+									>
+										{claimStatus === "pending" ? rewardClaimedLegendPending : getClaimedLegendText()}
+									</span>
+								</span>
+							</div>
 							<p class="ritual-reward-intro ritual-stagger" style="--stagger:2">{rewardIntro}</p>
 
 							<ol class="ritual-reward-steps ritual-stagger" style="--stagger:3">
@@ -1364,7 +1408,7 @@
 
 						<button
 							class="ritual-cta ritual-stagger"
-							style="--stagger:7"
+							style="--stagger:8"
 							onclick={generateAndShareImage}
 							disabled={isGenerating}
 							data-gtag-label="share_ritual_game"
@@ -1372,7 +1416,7 @@
 							{isGenerating ? shareGenerating : rewardCta}
 						</button>
 
-						<button onclick={replay} class="ritual-replay ritual-stagger" style="--stagger:8">
+						<button onclick={replay} class="ritual-replay ritual-stagger" style="--stagger:9">
 							↻ {replayLabel}
 						</button>
 					</div>
@@ -1605,16 +1649,95 @@
 		display: block;
 	}
 
+	.ritual-reward-title-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem 1rem;
+		margin-bottom: 32px;
+	}
+
 	.ritual-reward-title {
 		font-family: var(--font-inter);
 		font-weight: 900;
 		font-size: 1.5rem;
 		color: var(--color-text-primary);
-		margin: 0 0 32px;
+		margin: 0;
 		text-shadow: 0 0 30px var(--color-brand-glow);
 	}
 
 	@media (min-width: 640px) { .ritual-reward-title { font-size: 2rem; } }
+
+	.ritual-claimed-badge-wrapper {
+		position: relative;
+		display: inline-flex;
+	}
+
+	.ritual-claimed-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-family: var(--font-inter);
+		font-weight: 700;
+		font-size: 0.75rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--color-brand);
+		background-color: var(--color-brand-glow);
+		border: 1px solid var(--color-brand-glow-strong);
+		padding: 0.35rem 0.75rem;
+		border-radius: 9999px;
+		box-shadow: 0 0 12px var(--color-brand-glow);
+		cursor: help;
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+
+	.ritual-claimed-badge:hover,
+	.ritual-claimed-badge:focus-visible {
+		transform: scale(1.05);
+		box-shadow: 0 0 16px var(--color-brand-glow-strong);
+	}
+
+	.ritual-claimed-badge:focus-visible {
+		outline: 2px solid var(--color-brand);
+		outline-offset: 2px;
+	}
+
+	.ritual-claimed-tooltip {
+		position: absolute;
+		left: 50%;
+		bottom: 100%;
+		transform: translateX(-50%);
+		margin-bottom: 0.5rem;
+		width: min(280px, 85vw);
+		padding: 0.75rem 1rem;
+		font-family: var(--font-satoshi);
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		color: var(--color-text-primary);
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-brand-glow);
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 0.2s, opacity 0.2s;
+		z-index: 10;
+		pointer-events: none;
+	}
+
+	.ritual-claimed-badge-wrapper:hover .ritual-claimed-tooltip,
+	.ritual-claimed-badge-wrapper:focus-within .ritual-claimed-tooltip {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ritual-claimed-tooltip {
+			transition: none;
+		}
+	}
 
 	.ritual-reward-intro {
 		font-family: var(--font-satoshi);
