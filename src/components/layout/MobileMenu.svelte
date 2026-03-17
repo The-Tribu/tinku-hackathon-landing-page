@@ -95,6 +95,7 @@
 				data-tally-hide-title="1"
 				data-tally-emoji-text="👋"
 				data-tally-emoji-animation="wave"
+				data-gtag-label="apply_mobile_menu"
 				class="mt-4 px-8 py-3 bg-brand text-white font-inter font-bold rounded-lg hover:shadow-[0_0_30px_var(--color-brand-glow-strong)] transition-all duration-200"
 			>
 				{applyLabel}

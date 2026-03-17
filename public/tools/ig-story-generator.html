@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IG Story Generator — Día 1</title>
+<style>
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('/fonts/satoshi/Satoshi-Medium.otf') format('opentype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('/fonts/satoshi/Satoshi-Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('/fonts/satoshi/Satoshi-Black.otf') format('opentype');
+    font-weight: 900;
+  }
+  body {
+    margin: 0;
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Satoshi', sans-serif;
+    color: #fff;
+    gap: 24px;
+  }
+  canvas { 
+    max-height: 85vh; 
+    border: 1px solid #222;
+  }
+  button {
+    padding: 12px 32px;
+    background: #c621e5;
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover { background: #a01bc0; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<button onclick="download()">Descargar imagen</button>
+
+<script>
+const W = 1080;
+const H = 1920;
+const cx = W / 2;
+
+const logo = new Image();
+logo.src = '/images/brand/tinku-logo-horizontal-color.svg';
+
+logo.onload = () => {
+  document.fonts.ready.then(draw);
+};
+
+function draw() {
+  const c = document.getElementById('c');
+  const ctx = c.getContext('2d');
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#06081a');
+  bg.addColorStop(0.45, '#020617');
+  bg.addColorStop(1, '#0a0220');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Stars
+  for (let i = 0; i < 90; i++) {
+    const sx = Math.random() * W;
+    const sy = Math.random() * H * 0.65;
+    const sr = Math.random() * 1.5 + 0.3;
+    const sa = Math.random() * 0.5 + 0.1;
+    ctx.beginPath();
+    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${sa})`;
+    ctx.fill();
+  }
+
+  // Minimalist mountains — clean geometric silhouettes
+  drawMinimalMountains(ctx);
+
+  // Purple glow behind text
+  const glow = ctx.createRadialGradient(cx, H * 0.44, 0, cx, H * 0.44, 380);
+  glow.addColorStop(0, 'rgba(198, 33, 229, 0.18)');
+  glow.addColorStop(0.4, 'rgba(198, 33, 229, 0.06)');
+  glow.addColorStop(1, 'rgba(198, 33, 229, 0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+
+  // Tinku logo at top
+  const logoH = 200;
+  const logoW = logo.naturalWidth * (logoH / logo.naturalHeight);
+  ctx.drawImage(logo, cx - logoW / 2, 200, logoW, logoH);
+
+  // Main text — "Algo está escondido en nuestra página."
+  ctx.textAlign = 'center';
+  ctx.font = "900 72px 'Satoshi', sans-serif";
+  ctx.fillStyle = '#f5f5f5';
+  ctx.shadowColor = 'rgba(198, 33, 229, 0.5)';
+  ctx.shadowBlur = 40;
+
+  const mainText = 'Algo está escondido\nen nuestra página.';
+  const mainLines = mainText.split('\n');
+  let y = H * 0.42;
+  for (const line of mainLines) {
+    ctx.fillText(line, cx, y);
+    y += 90;
+  }
+  ctx.shadowBlur = 0;
+
+  // Subtitle — "No es un bug."
+  ctx.font = "500 48px 'Satoshi', sans-serif";
+  ctx.fillStyle = 'rgba(161, 161, 196, 0.7)';
+  y += 30;
+  ctx.fillText('No es un bug.', cx, y);
+}
+
+function drawMinimalMountains(ctx) {
+  // Back layer — large distant range
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  ctx.lineTo(0, H * 0.78);
+  ctx.lineTo(W * 0.15, H * 0.72);
+  ctx.lineTo(W * 0.32, H * 0.62);
+  ctx.lineTo(W * 0.48, H * 0.70);
+  ctx.lineTo(W * 0.62, H * 0.58);
+  ctx.lineTo(W * 0.78, H * 0.68);
+  ctx.lineTo(W * 0.90, H * 0.64);
+  ctx.lineTo(W, H * 0.72);
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(12, 8, 28, 0.6)';
+  ctx.fill();
+
+  // Mid layer
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  ctx.lineTo(0, H * 0.80);
+  ctx.lineTo(W * 0.10, H * 0.76);
+  ctx.lineTo(W * 0.25, H * 0.68);
+  ctx.lineTo(W * 0.38, H * 0.74);
+  ctx.lineTo(W * 0.55, H * 0.65);
+  ctx.lineTo(W * 0.70, H * 0.72);
+  ctx.lineTo(W * 0.85, H * 0.69);
+  ctx.lineTo(W, H * 0.76);
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(8, 5, 20, 0.75)';
+  ctx.fill();
+
+  // Front layer — closest, darkest
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  ctx.lineTo(0, H * 0.84);
+  ctx.lineTo(W * 0.18, H * 0.78);
+  ctx.lineTo(W * 0.35, H * 0.82);
+  ctx.lineTo(W * 0.50, H * 0.75);
+  ctx.lineTo(W * 0.65, H * 0.80);
+  ctx.lineTo(W * 0.80, H * 0.76);
+  ctx.lineTo(W, H * 0.82);
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(4, 2, 14, 0.9)';
+  ctx.fill();
+}
+
+function download() {
+  const c = document.getElementById('c');
+  const a = document.createElement('a');
+  a.href = c.toDataURL('image/png');
+  a.download = 'tinku-dia1-ig-story.png';
+  a.click();
+}
+</script>
+</body>
+</html>

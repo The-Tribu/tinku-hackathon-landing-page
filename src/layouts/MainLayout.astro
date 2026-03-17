@@ -109,12 +109,12 @@ const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
 		})} />
 
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJ44BG42JJ"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNTKDKFMQ7"></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-			gtag('config', 'G-CJ44BG42JJ');
+			gtag('config', 'G-TNTKDKFMQ7');
 		</script>
 
 		<!-- Tally embed script for popup forms -->
@@ -153,6 +153,35 @@ const enUrl = new URL(getLocalePath(Astro.url.pathname, "en"), Astro.site);
 					observer.observe(el);
 				});
 			}
+		</script>
+
+		<!-- CTA click tracking via event delegation -->
+		<script is:inline>
+			document.addEventListener('click', function(e) {
+				var el = e.target;
+				while (el && el !== document) {
+					var label = el.getAttribute('data-gtag-label');
+					if (label) {
+						gtag('event', 'cta_click', {
+							cta_label: label,
+							cta_url: el.getAttribute('href') || '',
+							cta_text: el.textContent.trim()
+						});
+						return;
+					}
+					if (el.getAttribute('data-tally-open')) {
+						var section = el.closest('section[id]');
+						var loc = section ? section.id : (el.closest('header') ? 'header' : 'unknown');
+						gtag('event', 'cta_click', {
+							cta_label: 'apply_' + loc,
+							cta_url: 'tally:kdA05d',
+							cta_text: el.textContent.trim()
+						});
+						return;
+					}
+					el = el.parentElement;
+				}
+			});
 		</script>
 	</body>
 </html>
