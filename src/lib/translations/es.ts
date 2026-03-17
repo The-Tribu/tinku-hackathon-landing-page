@@ -181,6 +181,14 @@ export const es = {
 	"ritual.reward.footer":
 		"La primera persona que cumpla estos dos pasos, se lleva la inscripción.",
 	"ritual.reward.conditions": "Ver términos y condiciones del juego",
+	"ritual.reward.claimedBadge": "Reclamado",
+	"ritual.reward.claimedBadgeEmoji": "🔥",
+	"ritual.reward.claimedStatusPending": "Reclamado — por confirmar",
+	"ritual.reward.claimedLegendPending":
+		"El premio fue reclamado. Estamos confirmando y revelaremos al ganador pronto.",
+	"ritual.reward.claimedLegend":
+		"Las ofrendas fueron reunidas por {team}: {people}. La patrocinadora custodia y entrega este premio.",
+	"ritual.reward.claimedTba": "Por confirmar",
 	"ritual.reward.cta": "📸 Compartir en Instagram",
 	"ritual.share.headline": "¡Encontré el Easter Egg de Tinku!",
 	"ritual.share.subline": "Patrocinado por",
