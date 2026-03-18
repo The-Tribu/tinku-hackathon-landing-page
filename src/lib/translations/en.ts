@@ -190,6 +190,9 @@ export const en = {
 		"The prize has been reclaimed. We're confirming and will reveal the winner soon.",
 	"ritual.reward.claimedLegend":
 		"The offerings were gathered by {team}: {people}. The sponsor holds and awards this prize.",
+	"ritual.reward.claimedLegendPrefix": "The offerings were gathered by ",
+	"ritual.reward.claimedLegendTeamSeparator": ": ",
+	"ritual.reward.claimedLegendSuffix": "The sponsor holds and awards this prize.",
 	"ritual.reward.claimedTba": "TBA",
 	"ritual.reward.cta": "📸 Share on Instagram",
 	"ritual.share.headline": "I found the Tinku Easter Egg!",

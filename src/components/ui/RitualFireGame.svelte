@@ -20,6 +20,9 @@
 		rewardClaimedStatusPending: string;
 		rewardClaimedLegendPending: string;
 		rewardClaimedLegend: string;
+		rewardClaimedLegendPrefix: string;
+		rewardClaimedLegendTeamSeparator: string;
+		rewardClaimedLegendSuffix: string;
 		rewardClaimedTba: string;
 		claimStatus?: "pending" | "claimed";
 		claimedByTeam?: string;
@@ -54,6 +57,9 @@
 		rewardClaimedStatusPending,
 		rewardClaimedLegendPending,
 		rewardClaimedLegend,
+		rewardClaimedLegendPrefix,
+		rewardClaimedLegendTeamSeparator,
+		rewardClaimedLegendSuffix,
 		rewardClaimedTba,
 		claimStatus = "claimed",
 		claimedByTeam = "",
@@ -75,6 +81,13 @@
 		const team = claimedByTeam.trim() || rewardClaimedTba;
 		const people = claimedByPeople.trim() || rewardClaimedTba;
 		return rewardClaimedLegend.replace("{team}", team).replace("{people}", people);
+	}
+
+	function getClaimedParticipants(): string[] {
+		const raw = claimedByPeople.trim();
+		if (!raw) return [];
+		const normalized = raw.replace(/\s+and\s+/gi, ", ").replace(/\s+y\s+/g, ", ");
+		return normalized.split(",").map((s) => s.trim()).filter(Boolean);
 	}
 
 	const rewardHandles = [
@@ -1335,7 +1348,7 @@
 							</div>
 							<div class="ritual-reward-title-row ritual-stagger" style="--stagger:1">
 								<h2 class="ritual-reward-title">{rewardTitle}</h2>
-								<span class="ritual-claimed-badge-wrapper">
+								<div class="ritual-claimed-badge-wrapper">
 									<button
 										type="button"
 										class="ritual-claimed-badge"
@@ -1345,14 +1358,24 @@
 										<span class="ritual-claimed-badge-emoji" aria-hidden="true">{rewardClaimedBadgeEmoji}</span>
 										{claimStatus === "pending" ? rewardClaimedStatusPending : rewardClaimedBadge}
 									</button>
-									<span
+									<div
 										id="ritual-claimed-tooltip"
 										class="ritual-claimed-tooltip"
 										role="tooltip"
 									>
-										{claimStatus === "pending" ? rewardClaimedLegendPending : getClaimedLegendText()}
-									</span>
-								</span>
+										{#if claimStatus === "pending"}
+											{rewardClaimedLegendPending}
+										{:else}
+											<span class="ritual-claimed-legend-inline">{rewardClaimedLegendPrefix}<strong>{claimedByTeam.trim() || rewardClaimedTba}</strong>{rewardClaimedLegendTeamSeparator}</span>
+											<ul class="ritual-claimed-participants">
+												{#each getClaimedParticipants() as participant}
+													<li><strong>{participant}</strong></li>
+												{/each}
+											</ul>
+											<p class="ritual-claimed-legend-suffix">{rewardClaimedLegendSuffix}</p>
+										{/if}
+									</div>
+								</div>
 							</div>
 							<p class="ritual-reward-intro ritual-stagger" style="--stagger:2">{rewardIntro}</p>
 
@@ -1710,11 +1733,13 @@
 		bottom: 100%;
 		transform: translateX(-50%);
 		margin-bottom: 0.5rem;
+		min-width: 350px;
 		width: min(280px, 85vw);
 		padding: 0.75rem 1rem;
 		font-family: var(--font-satoshi);
 		font-size: 0.8125rem;
 		line-height: 1.5;
+		text-align: left;
 		color: var(--color-text-primary);
 		background-color: var(--color-surface);
 		border: 1px solid var(--color-brand-glow);
@@ -1731,6 +1756,19 @@
 	.ritual-claimed-badge-wrapper:focus-within .ritual-claimed-tooltip {
 		visibility: visible;
 		opacity: 1;
+	}
+
+	.ritual-claimed-participants {
+		margin: 0.375rem 0 0 1rem;
+		padding: 0;
+		list-style: disc;
+	}
+	.ritual-claimed-participants li {
+		margin: 0.25rem 0;
+	}
+
+	.ritual-claimed-legend-suffix {
+		margin: 0.5rem 0 0;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
