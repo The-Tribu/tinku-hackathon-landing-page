@@ -3,31 +3,31 @@ To open a Tally popup, paste the following code snippet in the <head> section of
 <script async src="https://tally.so/widgets/embed.js"></script>
 Then to open the popup on clicking a button, you need to add the following data-tally attributes to an existing button on your page. You can add these attributes to any clickable element - button, div, etc.
 // Data attributes
-data-tally-open="kdA05d" data-tally-hide-title="1" data-tally-emoji-text="👋" data-tally-emoji-animation="wave"
+data-tally-open="QK0koA" data-tally-hide-title="1" data-tally-emoji-text="👋" data-tally-emoji-animation="wave"
 
 // Example
-<button data-tally-open="kdA05d" data-tally-hide-title="1" data-tally-emoji-text="👋" data-tally-emoji-animation="wave">Click me</button>
+<button data-tally-open="QK0koA" data-tally-hide-title="1" data-tally-emoji-text="👋" data-tally-emoji-animation="wave">Click me</button>
 Alternatively, you can open the popup by clicking on a link with a custom URL hash. Add the URL below to a link on your page to open the popup.
 // Link href attribute
-#tally-open=kdA05d&tally-hide-title=1&tally-emoji-text=👋&tally-emoji-animation=wave
+#tally-open=QK0koA&tally-hide-title=1&tally-emoji-text=👋&tally-emoji-animation=wave
 
 // Example
-<a href="#tally-open=kdA05d&tally-hide-title=1&tally-emoji-text=👋&tally-emoji-animation=wave">Click me</a>
+<a href="#tally-open=QK0koA&tally-hide-title=1&tally-emoji-text=👋&tally-emoji-animation=wave">Click me</a>
 Save website page and query parameters
 Your website's page and all query parameters will be automatically forwarded to the Tally popup and could be saved using hidden fields. For example, if your page's URL looks like the one below and you have hidden fields for originPage, ref and email, you will see originPage=/register, ref=downloads and email=alice@example.com in your form submissions.
 https://company.com/register?ref=downloads&email=alice@example.com
 If you are opening the popup on button click via data attributes, all data attributes will be automatically forwarded to the popup. The example below sets 2 data attributes which can be used as hidden fields: ref and email.
-<button data-tally-open="kdA05d" data-ref="downloads" data-email="alice@example.com">Click me</button>
+<button data-tally-open="QK0koA" data-ref="downloads" data-email="alice@example.com">Click me</button>
 If you are opening the popup on button click via custom URL hash, all URL parameters will be automatically forwarded to the popup. The example below sets 2 parameters which can be used as hidden fields: ref and email.
-<a href="#tally-open=kdA05d&ref=downloads&email=alice@example.com">Click me</a>
+<a href="#tally-open=QK0koA&ref=downloads&email=alice@example.com">Click me</a>
 Use JavaScript
 You can open and close popups using JavaScript via the window.Tally object. It comes in handy when you want to define your own business logic on when to open a certain popup. Take a look at the instructions below and share them with your developers.
 // Include the Tally widget script in the <head> section of your page
 <script src="https://tally.so/widgets/embed.js"></script>
 
 // You can find the form ID in the URL of this page
-// https://tally.so/forms/kdA05d/share
-const formId = 'kdA05d';
+// https://tally.so/forms/QK0koA/share
+const formId = 'QK0koA';
 
 // Open the popup
 Tally.openPopup(formId, options);
@@ -58,17 +58,17 @@ type PopupOptions = {
 };
 
 // Example: open a popup with default options
-Tally.openPopup('kdA05d');
+Tally.openPopup('QK0koA');
 
 // Example: opening a popup as a centered modal
-Tally.openPopup('kdA05d', {
+Tally.openPopup('QK0koA', {
   layout: 'modal', // Open as a centered modal
   width: 700, // Set the width of the modal
   autoClose: 5000, // Close the popup 5 seconds after form was submitted (in ms)
 });
 
 // Example: set custom hidden fields
-Tally.openPopup('kdA05d', {
+Tally.openPopup('QK0koA', {
   hiddenFields: {
     ref: 'downloads',
     email: 'alice@example.com'
@@ -76,12 +76,12 @@ Tally.openPopup('kdA05d', {
 });
 
 // Example: customization via custom domain URL + code injection
-Tally.openPopup('kdA05d', {
+Tally.openPopup('QK0koA', {
   customFormUrl: 'https://yourdomain.com/form',
 });
 
 // Example: use callback functions to handle events
-Tally.openPopup('kdA05d', {
+Tally.openPopup('QK0koA', {
   onOpen: () => {
     // The popup was opened, mark the form as seen
     // ...
@@ -101,4 +101,4 @@ Tally.openPopup('kdA05d', {
 });
 
 // Close the popup
-Tally.closePopup('kdA05d');
+Tally.closePopup('QK0koA');

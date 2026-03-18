@@ -15,14 +15,15 @@ export const en = {
 	"nav.organizers": "Organizers",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
-	"nav.apply": "👉 Register my team",
+	"nav.apply": "👉 Join the waitlist",
 
 	// Hero (brand terms stay in Spanish)
 	"hero.badge.date": "April 17-18",
 	"hero.badge.location": "Cartago, Colombia · Universidad Cooperativa de Colombia",
+	"hero.badge.soldOut": "Sold out",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 hours to build, learn, and connect with the tech world.",
-	"hero.cta.apply": "👉 Register my team",
+	"hero.cta.apply": "👉 Join the waitlist",
 	"hero.cta.schedule": "See schedule ↓",
 	"hero.countdown.days": "Days",
 	"hero.countdown.hours": "Hours",
@@ -159,7 +160,7 @@ export const en = {
 
 	// Footer CTA (brand terms stay in Spanish)
 	"footerCta.title": "Tu vIAje comienza aquí",
-	"footerCta.cta": "👉 Register my team",
+	"footerCta.cta": "👉 Join the waitlist",
 
 	// Footer
 	"footer.madeWith": "Made with love in Cartago, Colombia",

@@ -15,14 +15,15 @@ export const es = {
 	"nav.organizers": "Organizadores",
 	"nav.sponsors": "Sponsors",
 	"nav.blog": "Blog",
-	"nav.apply": "👉 Registrar mi equipo",
+	"nav.apply": "👉 Lista de espera",
 
 	// Hero
 	"hero.badge.date": "17-18 de abril",
 	"hero.badge.location": "Cartago, Colombia · Universidad Cooperativa de Colombia",
+	"hero.badge.soldOut": "Inscripciones agotadas",
 	"hero.tagline": "Ritual CreAItivo",
 	"hero.description": "18 horas para construir, aprender y conectar con el mundo tech.",
-	"hero.cta.apply": "👉 Registrar mi equipo",
+	"hero.cta.apply": "👉 Lista de espera",
 	"hero.cta.schedule": "Ver agenda ↓",
 	"hero.countdown.days": "Días",
 	"hero.countdown.hours": "Horas",
@@ -157,7 +158,7 @@ export const es = {
 
 	// Footer CTA
 	"footerCta.title": "Tu vIAje comienza aquí",
-	"footerCta.cta": "👉 Registrar mi equipo",
+	"footerCta.cta": "👉 Lista de espera",
 
 	// Footer
 	"footer.madeWith": "Hecho con amor en Cartago, Colombia",

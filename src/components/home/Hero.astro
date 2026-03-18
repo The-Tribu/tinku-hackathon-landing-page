@@ -46,14 +46,23 @@ const stats = [
 
 	<!-- Content -->
 	<div class="relative z-10 w-full max-w-4xl mx-auto px-4 py-20 text-center space-y-8">
-		<!-- Badge -->
-		<div
-			class="hero-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 backdrop-blur-sm border border-brand/10 text-sm font-satoshi text-text-secondary"
-			style="animation-delay: 0.1s"
-		>
-			<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-			<strong class="font-bold text-text-primary">{t("hero.badge.date")}</strong>
-			<span>· {t("hero.badge.location")}</span>
+		<!-- Date, location, and sold-out as inline info (not a button) -->
+		<div class="hero-animate flex flex-col items-center justify-center gap-1" style="animation-delay: 0.1s">
+			<div
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 backdrop-blur-sm border border-text-muted-subtle text-sm font-satoshi text-text-secondary"
+			>
+				<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+				<strong class="font-bold text-text-primary">{t("hero.badge.date")}</strong>
+				<span>· {t("hero.badge.location")}</span>
+			</div>
+			<div
+				class="sold-out-line mt-4 flex w-full max-w-xs items-center gap-4"
+				aria-label={t("hero.badge.soldOut")}
+			>
+				<div class="h-px flex-1 bg-gradient-to-r from-transparent to-[var(--color-brand)]" aria-hidden="true"></div>
+				<span class="sold-out-badge text-sm font-satoshi font-bold shrink-0 bg-[var(--color-brand)] text-text-primary rounded-md py-px px-1.5">{t("hero.badge.soldOut")}</span>
+				<div class="h-px flex-1 bg-gradient-to-r from-[var(--color-brand)] to-transparent" aria-hidden="true"></div>
+			</div>
 		</div>
 
 		<!-- Logo -->
