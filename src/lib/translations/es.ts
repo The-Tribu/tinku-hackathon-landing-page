@@ -188,6 +188,9 @@ export const es = {
 		"El premio fue reclamado. Estamos confirmando y revelaremos al ganador pronto.",
 	"ritual.reward.claimedLegend":
 		"Las ofrendas fueron reunidas por {team}: {people}. La patrocinadora custodia y entrega este premio.",
+	"ritual.reward.claimedLegendPrefix": "Las ofrendas fueron reunidas por ",
+	"ritual.reward.claimedLegendTeamSeparator": ": ",
+	"ritual.reward.claimedLegendSuffix": "El sponsor custodia y entrega este premio.",
 	"ritual.reward.claimedTba": "Por confirmar",
 	"ritual.reward.cta": "📸 Compartir en Instagram",
 	"ritual.share.headline": "¡Encontré el Easter Egg de Tinku!",
