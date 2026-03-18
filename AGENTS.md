@@ -56,7 +56,7 @@ pnpm typecheck    # astro check
 All "Apply" / "Aplicar" buttons open a **Tally popup** (not a link). Use these data attributes:
 
 ```html
-data-tally-open="kdA05d"
+data-tally-open="QK0koA"
 data-tally-hide-title="1"
 data-tally-emoji-text="👋"
 data-tally-emoji-animation="wave"

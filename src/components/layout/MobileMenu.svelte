@@ -91,7 +91,7 @@
 			</button>
 
 			<button
-				data-tally-open="kdA05d"
+				data-tally-open="QK0koA"
 				data-tally-hide-title="1"
 				data-tally-emoji-text="👋"
 				data-tally-emoji-animation="wave"

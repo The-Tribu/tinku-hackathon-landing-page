@@ -39,7 +39,7 @@
 			<LanguageToggle {currentLang} {currentPath} />
 
 			<button
-				data-tally-open="kdA05d"
+				data-tally-open="QK0koA"
 				data-tally-emoji-text="👋"
 				data-tally-emoji-animation="wave"
 				data-gtag-label="apply_header"
